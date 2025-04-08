@@ -65,7 +65,7 @@ jobs:
 
       # Step 7: Build the static site with Nuxt
       - name: Generate static site with Nuxt
-        run: pnpm generate
+        run: NUXT_APP_BASE_URL=/pinecone.github.io/ pnpm build --preset github_pages
 
       # Step 8: Upload build to GitHub Pages artifact
       - name: Upload artifact
