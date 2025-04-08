@@ -1,43 +1,60 @@
 <script setup lang="ts">
 type Props = {
+  canFlip?: boolean
   frontImage: string
-  backImage: string
-  backText: string
+  backImage?: string
 }
-defineProps<Props>()
+const { canFlip = true } = defineProps<Props>()
 
 const flipped = ref(false)
+
+function handleFlip() {
+  if (canFlip) {
+    flipped.value = !flipped.value
+  }
+}
 </script>
 
 <template>
   <div
-      class="group w-64 h-96 perspective cursor-pointer"
-      @click="flipped = !flipped"
+      class="group w-64 h-[450px] perspective"
+      :class="{ 'cursor-pointer': canFlip, 'cursor-default': !canFlip }"
+      @click="handleFlip"
   >
     <div
-        class="relative w-full h-full transition-transform duration-500 transform-style preserve-3d"
-        :class="{ 'rotate-y-180': flipped }"
+        class="relative w-full h-full transform-style preserve-3d"
+        :class="{
+          'rotate-y-180 transition-transform duration-500': flipped && canFlip,
+          'transition-transform duration-500': canFlip,
+          'no-animation': !canFlip
+        }"
     >
+      <!-- Front side -->
       <div
-          class="card-front absolute w-full h-full backface-hidden bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 origin-left"
+          class="card-front absolute w-full h-full backface-hidden bg-white rounded-xl shadow-lg overflow-hidden"
+          :class="{ 'hover-effect': canFlip }"
       >
         <img
-            :src="`/cards/${frontImage}`"
+            :src="`${frontImage}`"
             alt="Front"
-            class="object-cover w-full h-full"
-        />
+            class="object-cover w-full h-full absolute z-0"
+        >
+        <div class="relative z-10 p-4 w-full h-full">
+          <slot name="frontText"/>
+        </div>
       </div>
 
+      <!-- Back side -->
       <div
           class="absolute w-full h-full backface-hidden rotate-y-180 bg-black text-white rounded-xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
       >
         <img
-            :src="`/cards/${backImage}`"
+            :src="`${backImage}`"
             alt="Back"
             class="object-cover w-full h-full absolute z-0 opacity-40"
-        />
-        <div class="relative z-10 p-4 text-center">
-          <p class="text-lg font-semibold">{{ backText }}</p>
+        >
+        <div class="relative z-10 p-4 w-full h-full">
+          <slot name="backText"/>
         </div>
       </div>
     </div>
@@ -61,12 +78,29 @@ const flipped = ref(false)
   transform: rotateY(180deg);
 }
 
-.origin-left {
-  transform-origin: left center;
+.transition-transform {
+  transition: transform 0.5s ease;
 }
 
-.group:hover .card-front {
+.no-animation {
+  transition: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.group:hover .card-front.hover-effect {
   transform: rotateY(15deg);
-  transition: transform 0.3s ease;
+}
+
+.card-front,
+.card-back {
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 </style>

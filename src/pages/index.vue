@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import PageTitle from "~/entities/PageTitle/PageTitle.vue";
+import TextBlock from "~/entities/TextBlock/TextBlock.vue";
+import type {ITextBlock} from "~/entities/TextBlock/types/textBlock.types";
 
-// Данные для повторяющихся текстовых блоков
-const textBlocks = [
+const textBlocks: ITextBlock[] = [
   {
     title: "Lucidity Triptych – A Unique Immersive Theater Experience in Belgrade",
     paragraphs: [
@@ -14,9 +15,9 @@ const textBlocks = [
     title: "About the Performance",
     paragraphs: [
         "Inspired by Friedrich Nietzsche’s The Birth of Tragedy and Carl Jung’s theory of archetypes, this theatrical experience leads the audience to the collision point of order and chaos, reality and dreams, performance and observation. The story follows Wilhelm, a writer approaching his forties, who, over the course of a single night and three dreams, confronts unresolved conflicts from his past and deep- seated family traumas that hinder his search for personal and creative freedom. Each spectator constructs their own sensory and emotional journey, shaping a unique perspective on the unfolding narrative",
-        "The three dreams reveal different facets of the writer’s personal transformation, unfolding<br />\n" +
-        "simultaneously, making it physically impossible to witness the entire performance in one viewing.<br />\n" +
-        "Audience members can choose to follow the dreamer throughout, shadow one of the dream<br />\n" +
+        "The three dreams reveal different facets of the writer’s personal transformation, unfolding" +
+        "simultaneously, making it physically impossible to witness the entire performance in one viewing" +
+        "Audience members can choose to follow the dreamer throughout, shadow one of the dream" +
         "characters, or shift between multiple perspectives. ",
         "The first dream, Separation, explores the fragile boundary between passion and responsibility through the story of a young couple caught in the whirlwind of creative ambition and emotional dependence. The second dream, Shadows, delves into the weight of inherited family conflicts and the dark forces of the unconscious through a turbulent and painful story between a father and son. The third dream, Consequences, exposes the cost of ambition and the longing for recognition, as characters stumble over their own desires, pushing their ideals to the breaking point. Before the performance begins, each audience member receives guidance on how to navigate the narrative"
       ],
@@ -42,23 +43,13 @@ const textBlocks = [
 
 
 <template>
-  <main>
     <div class="flex flex-col items-center gap-20 my-30">
       <PageTitle tag="h1">Pinecone Theater</PageTitle>
       <PageTitle tag="h2">
         <span class="uppercase">Lucidity</span> Triptych
       </PageTitle>
     </div>
-
-    <div class="flex flex-col gap-15">
-      <div v-for="(block, index) in textBlocks" :key="index" class="flex flex-col items-start gap-3">
-        <PageTitle class="blockTitle" :tag="'h3'">{{ block.title }}</PageTitle>
-        <p v-for="(paragraph, i) in block.paragraphs" :key="i" class="text-lg">
-          {{ paragraph }}
-        </p>
-      </div>
-    </div>
-  </main>
+    <TextBlock :blocks="textBlocks" />
 </template>
 
 <style scoped>
@@ -67,6 +58,5 @@ const textBlocks = [
   font-weight: bold;
   font-family: Inter, sans-serif;
   margin: 0;
-
 }
 </style>

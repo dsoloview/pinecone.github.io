@@ -14,9 +14,9 @@
 <script setup lang="ts">
 const menuItems = [
   { to: "/", text: "Pinecone theater" },
-  { to: "/", text: "Immersivity" },
-  { to: "/", text: "Team & Cast" },
-  { to: "/", text: "About us" },
+  { to: "/immersivity", text: "Immersivity" },
+  { to: "/team-cast", text: "Team & Cast" },
+  { to: "/about-us", text: "About us" },
   { to: "/", text: "Private event" },
   { to: "/", text: "Contact us" },
 ];

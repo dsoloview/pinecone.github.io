@@ -7,10 +7,14 @@ import Footer from "~/widgets/Footer/ui/Footer.vue";
 
 <template>
   <div class="min-h-screen w-[100%] bg-black relative overflow-hidden py-12">
-    <MouseLight />
+    <client-only>
+      <MouseLight />
+    </client-only>
     <div class="container relative z-10">
       <Header />
-      <slot/>
+      <main>
+        <slot/>
+      </main>
       <Footer />
     </div>
   </div>
