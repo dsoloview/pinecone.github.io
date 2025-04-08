@@ -4,7 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   app: {
     baseURL: '/pinecone.github.io/',
-    buildAssetsDir: 'assets',
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
