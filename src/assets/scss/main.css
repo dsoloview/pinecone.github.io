@@ -16,6 +16,6 @@
 
 @utility container {
     margin-inline: auto;
-    padding-inline: 2rem;
-    max-width: 70%;
+    padding-inline: 5px;
+    @apply md:max-w-[70%] max-w-[80%];
 }

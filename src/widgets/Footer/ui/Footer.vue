@@ -5,8 +5,8 @@ import FooterLink from "~/entities/FooterLink/ui/FooterLink.vue";
 </script>
 
 <template>
-<footer class="flex items-center justify-between py-10">
-  <div class="flex items-center gap-30">
+<footer class="flex flex-wrap items-center justify-between gap-y-10 py-10 mt-10">
+  <div class="flex flex-wrap items-center gap-10">
     <FooterLink to="/">Book a table at out pineconebar</FooterLink>
     <FooterLink external to="https://tickets.efinity.rs/event_info/lucidity_triptych_31620">Buy a ticket</FooterLink>
   </div>

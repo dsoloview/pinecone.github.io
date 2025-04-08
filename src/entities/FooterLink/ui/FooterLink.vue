@@ -11,7 +11,7 @@ const target = computed(() => (props.external ? '_blank' : ''))
 
 <template>
   <NuxtLink
-      class="footerLink flex items-center gap-3 text-white cursor-pointer uppercase transition-colors duration-200 xl:text-2xl text-lg"
+      class="footerLink flex items-center gap-3 justify-between text-white cursor-pointer uppercase transition-colors duration-200 xl:text-2xl text-lg"
       :target="target"
       :external="props.external"
       :to="props.to"
