@@ -85,11 +85,11 @@ const closeMenu = () => {
 
 const menuItems = [
   { to: "/", text: "Pinecone theater" },
-  { to: "/immersivity", text: "Immersivity" },
-  { to: "/team", text: "Team & Cast" },
-  { to: "/about", text: "About us" },
-  { to: "/event", text: "Private event" },
-  { to: "/contact", text: "Contact us" },
+  { to: "/", text: "Immersivity" },
+  { to: "/", text: "Team & Cast" },
+  { to: "/", text: "About us" },
+  { to: "/", text: "Private event" },
+  { to: "/", text: "Contact us" },
 ];
 </script>
 
