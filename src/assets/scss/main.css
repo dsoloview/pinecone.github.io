@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+* {
+    box-sizing: border-box;
+    color: white;
+    font-family: var(--font-default), sans-serif;
+}
+
+@theme {
+    --color-brown-plain: 255,168,106;
+    --color-brown: rgb(var(--color-brown-plain));
+
+    --font-default: Inter, sans-serif;
+    --font-styled: Forum, sans-serif;
+}
+
+@utility container {
+    margin-inline: auto;
+    padding-inline: 2rem;
+    max-width: 70%;
+}
