@@ -1,8 +1,8 @@
 <script setup lang="ts">
 type Props = {
-  tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-}
-const props = defineProps<Props>()
+  tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+};
+const props = defineProps<Props>();
 </script>
 
 <template>

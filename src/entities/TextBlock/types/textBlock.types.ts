@@ -1,4 +1,4 @@
 export interface ITextBlock {
-    title?: string;
-    paragraphs: string[];
+  title?: string;
+  paragraphs: string[];
 }

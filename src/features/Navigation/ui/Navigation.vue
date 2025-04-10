@@ -6,7 +6,6 @@
     <div class="md:hidden">
       <MobileMenu />
     </div>
-
   </nav>
 </template>
 
