@@ -3,6 +3,10 @@ import PageTitle from "~/entities/PageTitle/PageTitle.vue";
 import type { ITextBlock } from "~/entities/TextBlock/types/textBlock.types";
 import TextBlock from "~/entities/TextBlock/TextBlock.vue";
 
+definePageMeta({
+  name: "about-us",
+});
+
 const textBlocks: ITextBlock[] = [
   {
     paragraphs: [
@@ -21,7 +25,7 @@ const textBlocks: ITextBlock[] = [
   <div class="my-30">
     <PageTitle tag="h1">Welcome to Pinecone Bar</PageTitle>
   </div>
-  <TextBlock :blocks="textBlocks" />
+  <TextBlock language-key="pages.home.textBlocks" />
 </template>
 
 <style scoped></style>

@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import FlipCard from "~/entities/FlipCard/ui/FlipCard.vue";
+
+definePageMeta({
+  name: "team-cast",
+});
 </script>
 
 <template>

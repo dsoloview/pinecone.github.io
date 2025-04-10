@@ -2,24 +2,26 @@
 import PageTitle from "~/entities/PageTitle/PageTitle.vue";
 import type { ITextBlock } from "~/entities/TextBlock/types/textBlock.types";
 type Props = {
-  blocks: ITextBlock[];
+  languageKey: string;
 };
 
-const props = defineProps<Props>();
+const { tm, rt } = useI18n();
+
+defineProps<Props>();
 </script>
 
 <template>
   <div class="flex flex-col gap-15">
     <div
-      v-for="(block, index) in props.blocks"
+      v-for="(block, index) in tm(languageKey) as ITextBlock[]"
       :key="index"
       class="flex flex-col items-start gap-3"
     >
       <PageTitle v-if="block.title" class="blockTitle" :tag="'h3'">{{
-        block.title
+        rt(block.title)
       }}</PageTitle>
       <p v-for="(paragraph, i) in block.paragraphs" :key="i" class="text-lg">
-        {{ paragraph }}
+        {{ rt(paragraph) }}
       </p>
     </div>
   </div>
