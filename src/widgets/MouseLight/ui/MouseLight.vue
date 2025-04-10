@@ -31,8 +31,8 @@ const { smoothX, smoothY, size, opacity } = useSmoothMouse(0.1, isMobile.value);
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(var(--color-brown-plain), 0.8) 0%,
-    rgba(var(--color-brown-plain), 0.3) 60%,
+    rgba(var(--color-brown-plain), 0.5) 0%,
+    rgba(var(--color-brown-plain), 0.2) 60%,
     rgba(var(--color-brown-plain), 0) 100%
   );
 }

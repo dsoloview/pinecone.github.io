@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import PageTitle from "~/entities/PageTitle/PageTitle.vue";
 import TextBlock from "~/entities/TextBlock/TextBlock.vue";
-import { getTranslated } from "~/shated/utils/translation";
-import type { ITextBlock } from "~/entities/TextBlock/types/textBlock.types";
 
 definePageMeta({
   name: "home",
 });
 
 const { t } = useI18n();
-
-const blocks = getTranslated<ITextBlock[]>("pages.home.textBlocks");
-console.log(blocks);
 </script>
 
 <template>
@@ -22,7 +17,7 @@ console.log(blocks);
       {{ t("pages.home.subTitle.main") }}
     </PageTitle>
   </div>
-  <TextBlock :blocks="blocks" language-key="pages.home.textBlocks" />
+  <TextBlock language-key="pages.home.textBlocks" />
 </template>
 
 <style scoped>

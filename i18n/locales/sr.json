@@ -1,12 +1,24 @@
 {
   "seo": {
     "title": {
-      "home": "Home page",
-      "about-us": "About us",
-      "immersivity": "Immersivity",
-      "team-cast": "Team & cast",
+      "home": "Početna stranica",
+      "about-us": "O nama",
+      "immersivity": "Imersivnost",
+      "team-cast": "Tim i glumačka ekipa",
       "default": "Pinecone"
     }
+  },
+  "navigation": {
+    "home": "Pinecone theater",
+    "immersivity": "Immersivnost",
+    "team-cast": "Tim i glumci",
+    "about-us": "O nama",
+    "private-event": "Privatni događaj",
+    "contact-us": "Kontaktirajte nas"
+  },
+  "buttons": {
+    "book_table": "Rezervišite sto u našem Pinecone baru",
+    "buy_ticket": "Kupite kartu"
   },
   "pages": {
     "home": {
@@ -17,34 +29,63 @@
       },
       "textBlocks": [
         {
-          "title": "Lucidity Triptych – A Unique Immersive Theater Experience in Belgrade",
+          "title": "Lucidity Triptych – Jedinstveno imerzivno pozorišno iskustvo u Beogradu",
           "paragraphs": [
-            "Belgrade’s cultural scene welcomes a groundbreaking immersive theater experience with the premiere of Lucidity Triptych! Set in the exclusive Pinecone Theatre—a three-story house from the early 20th century, meticulously redesigned for this occasion—each performance invites an intimate audience of just 22 spectators to step into a dreamlike world. Moving freely through the space, visitors become part of a narrative that dissolves the boundary between stage and audience.",
-            "Developed over more than a year through an in-depth exploration, Lucidity Triptych introduces a bold new approach to theater in Belgrade."
+            "Kulturna scena Beograda donosi revolucionarno imerzivno pozorišno iskustvo sa premijerom Lucidity Triptych! Smešten u ekskluzivnom Pinecone Theatre-u—troetažnoj kući iz ranog 20. veka, pažljivo redizajniranoj za ovu priliku—svaka predstava poziva intimnu publiku od samo 22 gledaoca da zakorače u svet poput sna. Slobodno se krećući kroz prostor, posetioci postaju deo narativa koji briše granicu između scene i publike.",
+            "Razvijan više od godinu dana kroz dubinsko istraživanje, Lucidity Triptych uvodi smeo novi pristup pozorištu u Beogradu."
           ]
         },
         {
-          "title": "About the Performance",
+          "title": "O predstavi",
           "paragraphs": [
-            "Inspired by Friedrich Nietzsche’s The Birth of Tragedy and Carl Jung’s theory of archetypes, this theatrical experience leads the audience to the collision point of order and chaos, reality and dreams, performance and observation. The story follows Wilhelm, a writer approaching his forties, who, over the course of a single night and three dreams, confronts unresolved conflicts from his past and deep- seated family traumas that hinder his search for personal and creative freedom. Each spectator constructs their own sensory and emotional journey, shaping a unique perspective on the unfolding narrative",
-            "The three dreams reveal different facets of the writer’s personal transformation, unfolding simultaneously, making it physically impossible to witness the entire performance in one viewing Audience members can choose to follow the dreamer throughout, shadow one of the dream characters, or shift between multiple perspectives. ",
-            "The first dream, Separation, explores the fragile boundary between passion and responsibility through the story of a young couple caught in the whirlwind of creative ambition and emotional dependence. The second dream, Shadows, delves into the weight of inherited family conflicts and the dark forces of the unconscious through a turbulent and painful story between a father and son. The third dream, Consequences, exposes the cost of ambition and the longing for recognition, as characters stumble over their own desires, pushing their ideals to the breaking point. Before the performance begins, each audience member receives guidance on how to navigate the narrative"
+            "Inspirisan delom Rođenje tragedije Fridriha Ničea i teorijom arhetipova Karla Junga, ovo pozorišno iskustvo vodi publiku do tačke sudara reda i haosa, stvarnosti i snova, izvođenja i posmatranja. Priča prati Vilhelma, pisca u četrdesetim godinama, koji se, tokom jedne noći i tri sna, suočava sa nerešenim konfliktima iz prošlosti i duboko ukorenjenim porodičnim traumama koje ometaju njegovu potragu za ličnom i kreativnom slobodom. Svaki gledalac gradi sopstvenu senzornu i emocionalnu putanju, oblikujući jedinstvenu perspektivu na narativ koji se razvija.",
+            "Tri sna otkrivaju različite aspekte lične transformacije pisca, odvijajući se simultano, što fizički onemogućava da se cela predstava sagleda odjednom. Gledaoci mogu izabrati da prate sanjara kroz sve tri priče, prate jednog od likova iz snova ili prelaze između više perspektiva.",
+            "Prvi san, Separacija, istražuje krhku granicu između strasti i odgovornosti kroz priču o mladom paru uhvaćenom u vrtlogu kreativne ambicije i emocionalne zavisnosti. Drugi san, Senke, produbljuje težinu nasleđenih porodičnih sukoba i tamne sile nesvesnog kroz turbulentnu i bolnu priču između oca i sina. Treći san, Posledice, iznosi cenu ambicije i čežnju za priznanjem, dok se likovi spotiču o sopstvene želje, gurajući svoje ideale do tačke pucanja. Pre predstave, svaki gledalac dobija uputstva o tome kako da prati narativ."
           ]
         },
         {
-          "title": "A Fusion of Drama and Music Theater",
+          "title": "Spoj drame i muzičkog teatra",
           "paragraphs": [
-            "Lucidity Triptych blends elements of drama and musical theater, creating a multi-sensory experience that immerses the audience on every level. With a combination of composed music and instrumental improvisation, opera singers Nevena Đoković and Nevena Matić perform selections from Rusalka, Carmen, and The Tales of Hoffmann, adapted and arranged to seamlessly integrate into the narrative.",
-            "The immersive format allows for heightened sensory engagement, as spectators can interact with the set and props, engage with characters, perceive different scents, and enjoy cocktails inspired by the show’s protagonists. These signature cocktails, served during the performance, will be available at the Pinecone Bar on the ground floor, further enriching the unique atmosphere of the event."
+            "Lucidity Triptych spaja elemente drame i muzičkog teatra, stvarajući multisenzorno iskustvo koje obuzima publiku na svakom nivou. Kombinacijom komponovane muzike i instrumentalne improvizacije, operske pevačice Nevena Đoković i Nevena Matić izvode odlomke iz Rusalke, Karmen i Hoffmanovih priča, prilagođenih i aranžiranih tako da se savršeno uklapaju u narativ.",
+            "Imersivni format omogućava pojačano senzorno angažovanje, jer gledaoci mogu interagovati sa scenografijom i rekvizitima, komunicirati sa likovima, percipirati različite mirise i uživati u koktelima inspirisanim protagonistima predstave. Ovi kokteli sa potpisom, koji se služe tokom predstave, biće dostupni i u Pinecone Baru u prizemlju, dodatno obogaćujući jedinstvenu atmosferu događaja."
           ]
         },
         {
-          "title": "Creative Team & Cast",
+          "title": "Kreativni tim i glumačka ekipa",
           "paragraphs": [
-            "Behind Pinecone Theatre stands the production company Immersive World Production, with Alexandar Prudyan and Jovana Radovanović as the creators of the project. Lucidity Triptych is directed by Ana Bunjak, with a script by Alexandar Prudyan, adapted by Ana Bunjak and Alexandar Prudyan, production by Jovana Radovanović, and musical direction by Stefan Zekić. The set design is crafted by Aleksandar Stanković and Miloš Radovanović, with scenography consultation by Magdalena Vlajić. Costume design and visual identity are the work of artists Julija Miheeva, Luka Đuranović serves as the production coordinator, while Ratko Rakin handled the communication",
-            "The cast features actors Aleksandar Kecman, Milica Majkić, Julija Graut, Andrea Đina Ržaničanin, Kristina Kika Jovanović, Vedran Borovčanin, Maksim Mićković, Uroš Petronijević, and Nikola Pavlović, alongside opera singers Nevena Đoković and Nevena Matić. Harpist Sofija Sibinović performs live music throughout the show.",
-            "The performance is in English and intended for adult audiences.",
-            "Don't miss the chance to experience one of the most innovative theatrical events in the region!"
+            "Iza Pinecone Theatre-a stoji produkcijska kuća Immersive World Production, sa Aleksandrom Prudyanom i Jovanom Radovanović kao kreatorima projekta. Lucidity Triptych režira Ana Bunjak, uz scenario Aleksandra Prudyana, adaptiran od strane Ane Bunjak i Aleksandra Prudyana, produkciju Jovane Radovanović i muzičku direkciju Stefana Zekića. Scenografiju kreiraju Aleksandar Stanković i Miloš Radovanović, uz konsultaciju za scenografiju Magdalene Vlajić. Dizajn kostima i vizuelni identitet delo su umetnika Julije Mihejeve, Luka Đuranović radi kao koordinator produkcije, dok je Ratko Rakin zadužen za komunikaciju.",
+            "U predstavi glume Aleksandar Kecman, Milica Majkić, Julija Graut, Andrea Đina Ržaničanin, Kristina Kika Jovanović, Vedran Borovčanin, Maksim Mićković, Uroš Petronijević i Nikola Pavlović, uz operske pevačice Nevenu Đoković i Nevenu Matić. Harfistkinja Sofija Sibinović izvodi uživo muziku tokom predstave.",
+            "Predstava je na engleskom jeziku i namenjena odrasloj publici.",
+            "Ne propustite priliku da doživite jedan od najinovativnijih pozorišnih događaja u regionu!"
+          ]
+        }
+      ]
+    },
+    "about-us": {
+      "title": "Dobrodošli u Pinecone Bar",
+      "textBlocks": [
+        {
+          "paragraphs": [
+            "Dobrodošli u zagonetni svet Pinecone Bara, smeštenog diskretno u živopisnom delu Stari Grad u Beogradu na adresi Dalmatinska 5 (sada Vladete Jerotića 5). Pinecone Bar, koji se nalazi u zgradi iz ranog 20. veka, predstavlja omaž bogatoj istoriji, pažljivo obnovljenoj sa ljubavlju. Ovde, među živopisnim gradskim ulicama, misterija i raskoš spajaju se kako bi stvorile nezaboravno iskustvo. Naš prvi bar u Beogradu odaje počast ikoničnoj prošlosti svog okruženja, dok istovremeno prihvata dinamičnu evoluciju lokalne umetničke scene.",
+            "Zakoračite u eru raskoši i intrige, gde se šapat tajnih sastanaka i agendi još uvek oseća u vazduhu. Naš bar odiše aurom starinskog šarma, podsećajući na eleganciju antičke Grčke i privlačnost tajnih društava. Smešten u centru grada, ovaj speakeasy bar poziva one sa ukusom za izuzetne avanture.",
+            "Naš izbor primamljivih koktela, stručno napravljenih da zaintrigiraju čula i probude maštu, nudi nešto što nikada ranije niste probali. Spravljeni od najfinijih sastojaka i dodira magije, ovi napici će vas odvesti u svet čuda i intrige. Naša interaktivna usluga osigurava da svaki trenutak proveden u Pinecone Baru postane nezaboravno putovanje, gde gosti postaju deo priče, a noć se odvija poput uzbudljivog romana.",
+            "Prolaskom kroz vrata Pinecone Bara, gosti se prenose u prošlost, dočekuju ih mozaik podovi na ulazu, podsećajući na eklektičnu estetiku, i drvene stepenice koje vode na drugi sprat. Zidovi su ukrašeni umetničkim delima, vitražima i skulpturalnim lusterima, stvarajući predivnu atmosferu.",
+            "U srcu Pinecone Bara nalazi se šarmantna dvorišna terasa, mirna oaza u užurbanom gradskom pejzažu. Ovde se savremeni komfori stapaju sa grčkim šarmom.",
+            "Pinecone Bar stoji kao svedočanstvo trajne privlačnosti starih priča, gde se tradicija i inovacija prepliću kako bi stvorili nezaboravan beg za znatiželjne."
+          ]
+        }
+      ]
+    },
+    "immersivity": {
+      "title": "Immersivnost",
+      "textBlocks": [
+        {
+          "paragraphs": [
+            "Imerzivno pozorište prevazilazi granice tradicionalne scene kako bi ponudilo revolucionarni pristup pripovedanju priča. Ovde se granica između izvođača i publike zamagljuje, omogućavajući vam da zakoračite u priču i postanete ključni deo njenog odvijanja. Kada uđete u naš imerzivni prostor, ne ulazite samo u mesto; ulazite u samu naraciju, okruženi svetom pažljivo stvorenim da očara sva vaša čula.",
+            "Svaka poseta obećava jedinstveno putovanje. U ovom interaktivnom okruženju, priča vas obuzima, pozivajući vas da se krećete kroz žive scene, komunicirate sa likovima, pa čak i da ponekad promenite tok priče. Ovaj nivo angažovanja osmišljen je da stvori ličnu povezanost sa naracijom, transformišući svaku izvedbu u jedinstvenu, nezaboravnu avanturu.",
+            "Naši glumci se kreću u prostoru oko vas i sa vama, stvarajući fluidnu i dinamičnu izvedbu koja vas pretvara u koautora drame koja se odvija. Ova intenzivna interakcija produbljuje emotivni uticaj, čineći svaku reakciju i interakciju autentičnom i značajnom. Ohrabruje se da dodirujete, okusite i potpuno se uživite u okruženje, što pojačava čulno iskustvo i osigurava da nijedna poseta nije ista.",
+            "Nepredvidiva priroda imerzivnog pozorišta znači da je svaka izvedba jedinstvena, oblikovana kolektivnim akcijama i odlukama učesnika. Priča se prilagođava u realnom vremenu, reagujući na publiku—pretvarajući pozorište u živo, responsivno iskustvo. Ovaj dinamičan oblik zabave ne samo da zabavlja, već vas poziva da izađete izvan svojih uobičajenih granica, istražite nepoznate teritorije i steknete nove perspektive.",
+            "U imerzivnom pozorištu ne gledate samo priču—vi je živite. Pridružite nam se na iskustvu koje prevazilazi gledanje, dotiče samu srž vaših čula i emocija, ostavljajući nezaboravan trag priča koje pričamo."
           ]
         }
       ]

@@ -8,7 +8,7 @@ const { t } = useI18n();
 const head = useLocaleHead();
 const title = computed(() => {
   const pageName: string = route.meta.name ?? "TBD";
-  return t(`seo.title.${pageName}`, t("pages.title.default"));
+  return t(`seo.title.${pageName}`, t("seo.title.default"));
 });
 </script>
 

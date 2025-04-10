@@ -45,10 +45,12 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
+    baseUrl: "/pinecone.github.io/",
     defaultLocale: "en",
     locales: [
       { code: "en", language: "en-US", name: "English", file: "en.json" },
-      { code: "sr", language: "sr-RS", name: "Serbian", file: "sr.json" },
+      { code: "sr", language: "sr-RS", name: "Srpski", file: "sr.json" },
     ],
+    strategy: "no_prefix",
   },
 });
