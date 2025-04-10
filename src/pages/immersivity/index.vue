@@ -11,9 +11,17 @@ const { t } = useI18n();
 
 <template>
   <div class="my-30">
-    <PageTitle tag="h1">{{ t("pages.immersivity.title") }}</PageTitle>
+    <PageTitle class="small" tag="h1">{{
+      t("pages.immersivity.title")
+    }}</PageTitle>
   </div>
   <TextBlock language-key="pages.immersivity.textBlocks" />
 </template>
 
-<style scoped></style>
+<style scoped>
+@reference '../../assets/scss/main.css';
+
+.small {
+  @apply text-5xl md:text-9xl;
+}
+</style>

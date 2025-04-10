@@ -20,11 +20,7 @@ defineProps<Props>();
       <PageTitle v-if="block.title" class="blockTitle" :tag="'h3'">{{
         rt(block.title)
       }}</PageTitle>
-      <p
-        v-for="(paragraph, i) in block.paragraphs"
-        :key="i"
-        class="text-lg text-justify"
-      >
+      <p v-for="(paragraph, i) in block.paragraphs" :key="i" class="text-lg">
         {{ rt(paragraph) }}
       </p>
     </div>

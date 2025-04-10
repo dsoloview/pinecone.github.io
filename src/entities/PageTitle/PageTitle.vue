@@ -9,7 +9,7 @@ const props = defineProps<Props>();
   <component :is="props.tag" class="pageTitle"><slot /></component>
 </template>
 
-<style scoped>
+<style>
 @reference '../../assets/scss/main.css';
 
 .pageTitle {
@@ -17,7 +17,6 @@ const props = defineProps<Props>();
   margin: 0 auto;
   font-family: var(--font-styled), sans-serif;
 }
-
 h1 {
   @apply text-7xl md:text-9xl;
 }
