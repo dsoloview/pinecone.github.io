@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     "@nuxt/test-utils",
     "@pinia/nuxt",
     "@nuxtjs/i18n",
+    "@vee-validate/nuxt",
   ],
   css: ["~/assets/scss/main.css"],
   vite: {
@@ -52,5 +53,8 @@ export default defineNuxtConfig({
       { code: "sr", language: "sr-RS", name: "Srpski", file: "sr.json" },
     ],
     strategy: "no_prefix",
+  },
+  veeValidate: {
+    autoImports: true,
   },
 });
