@@ -46,9 +46,8 @@ function handleFlip() {
         'no-animation': !canFlip,
       }"
     >
-      <!-- Front side -->
       <div
-        class="card-front absolute w-full h-full backface-hidden bg-white rounded-xl shadow-lg overflow-hidden"
+        class="card-front absolute w-full h-full backface-hidden rounded-xl shadow-lg overflow-hidden"
         :class="{ 'hover-effect': canFlip }"
       >
         <img
@@ -65,7 +64,6 @@ function handleFlip() {
         </div>
       </div>
 
-      <!-- Back side -->
       <div
         class="absolute w-full h-full backface-hidden rotate-y-180 bg-black text-white rounded-xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
       >
@@ -104,23 +102,39 @@ function handleFlip() {
 }
 
 .transition-transform {
-  transition: transform 0.5s ease;
+  transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1);
 }
 
 .no-animation {
   transition: none;
 }
 
-.cursor-pointer {
-  cursor: pointer;
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .card-front.hover-effect {
+    transform: rotateY(15deg);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .group .card-front.hover-effect {
+    transform: none;
+    transition: transform 0.4s ease-in-out;
+  }
 }
 
-.cursor-default {
-  cursor: default;
+@media (hover: none) and (pointer: coarse) {
+  .card-front.hover-effect {
+    animation: tilt-animation 2.5s ease-in-out infinite;
+  }
 }
 
-.group:hover .card-front.hover-effect {
-  transform: rotateY(15deg);
+@keyframes tilt-animation {
+  0%,
+  100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(12deg);
+  }
 }
 
 .card-front,
