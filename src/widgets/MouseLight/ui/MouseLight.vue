@@ -16,8 +16,7 @@ const { smoothX, smoothY, size, opacity } = useSmoothMouse(0.1, isMobile.value);
     class="mouseLight absolute rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none blur-3xl z-10"
     :style="{
       opacity,
-      left: `${smoothX}px`,
-      top: `${smoothY}px`,
+      transform: `translate3d(${smoothX}px, ${smoothY}px, 0)`,
       width: `${size}px`,
       height: `${size}px`,
       willChange: 'transform, opacity',
@@ -27,7 +26,6 @@ const { smoothX, smoothY, size, opacity } = useSmoothMouse(0.1, isMobile.value);
 
 <style scoped lang="scss">
 .mouseLight {
-  transform: translate3d(0, 0, 0);
   border-radius: 50%;
   background: radial-gradient(
     circle,
