@@ -1,1 +1,0 @@
-import{e as o,j as s,w as n,q as r,o as p,k as c}from"./4MYFf85P.js";const m=o({__name:"PageTitle",props:{tag:{}},setup(e){const t=e;return(a,l)=>(p(),s(r(t.tag),{class:"pageTitle"},{default:n(()=>[c(a.$slots,"default")]),_:3}))}});export{m as _};
