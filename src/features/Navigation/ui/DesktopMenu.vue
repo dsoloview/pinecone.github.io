@@ -1,13 +1,13 @@
 <template>
   <div class="hidden md:flex gap-10 items-center">
-    <NuxtLink
+    <NuxtLinkLocale
       v-for="item in menuLinks"
       :key="item.to"
       :to="item.to"
       class="header__nav__link"
     >
       {{ t(`navigation.${item.translationKey}`) }}
-    </NuxtLink>
+    </NuxtLinkLocale>
     <LanguageSwitcher />
   </div>
 </template>

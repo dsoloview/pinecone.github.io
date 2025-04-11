@@ -68,7 +68,7 @@
         </svg>
       </button>
 
-      <NuxtLink
+      <NuxtLinkLocale
         v-for="item in menuLinks"
         :key="item.to"
         :to="item.to"
@@ -76,7 +76,7 @@
         @click="closeMenu"
       >
         {{ t(`navigation.${item.translationKey}`) }}
-      </NuxtLink>
+      </NuxtLinkLocale>
 
       <div class="mt-4">
         <LanguageSwitcher @click.stop />

@@ -3,8 +3,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
   app: {
-    // baseURL: "/pinecone.github.io/",
-    // buildAssetsDir: "assets",
+    baseURL: "/pinecone.github.io/",
+    buildAssetsDir: "assets",
     head: {
       title: "Pinecone",
       htmlAttrs: {
@@ -17,14 +17,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   srcDir: "src/",
   modules: [
-    "@nuxt/content",
     "@nuxt/eslint",
     "@nuxt/fonts",
     "@nuxt/icon",
     "@nuxt/image",
-    "@nuxt/scripts",
-    "@nuxt/test-utils",
-    "@pinia/nuxt",
     "@nuxtjs/i18n",
     "@vee-validate/nuxt",
   ],
@@ -52,9 +48,14 @@ export default defineNuxtConfig({
       { code: "en", language: "en-US", name: "English", file: "en.json" },
       { code: "sr", language: "sr-RS", name: "Srpski", file: "sr.json" },
     ],
-    strategy: "no_prefix",
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
   veeValidate: {
     autoImports: true,
+  },
+  experimental: {
+    payloadExtraction: false,
   },
 });

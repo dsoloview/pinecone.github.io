@@ -1,6 +1,6 @@
 <template>
   <div class="flex gap-5">
-    <NuxtLink
+    <NuxtLinkLocale
       external
       to="https://www.instagram.com/pineconebar?igsh=OThqbmppcHQ3M2lk"
     >
@@ -9,7 +9,7 @@
         size="24px"
         name="uil:instagram"
       />
-    </NuxtLink>
+    </NuxtLinkLocale>
   </div>
 </template>
 

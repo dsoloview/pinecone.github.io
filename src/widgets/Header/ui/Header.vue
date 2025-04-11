@@ -5,9 +5,9 @@ import Navigation from "~/features/Navigation/ui/Navigation.vue";
 <template>
   <header class="header">
     <div class="header__logo">
-      <NuxtLink to="/">
+      <NuxtLinkLocale to="/">
         <img alt="logo" class="w-full" src="/images/logo.png" />
-      </NuxtLink>
+      </NuxtLinkLocale>
     </div>
     <Navigation />
   </header>
