@@ -5,6 +5,7 @@
       "about-us": "About us",
       "immersivity": "Immersivity",
       "team-cast": "Team & cast",
+      "private-event": "Private event",
       "default": "Pinecone"
     }
   },
@@ -98,6 +99,12 @@
           ]
         }
       ]
+    },
+    "team-cast": {
+      "title": "Team & cast"
+    },
+    "private-event": {
+      "title": "Private event"
     }
   },
 

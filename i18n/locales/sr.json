@@ -4,6 +4,7 @@
       "home": "Početna stranica",
       "about-us": "O nama",
       "immersivity": "Imersivnost",
+      "private-event": "Privatni događaj",
       "team-cast": "Tim i glumačka ekipa",
       "default": "Pinecone"
     }
@@ -89,6 +90,12 @@
           ]
         }
       ]
+    },
+    "team-cast": {
+      "title": "Tim i glumačka ekipa"
+    },
+    "private-event": {
+      "title": "Privatni događaj"
     }
   },
 

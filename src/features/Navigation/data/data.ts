@@ -5,6 +5,6 @@ export const menuLinks: IMenuLink[] = [
   { to: "/immersivity", translationKey: "immersivity" },
   { to: "/team-cast", translationKey: "team-cast" },
   { to: "/about-us", translationKey: "about-us" },
-  { to: "/", translationKey: "private-event" },
+  { to: "/private-event", translationKey: "private-event" },
   { to: "/", translationKey: "contact-us" },
 ];
