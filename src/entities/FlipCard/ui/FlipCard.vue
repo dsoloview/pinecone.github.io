@@ -30,6 +30,30 @@ function handleFlip() {
     flipped.value = !flipped.value;
   }
 }
+
+const textHidden = ref(false);
+const holdTimeout = ref<number | null>(null);
+
+function handlePressStart() {
+  holdTimeout.value = window.setTimeout(() => {
+    textHidden.value = true;
+  }, 200);
+}
+
+function handlePressEnd() {
+  if (holdTimeout.value !== null) {
+    clearTimeout(holdTimeout.value);
+    holdTimeout.value = null;
+  }
+  textHidden.value = false;
+}
+
+onUnmounted(() => {
+  if (holdTimeout.value !== null) {
+    clearTimeout(holdTimeout.value);
+    holdTimeout.value = null;
+  }
+});
 </script>
 
 <template>
@@ -37,6 +61,9 @@ function handleFlip() {
     class="group w-64 h-[450px] perspective text-sm"
     :class="{ 'cursor-pointer': canFlip, 'cursor-default': !canFlip }"
     @click="handleFlip"
+    @pointerdown="handlePressStart"
+    @pointerup="handlePressEnd"
+    @pointercancel="handlePressEnd"
   >
     <div
       class="relative w-full h-full transform-style preserve-3d"
@@ -65,6 +92,7 @@ function handleFlip() {
       </div>
 
       <div
+        v-if="canFlip"
         class="absolute w-full h-full backface-hidden rotate-y-180 bg-black text-white rounded-xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
       >
         <img
@@ -72,7 +100,10 @@ function handleFlip() {
           alt="Back"
           class="object-cover w-full h-full absolute z-0 opacity-40"
         />
-        <div class="backText relative z-10 p-4 w-full h-full">
+        <div
+          class="backText relative z-10 p-4 w-full h-full"
+          :class="{ 'opacity-0': textHidden, 'opacity-100': !textHidden }"
+        >
           <FlipCardContent
             v-if="backTranslationName"
             :translation-name="backTranslationName"
@@ -143,11 +174,23 @@ function handleFlip() {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-.backText {
-  &:hover {
-    opacity: 0;
-  }
+@media (hover: hover) and (pointer: fine) {
+  .backText {
+    &:hover {
+      opacity: 0;
+    }
 
-  transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+  }
+}
+
+.opacity-0 {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.opacity-100 {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 </style>

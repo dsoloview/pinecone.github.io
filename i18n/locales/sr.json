@@ -90,5 +90,86 @@
         }
       ]
     }
-  }
+  },
+
+  "cards": {
+    "andrea": {
+      "name": "Andrea Ržaničanin",
+      "text": "Priča o čistom hedonizmu i životu okupanom reflektorima. Šampanjac, kavijar, bogati muškarci i luksuzna mesta. Kada „ići do kraja“ postane svakodnevna potreba—samo da bi se nešto osetilo, pobeglo od praznine, pobeglo od sebe. Ali, da li bi još uvek mogla ići „do kraja“ kada su ulozi zaista visoki?",
+      "quote": "\"Ja nisam izabrala glumu - ona je izabrala mene. Nisam znala tačno koji je moj jezik izražavanja, ali sam se stalno izražavala...\""
+    },
+    "nevena_matic": {
+      "name": "Nevena Matić",
+      "text": "Njen izgled je magla, njena dela enigma. Pojavljuje se samo u trenucima sumraka duše. Ona je ključ do Sebe.",
+      "quote": "\"Nevena Matić je srpska operska pevačica. Završila je master studije na Fakultetu muzičke umetnosti, Univerzitet u Beogradu...\""
+    },
+    "kristina": {
+      "name": "Kristina Kika Jovanović",
+      "text": "Priča o čistom hedonizmu i životu okupanom reflektorima. Šampanjac, kavijar, bogati muškarci i luksuzna mesta. Kada „ići do kraja“ postane svakodnevna potreba—samo da bi se nešto osetilo, pobeglo od praznine, pobeglo od sebe. Ali, da li bi još uvek mogla ići „do kraja“ kada su ulozi zaista visoki?",
+      "quote": "\"Diplomirana glumica i kantautorka rođena u Beogradu 1993. godine. Diplomirala na Akademiji umetnosti u Beogradu...\""
+    },
+    "vedran": {
+      "name": "Vedran Borovčanin",
+      "text": "Da li je dobro biti ambiciozna osoba? Da li vredi gaziti preko drugih da bi ostvario svoje ciljeve? Koja je krajnja cena koju si spreman platiti za svoje želje? Ova pitanja zvuče kao da ih postavlja đavo. Ali đavo je uvek unutar nas, savetuje, klima glavom na tvoje okrutne odluke i povlači se sa osmehom kada se suočiš sa posledicama.",
+      "quote": "\"Svoje obrazovanje je započeo u osnovnoj školi...\""
+    },
+    "maksim": {
+      "name": "Maksim Mićković",
+      "text": "Pogledaj unutra—u svakome od nas postoji večito dete koje se igra, smeje, oslobođeno odgovornosti, ali poklanja nam inspiraciju i talenat. Ponekad buntovno. Da bismo živeli srećno, obično ga integrišemo. Ali šta ako ono apsorbuje nas?",
+      "quote": "\"Ako sam te ikada voleo, uvek ću te voleti. Tako hodam kroz život. Ako smo se ikada voleli, tvoja mala kuća će zauvek biti...\""
+    },
+    "aleksandar_kecman": {
+      "name": "Aleksandar Kecman",
+      "text": "Najveće prokletstvo svakog autora je što tačno zna šta želi reći ljudima, ali bez borbe protiv granica svakodnevnog života ništa ne može biti stvoreno. Zaglavljen u krizi srednjih godina, pokušavajući da pronađe ravnotežu u dihotomiji apolonskih i dionizijskih sila unutar ljudske prirode, polako ludeći—ni na kraju tunela se ne vidi svetlo.",
+      "quote": "\"Govori srpski i engleski i aktivan je na domaćem......\""
+    },
+    "milica_majkic": {
+      "name": "Milica Majkić",
+      "text": "Osećamo ljubomoru kada sretnemo nekoga uspešnog, ali nikada se ne pitamo šta se krije iza fasade. Gde koreni ogromnog uspeha rastu? Ambicija? Želja? Ili samo ogromna patnja? Svaka priča o trijumfu ima tamnu stranu.",
+      "quote": "\"Svoju ljubav prema glumi otkrila je u detinjstvu kroz učešće u školskim predstavama i dramskim sekcijama....\""
+    },
+    "yulia_graut": {
+      "name": "Yulia Graut",
+      "text": "Osećamo ljubomoru kada sretnemo nekoga uspešnog, ali nikada se ne pitamo šta se krije iza fasade. Gde koreni ogromnog uspeha rastu? Ambicija? Želja? Ili samo ogromna patnja? Svaka priča o trijumfu ima tamnu stranu.",
+      "quote": "\"Tokom poslednje tri godine u Beogradu, etablirala se u lokalnoj industriji...\""
+    },
+    "nevena_dokovic": {
+      "name": "Nevena Đoković",
+      "text": "Biti voljen i brižno tretiran—zar to nije ključ sreće? Ali šta ako moraš davati ljubav i brigu bez da išta dobijaš zauzvrat? Da li bi se žrtvovao, ili bi odrastao? Ili bi, možda, vremenom postao neko hladan i distanciran?",
+      "quote": "\"Od januara 2022. godine igra glavnu žensku ulogu u kultnom mjuziklu Fantom iz opere u Pozorištu na Terazijama...\""
+    },
+    "uros_petronijevic": {
+      "name": "Uroš Petronijević",
+      "text": "Uroš je diplomirao na Nacionalnoj baletskoj školi Srbije „Lujo Davico“, na odseku za narodne igre 2004. godine. Nakon diplomiranja, radio je u muzičkom pozorištu Pozorište na Terazijama do 2014. Tokom godina provedenih u muzičkom pozorištu, učestvovao je i nastupao u drugim projektima sa „Bitef Dance Company“ koji su se bazirali na savremenim pokretima i fizičkom teatru. Godine 2014. pridružio se Jasmin Vardimon Company pre nego što je počeo da nastupa sa Gecko 2018."
+    },
+    "nikola_pavlovic": {
+      "name": "Nikola Pavlović",
+      "text": "Njegovo ime govori sve—onaj koji se oslepeo, birajući da vidi unutrašnju prazninu umesto izlaska sunca. Ali šta ako nije? Šta ako je njegova žeđ za osvetom, njegova mržnja, prerastala u nešto veće od njega samog? Gde je granica gde pravda postaje osveta?",
+      "quote": "\"Završio je osnovnu i srednju školu u Knjaževcu. Upisao se na Biološki fakultet...\""
+    },
+    "jovana_radovanovic": {
+      "name": "Jovana Radovanović",
+      "role": "Kreator projekta/Producent"
+    },
+    "stefan_zekic": {
+      "name": "Stefan Zekić",
+      "role": "Muzicki direktor"
+    },
+    "julija_mihejeva": {
+      "name": "Julija Mihejeva",
+      "role": "Vizuelni identitet/Kostim"
+    },
+    "sofija_sibinovic": {
+      "name": "Sofija Sibinović",
+      "role": "Harfa"
+    },
+    "ana_bunjak": {
+      "name": "Ana Bunjak",
+      "role": "Režiser"
+    },
+    "aleksandar_prudijan": {
+      "name": "Aleksandar Prudijan",
+      "role": "Kreator projekta/Pisac"
+    }
+  },
 }
