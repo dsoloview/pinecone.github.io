@@ -8,6 +8,9 @@
       "default": "Pinecone"
     }
   },
+
+
+
   "navigation": {
     "home": "Pinecone theater",
     "immersivity": "Immersivity",
@@ -16,10 +19,16 @@
     "private-event": "Private event",
     "contact-us": "Contact us"
   },
+
+
+
   "buttons": {
     "book_table": "Book a table at out pineconebar",
     "buy_ticket": "Buy a ticket"
   },
+
+
+
   "pages": {
     "home": {
       "title": "Pinecone Theater",
@@ -85,10 +94,91 @@
             "Each visit promises a unique journey. In this interactive realm, the story envelopes you, inviting you to navigate through vivid scenes, interact with characters, and sometimes even alter the storyline. This level of engagement is designed to forge a personal connection with the narrative, transforming each performance into a distinct, memorable adventure.",
             "Our actors navigate the space around and with you, creating a fluid and dynamic performance that makes you a co-creator of the unfolding drama. This intense interaction deepens the emotional impact, making every reaction and interaction feel genuine and impactful. You are encouraged to touch, taste, and fully immerse yourself in the environment, which heightens the sensory experience and ensures that no two visits are alike.",
             "The unpredictable nature of immersive theater means that each performance is unique, shaped by the collective actions and decisions of its participants. The storyline adapts in real-time, responding to its audience—turning the theater into a living, responsive experience. This dynamic form of entertainment not only entertains but also invites you to step outside your usual boundaries, explore uncharted territories, and gain fresh perspectives.",
-            "In immersive theater, you don’t just watch a story—you live it. Join us for an experience that extends beyond viewing, touching the core of your senses and emotions, and leaving you with an unforgettable imprint of the tales we tell.",
+            "In immersive theater, you don’t just watch a story—you live it. Join us for an experience that extends beyond viewing, touching the core of your senses and emotions, and leaving you with an unforgettable imprint of the tales we tell."
           ]
         }
       ]
+    }
+  },
+
+  "cards": {
+    "andrea": {
+      "name": "Andrea Ržaničanin",
+      "text": "A tale of pure hedonism and a life bathed in the spotlight. Champagne, caviar, rich men, and lavish places. When “all in” becomes a daily necessity—just to feel something, to escape the emptiness, to flee from oneself. But could she still go “all in” when the stakes are truly high?",
+      "quote": "\"I didn't choose acting - it chose me. I didn't know exactly what my language of expression was, but I always expressed myself...\""
+    },
+    "nevena_matic": {
+      "name": "Nevena Matić",
+      "text": "Her guise is mist, her deeds an enigma. She appears only in moments of the twilight of the soul. She is the key to the Self.",
+      "quote": "\"Nevena Matić is a Serbian opera singer. She completed her master's studies at the Faculty of Music, University of Belgrade...\""
+    },
+    "kristina": {
+      "name": "Kristina Kika Jovanovic",
+      "text": "A tale of pure hedonism and a life bathed in the spotlight. Champagne, caviar, rich men, and lavish places. When “all in” becomes a daily necessity—just to feel something, to escape the emptiness, to flee from oneself. But could she still go “all in” when the stakes are truly high?",
+      "quote": "\"Graduated actress and singer-songwriter born in Belgrade in 1993. Graduated from the Academy of Arts in Belgrade ...\""
+    },
+    "vedran": {
+      "name": "Vedran Borovčanin",
+      "text": "Is it good to be an ambitious person? Is it worth stepping over others to reach your goals? What is the ultimate price you are willing to pay for your desires? These questions sound as if they should be asked by the devil. But the devil is always within, advising, nodding at your cruel decisions, and stepping aside with a smile when you face the consequences.",
+      "quote": "\"He began his education in elementary school..\""
+    },
+    "maksim": {
+      "name": "Maksim Mićković",
+      "text": "Look inside—there is an eternal child in each of us, playing, laughing, free of responsibility, yet gifting us inspiration and talent. Sometimes rebellious. To live happily, we usually integrate him. But what if he absorbs us instead?",
+      "quote": "\"If I ever loved you I will always love you. That's how I go through life. If we ever loved each other, your little house will forever...\""
+    },
+    "aleksandar_kecman": {
+      "name": "Aleksandar Kecman",
+      "text": "The greatest curse of any author is knowing exactly what you want to tell people, yet without the struggle against the boundaries of everyday life, nothing can be created. Stuck in a midlife crisis, trying to find balance in the dichotomy of the Apollonian and Dionysian forces within human nature, slowly going mad—no light can be seen at the end of the tunnel.",
+      "quote": "\"He speaks Serbian and English and he is active in domestic......\""
+    },
+    "milica_majkic": {
+      "name": "Milica Majkić",
+      "text": "We feel jealousy when we meet someone successful, yet we never ask what lies behind the façade. Where do the roots of tremendous success grow? Ambition? Desire? Or just vast suffering? Every story of triumph has a dark side.",
+      "quote": "\"She discovered her love for acting in her childhood, through participation in school plays and drama sections....\""
+    },
+    "yulia_graut": {
+      "name": "Yulia Graut",
+      "text": "We feel jealousy when we meet someone successful, yet we never ask what lies behind the façade. Where do the roots of tremendous success grow? Ambition? Desire? Or just vast suffering? Every story of triumph has a dark side.",
+      "quote": "\"Over the past three years in Belgrade, she has established herself in the local industry...\""
+    },
+    "nevena_djokovic": {
+      "name": "Nevena Đoković",
+      "text": "To be loved and cared for—isn’t that the key to happiness? But what if you must give love and care without receiving anything in return? Would you self-sacrifice, or would you grow up? Or perhaps, over time, you would transform into someone cold and distant?",
+      "quote": "\"From January 2022, she has been playing the main female role in the cult play Phantom of the Opera at the Terazije Theater...\""
+    },
+    "uros_petronijevic": {
+      "name": "Uroš Petronijević",
+      "text": "Uroš graduated from Serbia’s National Ballet School “Lujo Davico” national/folk dance section in 2004. After graduating, he went on to work at the musical theatre Theatre on Terazije until 2014. During his years in musical theatre he worked and performed in other projects with “Bitef Dance Company” that were based on contemporary movement and physical theatre. In 2014, he joined Jasmin Vardimon Company before going on to perform with Gecko in 2018."
+    },
+    "nikola_pavlovic": {
+      "name": "Nikola Pavlović",
+      "text": "His name speaks for itself—the one who blinded himself, choosing to see the inner void instead of the sunrise. But what if he hadn’t? What if his thirst for retribution, his hate, had corrupted him, growing into something greater than himself? Where is the line where justice turns into revenge?",
+      "quote": "\"He finished primary and secondary school in Knjaževac. He entered the Faculty of Biology...\""
+    },
+    "jovana_radovanovic": {
+      "name": "Jovana Radovanović",
+      "role": "Project creator/Producer"
+    },
+    "stefan_zekic": {
+      "name": "Stefan Zekić",
+      "role": "Music Director"
+    },
+    "julija_mihejeva": {
+      "name": "Julija Mihejeva",
+      "role": "Visual identity/Costume"
+    },
+    "sofija_sibinovic": {
+      "name": "Sofija Sibinović",
+      "role": "Harp"
+    },
+    "ana_bunjak": {
+      "name": "Ana Bunjak",
+      "role": "Director"
+    },
+    "aleksandar_prudijan": {
+      "name": "Aleksandar Prudijan",
+      "role": "Project creator/Writer"
     }
   }
 }

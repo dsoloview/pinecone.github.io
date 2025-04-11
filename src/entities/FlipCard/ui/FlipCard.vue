@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import FlipCardContent from "~/entities/FlipCard/ui/FlipCardContent.vue";
+
 type Props = {
+  backTranslationName?: string;
+  frontTranslationName?: string;
   canFlip?: boolean;
   frontImage: string;
   backImage?: string;
@@ -30,7 +34,7 @@ function handleFlip() {
 
 <template>
   <div
-    class="group w-64 h-[450px] perspective"
+    class="group w-64 h-[450px] perspective text-sm"
     :class="{ 'cursor-pointer': canFlip, 'cursor-default': !canFlip }"
     @click="handleFlip"
   >
@@ -53,7 +57,11 @@ function handleFlip() {
           class="object-cover w-full h-full absolute z-0"
         />
         <div class="relative z-10 p-4 w-full h-full">
-          <slot name="frontText" />
+          <FlipCardContent
+            v-if="frontTranslationName"
+            :translation-name="frontTranslationName"
+          />
+          <slot v-else name="frontText" />
         </div>
       </div>
 
@@ -67,7 +75,11 @@ function handleFlip() {
           class="object-cover w-full h-full absolute z-0 opacity-40"
         />
         <div class="relative z-10 p-4 w-full h-full">
-          <slot name="backText" />
+          <FlipCardContent
+            v-if="backTranslationName"
+            :translation-name="backTranslationName"
+          />
+          <slot v-else name="backText" />
         </div>
       </div>
     </div>

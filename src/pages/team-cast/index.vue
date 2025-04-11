@@ -1,67 +1,71 @@
 <script setup lang="ts">
 import FlipCard from "~/entities/FlipCard/ui/FlipCard.vue";
+import FlipCardContent from "~/entities/FlipCard/ui/FlipCardContent.vue";
 
 definePageMeta({
   name: "team-cast",
 });
+
+const { t } = useI18n();
 </script>
 
 <template>
   <div class="cards">
     <FlipCard
+      back-translation-name="andrea"
       front-image="/images/cards/herodias.jpg"
       back-image="/images/people/andrea.jpg"
-    >
-      <template #backText> Andrea </template>
-    </FlipCard>
+    />
     <FlipCard
-      front-image="/images/cards/herodias.jpg"
-      back-image="/images/people/andrea.jpg"
-    >
-      <template #backText> Andrea </template>
-    </FlipCard>
+      back-translation-name="nevena_matic"
+      front-image="/images/cards/lu.jpg"
+      back-image="/images/people/nevena_matic.jpg"
+    />
     <FlipCard
+      back-translation-name="kristina"
       front-image="/images/cards/herodias.jpg"
-      back-image="/images/people/andrea.jpg"
-    >
-      <template #backText> Andrea </template>
-    </FlipCard>
+      back-image="/images/people/kristina.jpg"
+    />
     <FlipCard
+      back-translation-name="vedran"
       front-image="/images/cards/herodias.jpg"
-      back-image="/images/people/andrea.jpg"
-    >
-      <template #backText> Andrea </template>
-    </FlipCard>
+      back-image="/images/people/vedran.jpg"
+    />
     <FlipCard
-      front-image="/images/cards/herodias.jpg"
-      back-image="/images/people/andrea.jpg"
-    >
-      <template #backText> Andrea </template>
-    </FlipCard>
+      back-translation-name="maksim"
+      front-image="/images/cards/makareus.jpg"
+      back-image="/images/people/maksim.jpg"
+    />
     <FlipCard
-      front-image="/images/cards/herodias.jpg"
-      back-image="/images/people/andrea.jpg"
-    >
-      <template #backText> Andrea </template>
-    </FlipCard>
+      back-translation-name="aleksandar_kecman"
+      front-image="/images/cards/wilhelm.jpg"
+      back-image="/images/people/aleksandar_kecman.jpg"
+    />
     <FlipCard
-      front-image="/images/cards/herodias.jpg"
-      back-image="/images/people/andrea.jpg"
-    >
-      <template #backText> Andrea </template>
-    </FlipCard>
+      back-translation-name="milica_majkic"
+      front-image="/images/cards/electra.jpg"
+      back-image="/images/people/milica_majkic.jpg"
+    />
     <FlipCard
-      front-image="/images/cards/herodias.jpg"
-      back-image="/images/people/andrea.jpg"
-    >
-      <template #backText> Andrea </template>
-    </FlipCard>
+      back-translation-name="yulia_graut"
+      front-image="/images/cards/electra.jpg"
+      back-image="/images/people/yulia_graut.jpg"
+    />
     <FlipCard
-      front-image="/images/cards/herodias.jpg"
-      back-image="/images/people/andrea.jpg"
-    >
-      <template #backText> Andrea </template>
-    </FlipCard>
+      back-translation-name="nevena_dokovic"
+      front-image="/images/cards/canaca.jpg"
+      back-image="/images/people/nevena_dokovic.jpg"
+    />
+    <FlipCard
+      back-translation-name="nevena_dokovic"
+      front-image="/images/cards/laius.jpg"
+      back-image="/images/people/nevena_dokovic.jpg"
+    />
+    <FlipCard
+      back-translation-name="nevena_dokovic"
+      front-image="/images/cards/canaca.jpg"
+      back-image="/images/people/nevena_dokovic.jpg"
+    />
     <FlipCard :can-flip="false" front-image="/images/people/jovana.jpg">
       <template #frontText>
         <div class="flex h-full w-full justify-end flex-col">
