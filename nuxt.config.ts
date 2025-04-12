@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@vee-validate/nuxt",
     "nuxt-swiper",
+    "@nuxtjs/leaflet",
   ],
   css: ["~/assets/scss/main.css"],
   vite: {

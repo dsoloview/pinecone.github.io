@@ -7,5 +7,5 @@ export const menuLinks: IMenuLink[] = [
   { to: "/pinecone-bar", translationKey: "pinecone-bar" },
   { to: "/about-us", translationKey: "about-us" },
   { to: "/private-event", translationKey: "private-event" },
-  { to: "/", translationKey: "contact-us" },
+  { to: "/contact-us", translationKey: "contact-us" },
 ];

@@ -6,7 +6,7 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <component :is="props.tag" class="pageTitle"><slot /></component>
+  <component :is="props.tag" class="pageTitle text-white"><slot /></component>
 </template>
 
 <style>

@@ -12,7 +12,7 @@ defineProps<Props>();
 
 <template>
   <div
-    class="cocktailsSlide grid md:grid-flow-col md:auto-cols-auto justify-center items-center gap-8"
+    class="cocktailsSlide grid md:grid-flow-col md:auto-cols-auto justify-center items-center gap-8 text-white"
   >
     <div
       class="flex flex-col gap-6 md:gap-10 self-center justify-self-center order-2 md:order-1"

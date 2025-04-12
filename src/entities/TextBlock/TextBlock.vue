@@ -11,7 +11,7 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="flex flex-col gap-15">
+  <div class="flex flex-col gap-1 text-white">
     <div
       v-for="(block, index) in tm(languageKey) as ITextBlock[]"
       :key="index"

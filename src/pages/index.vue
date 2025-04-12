@@ -10,7 +10,7 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-20 my-30">
+  <div class="flex flex-col items-center gap-20 my-20">
     <PageTitle tag="h1">{{ t("pages.home.title") }}</PageTitle>
     <PageTitle tag="h2">
       <span class="uppercase">{{ t("pages.home.subTitle.bold") }}</span>

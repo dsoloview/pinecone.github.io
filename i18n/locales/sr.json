@@ -8,7 +8,8 @@
       "team-cast": "Tim i glumačka ekipa",
       "pinecone-bar": "Pinecone Bar",
       "cocktails": "Pinecone Kokteli",
-      "default": "Pinecone"
+      "default": "Pinecone",
+      "contact-us": "Kontaktirajte nas"
     }
   },
   "navigation": {
@@ -168,6 +169,9 @@
 
     "private-event": {
       "title": "Privatni događaj"
+    },
+    "contact-us": {
+      "title": "Kontaktirajte nas"
     }
   },
 

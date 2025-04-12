@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PageTitle from "~/entities/PageTitle/PageTitle.vue";
+import H1Title from "~/features/Title/ui/H1Title.vue";
 
 definePageMeta({
   name: "private-event",
@@ -9,10 +9,10 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <div class="my-30">
-    <PageTitle class="small" tag="h1">{{
+  <div class="my-20">
+    <H1Title class="small" tag="h1">{{
       t("pages.private-event.title")
-    }}</PageTitle>
+    }}</H1Title>
   </div>
 </template>
 

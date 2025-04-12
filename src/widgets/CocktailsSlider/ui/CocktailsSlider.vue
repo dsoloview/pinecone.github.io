@@ -13,7 +13,7 @@ const { tm, rt, t } = useI18n();
 </script>
 
 <template>
-  <div class="flex flex-col gap-10">
+  <div class="flex flex-col gap-10 text-white">
     <ClientOnly>
       <swiper-container
         ref="containerRef"

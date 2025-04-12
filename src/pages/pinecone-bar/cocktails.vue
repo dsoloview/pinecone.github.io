@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import PageTitle from "~/entities/PageTitle/PageTitle.vue";
 import CocktailsSlider from "~/widgets/CocktailsSlider/ui/CocktailsSlider.vue";
+import H1Title from "~/features/Title/ui/H1Title.vue";
 
 definePageMeta({
   name: "cocktails",
@@ -11,11 +11,7 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <div class="my-30">
-    <PageTitle class="small" tag="h1">{{
-      t(`${translationKey}.title`)
-    }}</PageTitle>
-  </div>
+  <H1Title class="small" tag="h1">{{ t(`${translationKey}.title`) }}</H1Title>
   <CocktailsSlider />
 </template>
 

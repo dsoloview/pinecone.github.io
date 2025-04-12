@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FlipCard from "~/entities/FlipCard/ui/FlipCard.vue";
-import PageTitle from "~/entities/PageTitle/PageTitle.vue";
+import H1Title from "~/features/Title/ui/H1Title.vue";
 
 definePageMeta({
   name: "team-cast",
@@ -10,9 +10,7 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <div class="my-30">
-    <PageTitle tag="h1">{{ t("pages.team-cast.title") }}</PageTitle>
-  </div>
+  <H1Title>{{ t("pages.team-cast.title") }}</H1Title>
   <div class="cards">
     <FlipCard
       back-translation-name="andrea"
