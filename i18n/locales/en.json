@@ -10,8 +10,6 @@
     }
   },
 
-
-
   "navigation": {
     "home": "Pinecone theater",
     "immersivity": "Immersivity",
@@ -21,14 +19,10 @@
     "contact-us": "Contact us"
   },
 
-
-
   "buttons": {
     "book_table": "Book a table at out pineconebar",
     "buy_ticket": "Buy a ticket"
   },
-
-
 
   "pages": {
     "home": {
