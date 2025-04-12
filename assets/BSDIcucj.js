@@ -1,0 +1,1 @@
+import{e as s,g as o,w as n,x as r,o as p,s as c}from"./DBnDos1A.js";const m=s({__name:"PageTitle",props:{tag:{}},setup(e){const t=e;return(a,l)=>(p(),o(r(t.tag),{class:"pageTitle"},{default:n(()=>[c(a.$slots,"default")]),_:3}))}});export{m as _};
