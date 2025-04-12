@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/i18n",
     "@vee-validate/nuxt",
+    "nuxt-swiper",
   ],
   css: ["~/assets/scss/main.css"],
   vite: {

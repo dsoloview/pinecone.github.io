@@ -82,7 +82,7 @@ onUnmounted(() => {
           alt="Front"
           class="object-cover w-full h-full absolute z-0"
         />
-        <div class="relative z-10 p-4 w-full h-full">
+        <div class="relative z-10 w-full h-full">
           <FlipCardContent
             v-if="frontTranslationName"
             :translation-name="frontTranslationName"
@@ -101,7 +101,7 @@ onUnmounted(() => {
           class="object-cover w-full h-full absolute z-0 opacity-40"
         />
         <div
-          class="backText relative z-10 p-4 w-full h-full"
+          class="backText relative z-10 w-full h-full"
           :class="{ 'opacity-0': textHidden, 'opacity-100': !textHidden }"
         >
           <FlipCardContent

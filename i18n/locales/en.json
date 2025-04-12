@@ -7,6 +7,8 @@
       "team-cast": "Team & cast",
       "private-event": "Private event",
       "pinecone-bar": "Pinecone Bar",
+      "cocktails": "Pinecone Cocktails",
+      "wines": "Pinecone Wines",
       "default": "Pinecone"
     }
   },
@@ -24,8 +26,60 @@
   "buttons": {
     "book_table": "Book a table at out pineconebar",
     "buy_ticket": "Buy a ticket",
-    "coctails": "I prefer classic and signature coctails",
-    "wines": "I prefer unique selection of wines"
+    "cocktails": "I prefer classic and signature cocktails",
+    "wines": "I prefer unique selection of wines",
+    "prev": "prev",
+    "next": "next"
+  },
+
+  "sliders": {
+    "cocktails": [
+      {
+        "title": "Wilhelm’s signature cocktail",
+        "text": "Introducing the \"Wilhelm’s signature cocktail,\" a sophisticated black and white Negroni twist. This cocktail harmonizes the Apollonian clarity of gin with the Dionysian fervor of herbal liqueurs, creating a profound interplay of flavors. The initial bitterness contrasts with the subtle sweetness, embodying the eternal struggle between order and chaos. Sip and savor this complex elixir, a tribute to exploration of the human condition in \"The Birth of Tragedy.\"",
+        "image": "/images/cards/wilhelm.jpg"
+      },
+      {
+        "title": "Antipas' signature cocktail",
+        "text": "Introducing the \"Antipas' signature cocktail,\" a tantalizing twist on the classic El Diablo. This vibrant red cocktail reflects the dual nature of Herod Antipas. Infused with a hint of spice, it captures the essence of the Devil and the shadow, exploring the darker aspects of the psyche. Each sip invites you to confront and embrace your hidden depths in a dance of sweet, sour, and spicy flavors.",
+        "image": "/images/cards/antipa.jpg"
+      },
+      {
+        "title": "Oedipal Reckoning",
+        "text": "Oedipal Reckoning, a polished cocktail inspired by the most famous Greek tragedy. This sweet yet bitter elixir embodies the complex duality of fate and consequence. Reflecting the essence of the inevitable Justice, this drink underscores the inexorable law of karma. This drink serves as a reminder of the delicate balance between destiny and the choices that lead to one's ultimate reckoning.",
+        "image": "/images/cards/justice.jpg"
+      },
+      {
+        "title": "CANACA",
+        "text": "Meet a captivating red cocktail that embodies the enigmatic allure of the night. This soft and sweet creation weaves together lush berries and velvety liqueurs, reflecting the seductive mystery of the Moon. Evoking the dark enchantment of Lilith and the shadowy depths of Hecate, this drink captures the essence of the Queen of the Night in her most beguiling, yet foreboding, form. With each sip, embrace the alluring yet perilous dance of hidden truths and nocturnal secrets.",
+        "image": "/images/cards/canaca.jpg"
+      },
+      {
+        "title": "MAKAREUS",
+        "text": "A radiant cocktail that embodies the warmth and vitality of the sunbeam. This light and sweet drink combines brightness with a hint of floral calming, reflecting the joyous essence of the Sun. Representing the Helios, it celebrates talent, youth, and a world that is open to your boundless energy right away. An exquisite taste that invigorates the spirit, inviting you to bask in the glow of your inner brilliance and limitless potential.",
+        "image": "/images/cards/makareus.jpg"
+      },
+      {
+        "title": "LU",
+        "text": "A verdant and herbal cocktail with a touch of absinthe, evoking the mystique of your Anima. This enchanting drink weaves together the threads of fate and destiny, much like Ariadne's mythic labyrinth. Each sip reveals layers of verdant herbs and the ethereal allure of absinthe, embodying the guiding feminine spirit and wisdom. Embrace the mystery and complexity of this elixir, as it leads you through the winding paths of your own inner journey.",
+        "image": "/images/cards/lu.jpg"
+      },
+      {
+        "title": "HERODIAS",
+        "text": "A luxurious alliance that epitomizes opulence and indulgence. The taste of pure hedonism. Crafted for the sophisticated young woman, it celebrates richness and the art of living lavishly. A decadent experience, inviting you to revel in the finer pleasures of life with a gentle hint of seduction that permeates this evening…",
+        "image": "/images/cards/herodias.jpg"
+      },
+      {
+        "title": "Electra",
+        "text": "A mezcal-based cocktail that strikes a perfect balance between sweet and bitter. This subtle drink represents the transformational processes every successful businesswoman navigates, blending intricate dance of ambition and personal growth with a hint of refinement and empowerment. \"Electra\" is the ideal companion for the modern businesswoman, embodying both strength and elegance.",
+        "image": "/images/cards/electra.jpg"
+      },
+      {
+        "title": "LAIUS",
+        "text": "A unique wine-based cocktail that harmoniously blends sweet and earthy flavors. This exquisite drink symbolizes resurrection, capturing the essence of endless life as a universal phenomenon. Experience an epiphany that transforms personal existence, offering profound insights and a renewed perspective. \"Laius\" is more than a cocktail; it's a journey of enlightenment, celebrating the continuity of life and the power of revelation.",
+        "image": "/images/cards/laius.jpg"
+      }
+    ]
   },
 
   "pages": {
@@ -109,7 +163,13 @@
         "\"A breathtaking evening! The cocktails were spectacular, and the ambiance felt like stepping into another world. Every detail added to the enchanting atmosphere.\"",
         "\"An unforgettable night at Pinecone Bar! The service was impeccable, and the themed drinks made me feel part of an exclusive scene.\""
       ],
-      "bottomText": "Discover the allure of our exceptional mixology—book your table now for an immersive evening at Pinecone Bar!"
+      "bottomText": "Discover the allure of our exceptional mixology—book your table now for an immersive evening at Pinecone Bar!",
+      "subPages": {
+        "cocktails": {
+          "title": "Pinecone Cocktails"
+        },
+        "wines": {}
+      }
     },
     "private-event": {
       "title": "Private event"

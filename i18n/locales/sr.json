@@ -7,6 +7,7 @@
       "private-event": "Privatni događaj",
       "team-cast": "Tim i glumačka ekipa",
       "pinecone-bar": "Pinecone Bar",
+      "cocktails": "Pinecone Kokteli",
       "default": "Pinecone"
     }
   },
@@ -21,7 +22,60 @@
   },
   "buttons": {
     "book_table": "Rezervišite sto u našem Pinecone baru",
-    "buy_ticket": "Kupite kartu"
+    "buy_ticket": "Kupite kartu",
+    "cocktails": "Preferiram klasične i autorske koktele",
+    "wines": "Preferiram jedinstven izbor vina",
+    "prev": "prethodni",
+    "next": "sledeći"
+  },
+  "sliders": {
+    "cocktails": [
+      {
+        "title": "Wilhelmov signature koktel",
+        "text": "Predstavljamo \"Wilhelmov signature koktel,\" sofisticiranu crno-belu varijaciju Negronija. Ovaj koktel harmonizuje Apolonijsku jasnoću džina sa Dionizijskom strašću biljnih likera, stvarajući dubok sukob ukusa. Početna gorčina suprotstavlja se suptilnoj slatkoći, oličavajući večnu borbu između reda i haosa. Uz svaku kap uživajte u ovom složenom eliksiru, posvećenom istraživanju ljudske prirode u \"Rađanju tragedije.\"",
+        "image": "/images/cards/wilhelm.jpg"
+      },
+      {
+        "title": "Antipasov signature koktel",
+        "text": "Predstavljamo \"Antipasov signature koktel,\" primamljivu varijaciju klasičnog El Diablo koktela. Ovaj živopisni crveni koktel odražava dvojnu prirodu Heroda Antipasa. Njegov začinjeni ton dočarava suštinu Đavola i senke, istražujući tamnije aspekte psihe. Svaki gutljaj poziva vas da se suočite i zagrlite svoje skrivene dubine kroz ples slatkih, kiselih i začinjenih ukusa.",
+        "image": "/images/cards/antipa.jpg"
+      },
+      {
+        "title": "Edipova računska ravnoteža",
+        "text": "Edipova računska ravnoteža, prefinjeni koktel inspirisan najpoznatijom grčkom tragedijom. Ovaj slatki, ali gorki eliksir izražava složenu dualnost sudbine i posledica. Reflektujući suštinu neizbežne Pravde, ovo piće naglašava neumitni zakon karme. Ovo piće podseća na osetljivu ravnotežu između sudbine i izbora koji vode do konačnog obračuna.",
+        "image": "/images/cards/justice.jpg"
+      },
+      {
+        "title": "CANACA",
+        "text": "Upoznajte zavodljivi crveni koktel koji oličava misterioznu privlačnost noći. Ova mekana i slatka kreacija spaja bujne bobice i baršunaste likere, odražavajući zavodljivu misteriju Meseca. Dočaravajući tamnu draž Lilith i senovite dubine Hekate, ovo piće obuhvata suštinu Kraljice Noći u njenoj najopojnijoj, ali predznakovitoj formi. Uz svaki gutljaj, prigrlite zavodljivi, ali opasni ples skrivenih istina i tajni noći.",
+        "image": "/images/cards/canaca.jpg"
+      },
+      {
+        "title": "MAKAREUS",
+        "text": "Svetlucavi koktel koji oličava toplinu i vitalnost sunčevog zraka. Ovo lagano i slatko piće kombinuje svetlost s dozom cvetne smirenosti, odražavajući radost suštine Sunca. Predstavljajući Heliosa, slavi talent, mladost i svet koji je odmah otvoren za vašu neograničenu energiju. Izuzetnog ukusa koji oživljava duh, ovo piće vas poziva da uživate u sjaju svoje unutrašnje briljantnosti i beskrajnih potencijala.",
+        "image": "/images/cards/makareus.jpg"
+      },
+      {
+        "title": "LU",
+        "text": "Zeleni i biljni koktel s dozom apsinta, prizivajući mistiku vaše Anime. Ovo očaravajuće piće plete zajedno niti sudbine i predodređenosti, poput mitskog lavirinta Ariadne. Svaki gutljaj otkriva slojeve zelenog bilja i eterealnu privlačnost apsinta, oličavajući voditeljski ženski duh i mudrost. Prigrlite misteriju i složenost ovog eliksira, dok vas vodi kroz krivudave staze vašeg unutrašnjeg putovanja.",
+        "image": "/images/cards/lu.jpg"
+      },
+      {
+        "title": "HERODIAS",
+        "text": "Luksuzni spoj koji oličava izobilje i uživanje. Ukus čiste hedonije. Namenjen sofisticiranoj mladoj ženi, slavi bogatstvo i umetnost raskošnog načina života. Dekadentno iskustvo, pozivajući vas da uživate u lepšim zadovoljstvima života uz blagu notu zavođenja koja prožima ovo veče…",
+        "image": "/images/cards/herodias.jpg"
+      },
+      {
+        "title": "Electra",
+        "text": "Koktel na bazi mezkala koji postiže savršenu ravnotežu između slatkog i gorkog. Ovo suptilno piće predstavlja transformacione procese kroz koje prolazi svaka uspešna poslovna žena, spajajući finu igru ambicije i ličnog rasta s primesama profinjenosti i osnaživanja. \"Electra\" je idealan pratilac savremene poslovne žene, oličavajući snagu i eleganciju.",
+        "image": "/images/cards/electra.jpg"
+      },
+      {
+        "title": "LAIUS",
+        "text": "Jedinstven koktel na bazi vina koji harmonično spaja slatke i zemljane ukuse. Ovo izvanredno piće simbolizuje vaskrsenje, hvatajući suštinu beskrajnog života kao univerzalnog fenomena. Doživite prosvetljenje koje transformiše lično postojanje, nudeći duboke uvide i novi pogled na svet. \"Laius\" je više od koktela; to je putovanje prosvetljenja, slaveći kontinuitet života i moć otkrića.",
+        "image": "/images/cards/laius.jpg"
+      }
+    ]
   },
   "pages": {
     "home": {
@@ -104,7 +158,12 @@
         "\"Zapanjujuće veče! Kokteli su bili spektakularni, a atmosfera je delovala kao ulazak u neki drugi svet. Svaki detalj doprineo je očaravajućem ambijentu.\"",
         "\"Nezaboravna noć u Pinecone Baru! Usluga je bila besprekorna, a tematski kokteli učinili su da se osećam kao deo ekskluzivne scene.\""
       ],
-      "bottomText": "Otkrijte privlačnost naše izuzetne miksologije—rezervišite svoj sto sada za impresivno veče u Pinecone Baru!"
+      "bottomText": "Otkrijte privlačnost naše izuzetne miksologije—rezervišite svoj sto sada za impresivno veče u Pinecone Baru!",
+      "subPages": {
+        "cocktails": {
+          "title": "Pinecone Kokteli"
+        }
+      }
     },
 
     "private-event": {
