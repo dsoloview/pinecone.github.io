@@ -6,6 +6,7 @@
       "immersivity": "Imersivnost",
       "private-event": "Privatni događaj",
       "team-cast": "Tim i glumačka ekipa",
+      "pinecone-bar": "Pinecone Bar",
       "default": "Pinecone"
     }
   },
@@ -13,6 +14,7 @@
     "home": "Pinecone theater",
     "immersivity": "Immersivnost",
     "team-cast": "Tim i glumci",
+    "pinecone-bar": "Pinecone Bar",
     "about-us": "O nama",
     "private-event": "Privatni događaj",
     "contact-us": "Kontaktirajte nas"
@@ -94,6 +96,17 @@
     "team-cast": {
       "title": "Tim i glumačka ekipa"
     },
+    "pinecone-bar": {
+      "title": "Pinecone Bar",
+      "subTitle": "Gde se misterija susreće sa elegancijom.",
+      "quotes": [
+        "\"Bio sam očaran izborom pića. Interaktivne demonstracije koktela bile su zanimljive i zabavne, čineći ga ne samo barom—već i iskustvom.\"",
+        "\"Zapanjujuće veče! Kokteli su bili spektakularni, a atmosfera je delovala kao ulazak u neki drugi svet. Svaki detalj doprineo je očaravajućem ambijentu.\"",
+        "\"Nezaboravna noć u Pinecone Baru! Usluga je bila besprekorna, a tematski kokteli učinili su da se osećam kao deo ekskluzivne scene.\""
+      ],
+      "bottomText": "Otkrijte privlačnost naše izuzetne miksologije—rezervišite svoj sto sada za impresivno veče u Pinecone Baru!"
+    },
+
     "private-event": {
       "title": "Privatni događaj"
     }

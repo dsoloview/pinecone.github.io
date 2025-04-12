@@ -6,6 +6,7 @@
       "immersivity": "Immersivity",
       "team-cast": "Team & cast",
       "private-event": "Private event",
+      "pinecone-bar": "Pinecone Bar",
       "default": "Pinecone"
     }
   },
@@ -14,6 +15,7 @@
     "home": "Pinecone theater",
     "immersivity": "Immersivity",
     "team-cast": "Team & Cast",
+    "pinecone-bar": "Pinecone Bar",
     "about-us": "About us",
     "private-event": "Private event",
     "contact-us": "Contact us"
@@ -21,7 +23,9 @@
 
   "buttons": {
     "book_table": "Book a table at out pineconebar",
-    "buy_ticket": "Buy a ticket"
+    "buy_ticket": "Buy a ticket",
+    "coctails": "I prefer classic and signature coctails",
+    "wines": "I prefer unique selection of wines"
   },
 
   "pages": {
@@ -96,6 +100,16 @@
     },
     "team-cast": {
       "title": "Team & cast"
+    },
+    "pinecone-bar": {
+      "title": "Pinecone Bar",
+      "subTitle": "Where Mystery Meets Elegance.",
+      "quotes": [
+        "\"I was captivated by the drink selection. The interactive cocktail demos were engaging and fun, making it more than just a bar—it's an experience.\"",
+        "\"A breathtaking evening! The cocktails were spectacular, and the ambiance felt like stepping into another world. Every detail added to the enchanting atmosphere.\"",
+        "\"An unforgettable night at Pinecone Bar! The service was impeccable, and the themed drinks made me feel part of an exclusive scene.\""
+      ],
+      "bottomText": "Discover the allure of our exceptional mixology—book your table now for an immersive evening at Pinecone Bar!"
     },
     "private-event": {
       "title": "Private event"
