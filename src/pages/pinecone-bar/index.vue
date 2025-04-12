@@ -22,7 +22,7 @@ const { t } = useI18n();
         t("buttons.buy_ticket")
       }}</LinkButton>
     </div>
-    <div class="flex items-center justify-center gap-20">
+    <div class="flex flex-wrap items-center justify-center gap-20">
       <LinkButton class="text-lg xl:text-lg" to="/pinecone-bar/cocktails">{{
         t("buttons.cocktails")
       }}</LinkButton>
