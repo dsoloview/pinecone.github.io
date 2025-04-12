@@ -1,0 +1,1 @@
+import{e as o,z as s,w as n,G as r,o as p,D as c}from"./Cx91ADnC.js";const m=o({__name:"PageTitle",props:{tag:{}},setup(e){const t=e;return(a,l)=>(p(),s(r(t.tag),{class:"pageTitle text-white"},{default:n(()=>[c(a.$slots,"default")]),_:3}))}});export{m as _};
