@@ -1,1 +1,0 @@
-import{_ as t}from"./iAiGHFrz.js";import{e as s,c as a,b as o,w as r,o as _,D as n}from"./Cx91ADnC.js";const c={class:"my-20"},d=s({__name:"H1Title",setup(m){return(e,i)=>(_(),a("div",c,[o(t,{tag:"h1"},{default:r(()=>[n(e.$slots,"default")]),_:3})]))}});export{d as _};
