@@ -10,7 +10,7 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <H1Title class="small" tag="h1">{{ t("pages.immersivity.title") }}</H1Title>
+  <H1Title small tag="h1">{{ t("pages.immersivity.title") }}</H1Title>
   <TextBlock language-key="pages.immersivity.textBlocks" />
 </template>
 

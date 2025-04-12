@@ -11,13 +11,13 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="flex flex-col gap-1 text-white">
+  <div class="flex flex-col gap-10 text-white">
     <div
       v-for="(block, index) in tm(languageKey) as ITextBlock[]"
       :key="index"
       class="flex flex-col items-start gap-3"
     >
-      <PageTitle v-if="block.title" class="blockTitle" :tag="'h3'">{{
+      <PageTitle v-if="block.title" class="blockTitle" tag="h3">{{
         rt(block.title)
       }}</PageTitle>
       <p v-for="(paragraph, i) in block.paragraphs" :key="i" class="text-lg">

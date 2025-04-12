@@ -10,9 +10,7 @@ const { t } = useI18n();
 
 <template>
   <div class="my-20">
-    <H1Title class="small" tag="h1">{{
-      t("pages.private-event.title")
-    }}</H1Title>
+    <H1Title tag="h1">{{ t("pages.private-event.title") }}</H1Title>
   </div>
 </template>
 

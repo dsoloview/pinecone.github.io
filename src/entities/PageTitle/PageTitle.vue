@@ -26,6 +26,6 @@ h2 {
 }
 
 h3 {
-  @apply text-2xl md:text-3xl;
+  @apply text-xl md:text-2xl;
 }
 </style>

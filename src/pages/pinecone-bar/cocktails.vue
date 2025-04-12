@@ -11,7 +11,7 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <H1Title class="small" tag="h1">{{ t(`${translationKey}.title`) }}</H1Title>
+  <H1Title tag="h1">{{ t(`${translationKey}.title`) }}</H1Title>
   <CocktailsSlider />
 </template>
 
