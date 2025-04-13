@@ -48,6 +48,10 @@ function handlePressEnd() {
   textHidden.value = false;
 }
 
+function handleContextMenu(event: Event) {
+  event.preventDefault();
+}
+
 onUnmounted(() => {
   if (holdTimeout.value !== null) {
     clearTimeout(holdTimeout.value);
@@ -58,13 +62,13 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="group w-64 h-[450px] perspective text-sm"
+    class="flipCard group w-64 h-[450px] perspective text-sm"
     :class="{ 'cursor-pointer': canFlip, 'cursor-default': !canFlip }"
     @click="handleFlip"
     @pointerdown="handlePressStart"
     @pointerup="handlePressEnd"
     @pointercancel="handlePressEnd"
-    @contextmenu.prevent
+    @contextmenu="handleContextMenu"
   >
     <div
       class="relative w-full h-full transform-style preserve-3d"
@@ -99,7 +103,7 @@ onUnmounted(() => {
         <img
           :src="backImageSrc"
           alt="Back"
-          class="object-cover w-full h-full absolute z-0 opacity-40"
+          class="object-cover w-full h-full absolute z-0"
         />
         <div
           class="backText relative z-10 w-full h-full p-3"
@@ -117,6 +121,13 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+.flipCard {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
 .perspective {
   perspective: 1000px;
 }
