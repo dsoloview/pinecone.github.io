@@ -30,10 +30,19 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@vee-validate/nuxt",
     "nuxt-swiper",
+    "@prisma/nuxt",
+    "@nuxt/ui",
+    "nuxt-auth-utils",
   ],
   css: ["~/assets/scss/main.css"],
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        ".prisma/client/index-browser":
+          "./node_modules/.prisma/client/index-browser.js",
+      },
+    },
   },
   typescript: {
     typeCheck: true,
@@ -64,5 +73,10 @@ export default defineNuxtConfig({
   },
   experimental: {
     payloadExtraction: false,
+  },
+  prisma: {
+    generateClient: true,
+    prismaRoot: "src/server/database",
+    prismaSchemaPath: "src/server/database/prisma/schema.prisma",
   },
 });
