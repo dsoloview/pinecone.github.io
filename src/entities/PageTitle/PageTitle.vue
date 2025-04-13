@@ -10,7 +10,7 @@ const props = defineProps<Props>();
 </template>
 
 <style>
-@reference '../../assets/scss/main.css';
+@reference '@/assets/scss/main.css';
 
 .pageTitle {
   text-align: center;

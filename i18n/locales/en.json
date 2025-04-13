@@ -1,16 +1,85 @@
 {
   "seo": {
-    "title": {
-      "home": "Home page",
-      "about-us": "About us",
-      "immersivity": "Immersivity",
-      "team-cast": "Team & cast",
-      "private-event": "Private event",
-      "pinecone-bar": "Pinecone Bar",
-      "cocktails": "Pinecone Cocktails",
-      "wines": "Pinecone Wines",
-      "contact-us": "Contact us",
-      "default": "Pinecone"
+    "home": {
+      "title": "Lucidity Triptych – Immersive Theater in Belgrade | Pinecone Theatre",
+      "description": "Experience Lucidity Triptych, an immersive and groundbreaking theatrical event in the Pinecone Theatre, Belgrade. Inspired by Nietzsche and Jung, this multi-sensory performance blends drama, music, and storytelling in an intimate setting, inviting the audience to explore dreams, conflicts, and transformation.",
+      "keywords": "Lucidity Triptych, immersive theater, Pinecone Theatre, Belgrade theater, cultural events, Friedrich Nietzsche, Carl Jung, archetypes, drama, musical theater, multi-sensory performance, Belgrade art scene, innovative theater experience, dreamlike narrative, Belgrade culture",
+      "openGraph": {
+        "title": "Lucidity Triptych – Immersive Theater in Belgrade | Pinecone Theatre",
+        "description": "Don't miss Lucidity Triptych at Pinecone Theatre, Belgrade's most innovative immersive theater event, blending drama, music, and storytelling. Limited tickets available!",
+      }
+    },
+    "about-us": {
+      "title": "Welcome to Pinecone Bar – Where History Meets Mystery",
+      "description": "Nestled in Belgrade's Old City, Pinecone Bar invites you to experience the charm of an early 20th-century building, artful cocktails, and an atmosphere of opulence and intrigue. Uncover a speakeasy bar that merges tradition with innovation for an unforgettable escape.",
+      "keywords": "Pinecone Bar Belgrade, speakeasy bar, Old City Belgrade, historical bar, signature cocktails, Greek charm, hidden bar, Pinecone Bar location, artistic bar, vibrant atmosphere, cocktail experience, Belgrade nightlife, opulent bar",
+      "openGraph": {
+        "title": "Welcome to Pinecone Bar – Where History Meets Mystery",
+        "description": "Step into the enigmatic world of Pinecone Bar in Belgrade’s Old City. Immerse yourself in a unique blend of history, mystery, signature cocktails, and stunning ambiance that offers a journey through time and enchantment."
+      }
+    },
+    "immersivity": {
+      "title": "Immersivity – Step Inside the Story | Pinecone Theatre",
+      "description": "Discover the transformative world of immersive theater at Pinecone Theatre. Engage with vivid scenes, interact with characters, and become a co-creator of a story that captivates all your senses. Immersivity turns spectators into participants, offering a unique and unforgettable experience.",
+      "keywords": "immersive theater, Pinecone Theatre, interactive storytelling, audience participation, sensory experience, immersive space, dynamic performance, emotional connection, unique theater experience, transformative storytelling, uncharted perspectives",
+      "openGraph": {
+        "title": "Immersivity – Step Inside the Story | Pinecone Theatre",
+        "description": "Experience immersive theater at Pinecone Theatre, where the line between audience and performer disappears. Step into a world of dynamic storytelling and sensory exploration."
+      }
+    },
+    "team-cast": {
+      "title": "Team & Cast – Meet the Creative Minds | Pinecone Theatre",
+      "description": "Get to know the incredible team and cast behind Pinecone Theatre's immersive performances. Our talented actors, directors, and creative minds work together to craft unforgettable theater experiences that captivate and inspire.",
+      "keywords": "Pinecone Theatre team, Pinecone Theatre cast, immersive theater cast, creative minds, theater directors, talented actors, Pinecone performers, innovative theater team, cast introduction, theatrical creativity, immersive performance creators",
+      "openGraph": {
+        "title": "Team & Cast – Meet the Creative Minds | Pinecone Theatre",
+        "description": "Meet the team and cast of Pinecone Theatre. Behind every immersive performance, there’s a talented group of creators bringing stories to life."
+      }
+    },
+    "private-event": {
+      "title": "Private Events at Pinecone Bar – Exclusive Experiences",
+      "description": "Host your private event at Pinecone Bar in Belgrade. From intimate gatherings to grand celebrations, our stunning venue and exceptional service offer the perfect setting for unforgettable moments. Book now!",
+      "keywords": "Pinecone Bar private event, event booking Belgrade, exclusive venue, private celebrations, bar reservation, corporate events, intimate gatherings, private parties, unique event venue, Belgrade nightlife, event planning",
+      "openGraph": {
+        "title": "Private Events at Pinecone Bar – Exclusive Experiences",
+        "description": "Looking for an unforgettable venue for your private event? Pinecone Bar in Belgrade offers a blend of charm, mystery, and exceptional service for all your special occasions. Reserve today!"
+      }
+    },
+    "pinecone-bar": {
+      "title": "Pinecone Bar – Where Mystery Meets Elegance",
+      "description": "Step into Pinecone Bar, where classic and signature cocktails take center stage. Experience an enchanting atmosphere with interactive cocktail demos, impeccable service, and themed drinks that turn your evening into an unforgettable journey.",
+      "keywords": "Pinecone Bar, signature cocktails, classic cocktails, immersive bar experience, interactive cocktail demos, enchanting ambiance, elegant bar, themed drinks, exclusive bar scene, mixology, Belgrade nightlife",
+      "openGraph": {
+        "title": "Pinecone Bar – Where Mystery Meets Elegance",
+        "description": "Indulge in the allure of Pinecone Bar with spectacular cocktails, interactive demos, and an ambiance that transports you to another world. Reserve your table for a memorable night!"
+      }
+    },
+    "cocktails": {
+      "title": "Pinecone Cocktails – Signature Drinks That Inspire",
+      "description": "Discover the signature cocktail collection at Pinecone Bar. From timeless classics to bold creations, each drink is crafted to perfection and designed to elevate your evening with unforgettable flavors and artistry.",
+      "keywords": "Pinecone cocktails, signature cocktails, classic drinks, innovative cocktails, mixology, Pinecone Bar specialties, unique drinks, cocktail menu, drink experience, Pinecone signature collection, handcrafted cocktails",
+      "openGraph": {
+        "title": "Pinecone Cocktails – Signature Drinks That Inspire",
+        "description": "Dive into Pinecone Bar's world of signature cocktails, where each creation combines artistry, bold flavors, and timeless elegance. Explore our cocktail menu today!"
+      }
+    },
+    "contact-us": {
+      "title": "Contact Pinecone Bar – Get in Touch",
+      "description": "Have questions or want to reach out? Contact Pinecone Bar in Belgrade for reservations, inquiries, and more. Visit us at Vladete Jerotića 5 (Stara Dalmatinska 5) or call +381/65-866-99-00. We're here to assist you.",
+      "keywords": "Pinecone Bar contact, contact information, Pinecone Bar address, Belgrade bar contact, reservations, event inquiries, Pinecone phone number, Pinecone email, Vladete Jerotića 5, Stara Dalmatinska 5",
+      "openGraph": {
+        "title": "Contact Pinecone Bar – Get in Touch",
+        "description": "Reach out to Pinecone Bar in Belgrade for all your inquiries. Visit us at Vladete Jerotića 5, call +381/65-866-99-00. We look forward to hearing from you!"
+      }
+    },
+    "default": {
+      "title": "Pinecone Theatre – Immersive Experiences in Belgrade",
+      "description": "Explore Pinecone Theatre, a hub for immersive theater and unforgettable experiences in Belgrade. Discover innovative performances, vibrant culture, and unique storytelling that captivate your senses.",
+      "keywords": "Pinecone Theatre, immersive theater, Belgrade culture, innovative performances, sensory experience, storytelling, unique events, cultural experiences, Belgrade art scene",
+      "openGraph": {
+        "title": "Pinecone Theatre – Immersive Experiences in Belgrade",
+        "description": "Step into the world of Pinecone Theatre for immersive performances that push the boundaries of storytelling and creativity in Belgrade."
+      }
     }
   },
 

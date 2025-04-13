@@ -15,7 +15,7 @@ const { t } = useI18n();
 </template>
 
 <style scoped>
-@reference '../../assets/scss/main.css';
+@reference '@/assets/scss/main.css';
 
 .small {
   @apply text-5xl md:text-9xl;

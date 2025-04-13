@@ -3,14 +3,20 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
   app: {
-    baseURL: "/pinecone.github.io/",
-    buildAssetsDir: "assets",
+    // baseURL: "/pinecone.github.io/",
+    // buildAssetsDir: "assets",
     head: {
       title: "Pinecone",
       htmlAttrs: {
         lang: "en",
       },
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+      meta: [
+        {
+          name: "author",
+          content: "Pinecone",
+        },
+      ],
     },
   },
   compatibilityDate: "2024-11-01",

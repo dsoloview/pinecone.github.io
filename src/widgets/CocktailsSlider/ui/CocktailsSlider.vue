@@ -14,7 +14,7 @@ const { tm, rt, t } = useI18n();
 
 <template>
   <div class="flex flex-col gap-10 text-white">
-    <ClientOnly>
+    <client-only>
       <swiper-container
         ref="containerRef"
         :autoplay="{ delay: 5000, disableOnInteraction: true }"
@@ -31,7 +31,7 @@ const { tm, rt, t } = useI18n();
           />
         </swiper-slide>
       </swiper-container>
-    </ClientOnly>
+    </client-only>
 
     <div class="flex justify-center items-center gap-3">
       <button class="cocktailsSlider__button" @click="swiper.prev()">
@@ -46,7 +46,7 @@ const { tm, rt, t } = useI18n();
 </template>
 
 <style scoped>
-@reference '../../../assets/scss/main.css';
+@reference '@/assets/scss/main.css';
 
 .cocktailsSlider__button {
   @apply text-white cursor-pointer hover:text-brown uppercase transition-colors duration-300;

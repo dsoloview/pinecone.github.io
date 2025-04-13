@@ -56,7 +56,7 @@ const { t } = useI18n();
 </template>
 
 <style scoped>
-@reference '../../assets/scss/main.css';
+@reference '@/assets/scss/main.css';
 
 .contacts {
   max-width: 500px;
