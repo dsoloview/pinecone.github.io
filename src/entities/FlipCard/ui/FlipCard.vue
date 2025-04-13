@@ -64,6 +64,7 @@ onUnmounted(() => {
     @pointerdown="handlePressStart"
     @pointerup="handlePressEnd"
     @pointercancel="handlePressEnd"
+    @contextmenu.prevent
   >
     <div
       class="relative w-full h-full transform-style preserve-3d"
@@ -82,7 +83,7 @@ onUnmounted(() => {
           alt="Front"
           class="object-cover w-full h-full absolute z-0"
         />
-        <div class="relative z-10 w-full h-full">
+        <div class="relative z-10 w-full h-full p-3">
           <FlipCardContent
             v-if="frontTranslationName"
             :translation-name="frontTranslationName"
@@ -101,7 +102,7 @@ onUnmounted(() => {
           class="object-cover w-full h-full absolute z-0 opacity-40"
         />
         <div
-          class="backText relative z-10 w-full h-full"
+          class="backText relative z-10 w-full h-full p-3"
           :class="{ 'opacity-0': textHidden, 'opacity-100': !textHidden }"
         >
           <FlipCardContent

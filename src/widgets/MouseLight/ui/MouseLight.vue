@@ -8,7 +8,10 @@ onMounted(() => {
   isMobile.value = window.innerWidth <= 768;
 });
 
-const { smoothX, smoothY, size, opacity } = useSmoothMouse(0.1, isMobile.value);
+const { smoothX, smoothY, size, opacity } = useSmoothMouse(
+  0.05,
+  isMobile.value,
+);
 </script>
 
 <template>

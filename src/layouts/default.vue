@@ -34,7 +34,7 @@ const title = computed(() => {
     </Head>
     <Body>
       <div
-        class="min-h-screen w-[100%] bg-black relative overflow-hidden py-12"
+        class="content min-h-screen w-[100%] bg-black relative overflow-hidden py-12"
       >
         <client-only>
           <MouseLight />
@@ -51,4 +51,16 @@ const title = computed(() => {
   </Html>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.content {
+  position: relative;
+  background: black
+    linear-gradient(
+      to bottom,
+      rgba(var(--color-brown-plain), 0.3) 0%,
+      rgba(var(--color-brown-plain), 0.1) 30%,
+      black 100%
+    )
+    no-repeat;
+}
+</style>

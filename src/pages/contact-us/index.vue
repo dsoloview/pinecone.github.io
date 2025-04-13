@@ -30,27 +30,27 @@ const { t } = useI18n();
 
       <div class="divider" />
 
-      <div class="contacts__address flex flex-col items-center gap-3">
+      <NuxtLinkLocale
+        external
+        target="_blank"
+        class="contacts__address flex flex-col items-center gap-3"
+        to="https://maps.app.goo.gl/juWkNTAKDCXVwuR16"
+      >
         <span class="contacts__address__text">{{ ADDRESS }}</span>
         <span class="contacts__address__text">({{ OLD_STREET }})</span>
-      </div>
+      </NuxtLinkLocale>
 
       <div class="divider" />
-      <LMap
-        class="contacts__map"
-        :style="{ height: '350px', zIndex: 0 }"
-        :zoom="30"
-        :center="[44.814995, 20.471743]"
-        :use-global-leaflet="false"
-      >
-        <LTileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-          layer-type="base"
-          name="OpenStreetMap"
+      <div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.322456140337!2d20.469168277419357!3d44.814995071070726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7b252e23a575%3A0x30a8bb16f98563a5!2sPinecone%20Bar%20%26%20Theater!5e0!3m2!1ssr!2srs!4v1744543877577!5m2!1ssr!2srs"
+          width="600"
+          height="450"
+          style="border: 0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
         />
-        <LMarker :lat-lng="[44.814995, 20.471743]" />
-      </LMap>
+      </div>
     </div>
   </div>
 </template>
@@ -58,12 +58,10 @@ const { t } = useI18n();
 <style scoped>
 @reference '../../assets/scss/main.css';
 
-/* Parent container */
 .contacts {
   max-width: 500px;
 }
 
-/* Стили для текста */
 .contacts__link,
 .contacts__address__text {
   @apply text-lg;
@@ -74,6 +72,17 @@ const { t } = useI18n();
 
 .contacts__link {
   @apply cursor-pointer hover:text-brown uppercase transition-colors duration-300;
+}
+
+.contacts__address__text {
+  @apply cursor-pointer transition-colors duration-300;
+}
+.contacts__address {
+  @apply cursor-pointer hover:text-brown uppercase transition-colors duration-300;
+
+  &:hover .contacts__address__text {
+    @apply text-brown;
+  }
 }
 
 .divider {

@@ -60,11 +60,11 @@ export function useSmoothMouse(smoothing = 0.05, isMobile: boolean = false) {
   const dy = computed(() => Math.abs(smoothY.value - height.value / 2));
   const distance = computed(() => Math.sqrt(dx.value ** 2 + dy.value ** 2));
 
-  const size = computed(
-    () => (isMobile ? 200 : Math.max(800 - distance.value / 3, 200)), // Увеличенный размер на мобильных
+  const size = computed(() =>
+    isMobile ? 200 : Math.max(800 - distance.value / 3, 200),
   );
-  const opacity = computed(
-    () => (isMobile ? 0.9 : Math.min(Math.max(size.value / 800, 0.7), 1)), // Почти полная видимость на мобильных
+  const opacity = computed(() =>
+    isMobile ? 0.9 : Math.min(Math.max(size.value / 800, 0.7), 1),
   );
 
   return {
