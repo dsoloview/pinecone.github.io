@@ -1,1 +1,0 @@
-import{e as o,g as s,w as n,y as r,o as p,v as c}from"./DiB2BksV.js";const m=o({__name:"PageTitle",props:{tag:{}},setup(e){const t=e;return(a,l)=>(p(),s(r(t.tag),{class:"pageTitle text-white"},{default:n(()=>[c(a.$slots,"default")]),_:3}))}});export{m as _};
