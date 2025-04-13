@@ -1,15 +1,85 @@
 {
   "seo": {
-    "title": {
-      "home": "Početna stranica",
-      "about-us": "O nama",
-      "immersivity": "Imersivnost",
-      "private-event": "Privatni događaj",
-      "team-cast": "Tim i glumačka ekipa",
-      "pinecone-bar": "Pinecone Bar",
-      "cocktails": "Pinecone Kokteli",
-      "default": "Pinecone",
-      "contact-us": "Kontaktirajte nas"
+    "home": {
+      "title": "Lucidity Triptych – Imerzivni Teatar u Beogradu | Pinecone Theatre",
+      "description": "Doživite Lucidity Triptych, imerzivni i revolucionarni pozorišni događaj u Pinecone Theatre-u u Beogradu. Inspirisan Ničeom i Jungom, ovaj višesenzorni performans kombinuje dramu, muziku i pripovedanje u intimnom okruženju, pozivajući publiku da istraži snove, konflikte i transformaciju.",
+      "keywords": "Lucidity Triptych, imerzivni teatar, Pinecone Theatre, pozorište u Beogradu, kulturni događaji, Fridrih Niče, Karl Jung, arhetipovi, drama, muzički teatar, višesenzorni performans, umetnička scena Beograda, inovativno pozorište, sanjiva naracija, kultura Beograda",
+      "openGraph": {
+        "title": "Lucidity Triptych – Imerzivni Teatar u Beogradu | Pinecone Theatre",
+        "description": "Ne propustite Lucidity Triptych u Pinecone Theatre-u, najinovativniji imerzivni događaj u Beogradu koji kombinuje dramu, muziku i pripovedanje. Broj karata je ograničen!"
+      }
+    },
+    "about-us": {
+      "title": "Dobrodošli u Pinecone Bar – Gde Se Istorija Susreće s Misterijom",
+      "description": "Smešten u starom delu grada Beograda, Pinecone Bar poziva vas da iskusite šarm zgrade iz ranog 20. veka, umetničke koktele i atmosferu raskoši i intrige. Otkrijte speakeasy bar koji spaja tradiciju i inovacije za nezaboravan beg.",
+      "keywords": "Pinecone Bar Beograd, speakeasy bar, stari grad Beograd, istorijski bar, potpis kokteli, grčki šarm, skriven bar, Pinecone lokacija, umetnički bar, vibrantna atmosfera, koktel iskustvo, noćni život u Beogradu, luksuzni bar",
+      "openGraph": {
+        "title": "Dobrodošli u Pinecone Bar – Gde Se Istorija Susreće s Misterijom",
+        "description": "Zakoračite u zagonetni svet Pinecone Bara u starom delu grada Beograda. Uživajte u jedinstvenoj kombinaciji istorije, misterije, potpisnih koktela i zadivljujuće atmosfere za magično putovanje kroz vreme."
+      }
+    },
+    "immersivity": {
+      "title": "Imerzivnost – Zakoračite u Priču | Pinecone Theatre",
+      "description": "Otkrijte transformativni svet imerzivnog teatra u Pinecone Theatre-u. Uključite se u žive scene, interagujte s likovima i postanite saučesnik u priči koja osvaja sva vaša čula. Imerzivnost pretvara posmatrače u učesnike, nudeći jedinstveno i nezaboravno iskustvo.",
+      "keywords": "imerzivni teatar, Pinecone Theatre, interaktivno pripovedanje, učešće publike, senzorno iskustvo, imerzivni prostor, dinamične predstave, emocionalna povezanost, jedinstveno pozorišno iskustvo, transformativno pripovedanje, neistražene perspektive",
+      "openGraph": {
+        "title": "Imerzivnost – Zakoračite u Priču | Pinecone Theatre",
+        "description": "Doživite imerzivni teatar u Pinecone Theatre-u, gde granica između publike i izvođača nestaje. Zakoračite u svet dinamičnog pripovedanja i senzorne eksploracije."
+      }
+    },
+    "team-cast": {
+      "title": "Tim i Glumačka Postava – Upoznajte Kreativce | Pinecone Theatre",
+      "description": "Upoznajte neverovatan tim i glumačku postavu iza imerzivnih predstava Pinecone Theatre-a. Naši talentovani glumci, režiseri i kreativni umovi zajedno stvaraju nezaboravna pozorišna iskustva koja inspirišu i očaravaju.",
+      "keywords": "tim Pinecone Theatre-a, glumačka postava Pinecone Theatre-a, postava imerzivnog teatra, kreativni umovi, režiseri, talentovani glumci, Pinecone izvođači, inovativni pozorišni tim, predstavljanje postave, kreativnost u pozorištu, tvorci imerzivnih predstava",
+      "openGraph": {
+        "title": "Tim i Glumačka Postava – Upoznajte Kreativce | Pinecone Theatre",
+        "description": "Upoznajte tim i glumačku postavu Pinecone Theatre-a. Iza svakog imerzivnog performansa stoji talentovana grupa tvoraca koji priče oživljavaju."
+      }
+    },
+    "private-event": {
+      "title": "Privatni Događaji u Pinecone Baru – Ekskluzivna Iskustva",
+      "description": "Organizujte vaš privatni događaj u Pinecone Baru u Beogradu. Bilo da je u pitanju intimno okupljanje ili velika proslava, naša prelepa lokacija i izuzetan servis nude savršeno mesto za nezaboravne trenutke. Rezervišite odmah!",
+      "keywords": "privatni događaji Pinecone Bar, rezervacija bara Beograd, ekskluzivna lokacija, privatne proslave, korporativni događaji, intimna okupljanja, jedinstvena mesta za događaje, beogradski noćni život, organizacija događaja",
+      "openGraph": {
+        "title": "Privatni Događaji u Pinecone Baru – Ekskluzivna Iskustva",
+        "description": "Tražite nezaboravan prostor za privatni događaj? Pinecone Bar u Beogradu nudi spoj šarma, misterije i izuzetnog servisa za sve vaše posebne prilike. Rezervišite odmah!"
+      }
+    },
+    "pinecone-bar": {
+      "title": "Pinecone Bar – Gde se Misterija Susreće s Elegancijom",
+      "description": "Zakoračite u Pinecone Bar, gde klasični i potpis kokteli zauzimaju centralno mesto. Doživite očaravajuću atmosferu s interaktivnim demonstracijama koktela, besprekornim servisom i tematskim napicima koji vašu večer pretvaraju u nezaboravno putovanje.",
+      "keywords": "Pinecone Bar, potpis kokteli, klasični kokteli, imerzivno iskustvo bara, interaktivne demonstracije koktela, očaravajuća atmosfera, elegantni bar, tematska pića, ekskluzivna scena bara, miksološki bar, noćni život Beograda",
+      "openGraph": {
+        "title": "Pinecone Bar – Gde se Misterija Susreće s Elegancijom",
+        "description": "Prepustite se čarima Pinecone Bara uz spektakularne koktele, interaktivne demonstracije i atmosferu koja vas vodi u drugi svet. Rezervišite svoj sto za nezaboravnu noć!"
+      }
+    },
+    "cocktails": {
+      "title": "Pinecone Kokteli – Potpis Pića koja Inspirišu",
+      "description": "Otkrijte kolekciju potpisnih koktela Pinecone Bara. Od bezvremenskih klasika do smelih kreacija, svaki napitak je savršeno napravljen i osmišljen kako bi uzdigao vašu večer nezaboravnim ukusima i umetnošću.",
+      "keywords": "Pinecone kokteli, potpis kokteli, klasična pića, inovativni kokteli, miksološki trendovi, specijalnosti Pinecone Bara, jedinstvena pića, meni koktela, iskustvo pića, Pinecone kolekcija koktela, ručno pravljeni kokteli",
+      "openGraph": {
+        "title": "Pinecone Kokteli – Potpis Pića koja Inspirišu",
+        "description": "Zaronite u svet potpisnih koktela Pinecone Bara, gde svaka kreacija spaja umetnost, hrabre ukuse i bezvremensku eleganciju. Istražite naš meni koktela već danas!"
+      }
+    },
+    "contact-us": {
+      "title": "Kontaktirajte Pinecone Bar – Kontakt Informacije",
+      "description": "Imate pitanja ili želite stupiti u kontakt? Obratite se Pinecone Baru u Beogradu za rezervacije, upite i još mnogo toga. Posetite nas na Vladete Jerotića 5 (Stara Dalmatinska 5) ili pozovite +381/65-866-99-00. Tu smo da vam pomognemo.",
+      "keywords": "kontakt Pinecone Bar, informacije o kontaktu, adresa Pinecone Bara, Beograd kontakt bar, rezervacije, upiti za događaje, Pinecone telefon, Pinecone email, Vladete Jerotića 5, Stara Dalmatinska 5",
+      "openGraph": {
+        "title": "Kontaktirajte Pinecone Bar – Kontakt Informacije",
+        "description": "Obratite se Pinecone Baru u Beogradu za sve upite. Posetite nas na adresi Vladete Jerotića 5, pozovite +381/65-866-99-00 ili nas kontaktirajte putem emaila. Radujemo se vašem javljanju!"
+      }
+    },
+    "default": {
+      "title": "Pinecone Theatre – Imerzivna Iskustva u Beogradu",
+      "description": "Istražite Pinecone Theatre, centar za imerzivni teatar i nezaboravna iskustva u Beogradu. Otkrijte inovativne izvedbe, vibrantnu kulturu i jedinstvene priče koje osvajaju vaša čula.",
+      "keywords": "Pinecone Theatre, imerzivni teatar, beogradska kultura, inovativne izvedbe, senzorno iskustvo, pripovedanje, jedinstveni događaji, kulturna iskustva, umetnička scena Beograda",
+      "openGraph": {
+        "title": "Pinecone Theatre – Imerzivna Iskustva u Beogradu",
+        "description": "Zakoračite u svet Pinecone Theatre-a za imerzivne performanse koji pomeraju granice pripovedanja i kreativnosti u Beogradu."
+      }
     }
   },
   "navigation": {
