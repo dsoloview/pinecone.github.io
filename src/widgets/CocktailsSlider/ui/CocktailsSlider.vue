@@ -10,6 +10,7 @@ const containerRef = ref(null);
 const swiper = useSwiper(containerRef);
 
 const { tm, rt, t } = useI18n();
+
 </script>
 
 <template>
