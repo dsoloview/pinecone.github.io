@@ -43,7 +43,7 @@
       </div>
 
     </div>
-    <button class="w-1/3 border border-amber-100 rounded-3xl p-2 text-amber-100 cursor-pointer">Send Message</button>
+    <button class="w-1/3 border border-amber-100 rounded-3xl p-2 text-amber-100 ">Send Message</button>
   </form>
 </template>
 <script setup>
