@@ -42,14 +42,14 @@ const { t } = useI18n();
       </NuxtLinkLocale>
 
       <div class="divider" />
-      <div class="contacts__container lg:flex items-start justify-between">
-
+      <div class="contacts__container lg:flex items-start justify-between w-full">
+        <div class="lg:w-1/2 mb-4">
           <ContactForm/>
-
-        <div>
+        </div>
+        <div class="lg:w-1/2">
           <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.322456140337!2d20.469168277419357!3d44.814995071070726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7b252e23a575%3A0x30a8bb16f98563a5!2sPinecone%20Bar%20%26%20Theater!5e0!3m2!1ssr!2srs!4v1744543877577!5m2!1ssr!2srs"
-              width="600"
+              width="100%"
               height="450"
               style="border: 0"
               loading="lazy"
