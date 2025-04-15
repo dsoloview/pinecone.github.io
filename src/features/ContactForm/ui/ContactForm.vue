@@ -66,16 +66,18 @@
   </form>
 </template>
 <script setup lang="ts">
-import {defineRule, useField, useForm} from "vee-validate";
-import { required } from "@vee-validate/rules";
+import {defineRule,  useField, useForm} from "vee-validate";
+import { required , email as emailrule, min} from "@vee-validate/rules";
 import { localize } from "@vee-validate/i18n";
 import { toTypedSchema } from "@vee-validate/zod";
 import * as zod from "zod";
 const { t } = useI18n();
 
-defineRule("required", required);
 
 
+defineRule('required', required);
+defineRule('email', emailrule);
+defineRule('min', min);
 
 const validationSchema = toTypedSchema(
   zod.object({
