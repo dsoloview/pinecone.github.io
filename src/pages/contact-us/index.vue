@@ -6,7 +6,7 @@ import {
   OLD_STREET,
   PHONE,
   PHONE_TEXT,
-} from "~/shated/data/contacts";
+} from "~/shared/data/contacts";
 import Socials from "~/features/Socials/ui/Socials.vue";
 import ContactForm from "~/features/ContactForm/ui/ContactForm.vue";
 
