@@ -324,5 +324,34 @@
       "name": "Aleksandar Prudijan",
       "role": "Kreator projekta/Pisac"
     }
+  },
+  "contact_form": {
+    "first_name": {
+      "label": "Ime",
+      "placeholder": "Unesite ime",
+      "error": "Ovo polje je obavezno"
+    },
+    "last_name": {
+      "label": "Prezime",
+      "placeholder": "Unesite prezime",
+      "error": "Ovo polje je obavezno"
+    },
+    "email": {
+      "label": "Elektronska pošta",
+      "placeholder": "Unesite e-poštu",
+      "error": "Ovo polje je obavezno"
+    },
+    "subject": {
+      "label": "Naslov",
+      "placeholder": "Kako možemo da vam pomognemo?",
+      "error": "Ovo polje je obavezno"
+    },
+    "comments": {
+      "label": "Komentari / Pitanja",
+      "placeholder": "Unesite komentar",
+      "error": "Ovo polje je obavezno"
+    },
+    "submit": "Pošalji poruku"
   }
+
 }

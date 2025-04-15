@@ -40,6 +40,21 @@ function handlePressStart() {
   }, 200);
 }
 
+
+
+
+onUnmounted(() => {
+  if (holdTimeout.value !== null) {
+    clearTimeout(holdTimeout.value);
+    holdTimeout.value = null;
+  }
+});
+
+function handleContextMenu(event: Event) {
+  event.preventDefault();
+}
+
+
 function handlePressEnd() {
   if (holdTimeout.value !== null) {
     clearTimeout(holdTimeout.value);
@@ -48,17 +63,10 @@ function handlePressEnd() {
   textHidden.value = false;
 }
 
-function handleContextMenu(event: Event) {
-  event.preventDefault();
-}
 
-onUnmounted(() => {
-  if (holdTimeout.value !== null) {
-    clearTimeout(holdTimeout.value);
-    holdTimeout.value = null;
-  }
-});
+
 </script>
+
 
 <template>
   <div

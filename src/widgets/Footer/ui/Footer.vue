@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Socials from "~/features/Socials/ui/Socials.vue";
 import LinkButton from "~/entities/LinkButton/ui/LinkButton.vue";
-import { THEATER_TICKETS_LINK } from "~/shated/data/links";
+import { THEATER_TICKETS_LINK } from "~/shared/data/links";
 
 const { t } = useI18n();
 </script>
