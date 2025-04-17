@@ -17,3 +17,17 @@ export async function getAllUsers(): Promise<PublicUser[]> {
     },
   });
 }
+
+export async function createUser(user: Omit<User, "id">) {
+  return prisma.user.create({
+    data: user,
+  });
+}
+
+export async function deleteUser(id: number) {
+  return prisma.user.delete({
+    where: {
+      id: id,
+    },
+  });
+}

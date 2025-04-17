@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     "@prisma/nuxt",
     "@nuxt/ui",
     "nuxt-auth-utils",
+    "@pinia/nuxt",
   ],
   css: ["~/assets/scss/main.css"],
   vite: {

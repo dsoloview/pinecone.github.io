@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import type { PublicUser } from "~/server/types/user";
 import type { DropdownMenuItem } from "#ui/components/DropdownMenu.vue";
+import { useConfirm } from "~/admin/entities/AdminConfirm/hooks/useConfirm";
 
 type Props = {
   user: PublicUser;
 };
+
+const { confirm } = useConfirm();
 const { user } = defineProps<Props>();
 
 const toast = useToast();
@@ -34,7 +37,18 @@ const dropDownActions: Ref<DropdownMenuItem[][]> = computed(() => {
         label: "Delete",
         icon: "i-lucide-trash",
         color: "error",
-        onSelect: () => {},
+        onSelect: () => {
+          confirm({
+            title: "Are you sure?",
+            message: "This action cannot be undone!",
+            label: "Delete",
+            action: () => {
+              $fetch(`/api/users/${user.id}`, {
+                method: "DELETE",
+              });
+            },
+          });
+        },
       },
     ],
   ];
