@@ -1,6 +1,5 @@
 import * as v from "valibot";
 import { findUserByEmail } from "~/server/repositories/UserRepository";
-import prisma from "~/server/database/lib/prisma";
 
 const schema = v.object({
   email: v.pipe(v.string(), v.email()),

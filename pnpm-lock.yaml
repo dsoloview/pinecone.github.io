@@ -78,9 +78,15 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0(vue@3.5.13(typescript@5.8.3))
     devDependencies:
+      '@iconify-json/carbon':
+        specifier: ^1.2.8
+        version: 1.2.8
       '@iconify-json/iconoir':
         specifier: ^1.2.7
         version: 1.2.7
+      '@iconify-json/lucide':
+        specifier: ^1.2.36
+        version: 1.2.36
       '@iconify-json/uil':
         specifier: ^1.2.3
         version: 1.2.3
@@ -529,8 +535,14 @@ packages:
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
 
+  '@iconify-json/carbon@1.2.8':
+    resolution: {integrity: sha512-6xh4YiFBz6qoSnB3XMe23WvjTJroDFXB17J1MbiT7nATFe+70+em1acRXr8hgP/gYpwFMHFc4IvjA/IPTPnTzg==}
+
   '@iconify-json/iconoir@1.2.7':
     resolution: {integrity: sha512-UDlx2WeWHqopfKRsjOta6fn/KkOhF0MmI2AxoYfakqtMLlznkTnrtY9QVuXZzsbvk+Gyavq2L39VjhcxGbt+LA==}
+
+  '@iconify-json/lucide@1.2.36':
+    resolution: {integrity: sha512-0/QbJ4AZj/C8ChMh22AiKJGqnNbzHbsmb569PUWNba1IfCcjkEFN/uJgfvcp3o0KI01x3+6DA2bLuVk8YhNqFA==}
 
   '@iconify-json/uil@1.2.3':
     resolution: {integrity: sha512-if91+UBhDQc6glPsIaXecGIcXnbQZfEO4Gdv89TV2xQ+V5e9GWbY5rNl2fsKZd8COsRQ5lRQAKimVQVL0CZZVg==}
@@ -5333,7 +5345,15 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.2': {}
 
+  '@iconify-json/carbon@1.2.8':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/iconoir@1.2.7':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/lucide@1.2.36':
     dependencies:
       '@iconify/types': 2.0.0
 
