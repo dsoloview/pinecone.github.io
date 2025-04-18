@@ -18,7 +18,7 @@ const items = ref<NavigationMenuItem[][]>([
   ],
   [
     {
-      label: user.value?.name,
+      label: user.value.name,
       icon: "i-carbon-user",
     },
   ],

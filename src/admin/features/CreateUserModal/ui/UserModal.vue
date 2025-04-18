@@ -5,121 +5,135 @@ import { useUserModal } from "~/admin/features/CreateUserModal/hooks/useUserModa
 import { serverFetch } from "~/shared/utils/serverFetch";
 import type { PublicUser } from "~/shared/types/user";
 
+type FormState = {
+  email: string;
+  name: string;
+  password: string;
+};
+
 const userModal = useUserModal();
 const { isOpen, user, isEditing, modalTitle, serverErrors } =
   storeToRefs(userModal);
+const toast = useToast();
 
-const schema = v.object({
-  email: v.pipe(v.string(), v.email("Invalid email")),
-  name: v.pipe(v.string(), v.minLength(2, "Must be at least 2 characters")),
-  password: isEditing.value
-    ? v.optional(v.string())
-    : v.pipe(v.string(), v.minLength(8, "Must be at least 8 characters")),
+const isSubmitting = ref(false);
+
+const schema = computed(() => {
+  return v.object({
+    email: v.pipe(v.string(), v.email("Invalid email")),
+    name: v.pipe(v.string(), v.minLength(2, "Must be at least 2 characters")),
+    password: isEditing.value
+      ? v.optional(v.string())
+      : v.pipe(v.string(), v.minLength(8, "Must be at least 8 characters")),
+  });
 });
 
-type Schema = v.InferOutput<typeof schema>;
+type Schema = v.InferOutput<typeof schema.value>;
 
-const state = reactive({
+const state = reactive<FormState>({
   email: "",
   name: "",
   password: "",
 });
 
-const isSubmitting = ref(false);
-
 watch(
   user,
   (newUser) => {
-    if (newUser) {
-      state.email = newUser.email || "";
-      state.name = newUser.name || "";
-      state.password = "";
-    } else {
-      state.email = "";
-      state.name = "";
-      state.password = "";
-    }
-    // Clear server errors when user changes
-    serverErrors.value = {};
+    resetForm(newUser);
+    clearAllServerErrors();
   },
   { immediate: true },
 );
 
-// Clear server errors for a field when it changes
-watch(
-  () => state.email,
-  () => {
-    if (serverErrors.value.email) delete serverErrors.value.email;
-  },
-);
-watch(
-  () => state.name,
-  () => {
-    if (serverErrors.value.name) delete serverErrors.value.name;
-  },
-);
-watch(
-  () => state.password,
-  () => {
-    if (serverErrors.value.password) delete serverErrors.value.password;
-  },
-);
+type FormStateKey = keyof FormState;
+const formStateKeys = Object.keys(state) as FormStateKey[];
 
-const toast = useToast();
+formStateKeys.forEach((field) => {
+  watch(
+    () => state[field],
+    () => clearServerError(field),
+  );
+});
+
+function resetForm(newUser: Partial<PublicUser> | null) {
+  state.email = newUser?.email || "";
+  state.name = newUser?.name || "";
+  state.password = "";
+}
+
+function clearServerError(field: keyof FormState) {
+  if (serverErrors.value[field]) {
+    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+    delete serverErrors.value[field];
+  }
+}
+
+function clearAllServerErrors() {
+  userModal.setServerErrors({});
+}
+
+function showSuccessToast(action: string) {
+  toast.add({
+    title: "Success",
+    description: `User was successfully ${action}`,
+    color: "success",
+  });
+}
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   try {
     isSubmitting.value = true;
-    userModal.setServerErrors({});
+    clearAllServerErrors();
 
     if (isEditing.value && user.value?.id) {
-      const { data, error } = await serverFetch<PublicUser>(
-        `/api/users/${user.value.id}`,
-        {
-          method: "PATCH",
-          body: event.data,
-        },
-      );
-
-      if (error?.fields) {
-        userModal.setServerErrors(error.fields);
-        return;
-      }
-
-      if (data) {
-        toast.add({
-          title: "Успех",
-          description: "Пользователь успешно обновлен",
-          color: "success",
-        });
-
-        await refreshNuxtData("users");
-        userModal.close();
-      }
+      await updateUser(user.value.id.toString(), event.data);
     } else {
-      const { data, error } = await serverFetch<PublicUser>("/api/users", {
-        method: "POST",
-        body: event.data,
-      });
-
-      if (error?.fields) {
-        userModal.setServerErrors(error.fields);
-        return;
-      }
-
-      if (data) {
-        toast.add({
-          title: "Успех",
-          description: "Пользователь успешно создан",
-          color: "success",
-        });
-
-        await refreshNuxtData("users");
-        userModal.close();
-      }
+      await createUser(event.data);
     }
   } finally {
     isSubmitting.value = false;
+  }
+}
+
+async function updateUser(userId: string, data: Schema) {
+  const { data: userData, error } = await serverFetch<PublicUser>(
+    `/api/users/${userId}`,
+    {
+      method: "PATCH",
+      body: data,
+    },
+  );
+
+  if (error?.fields) {
+    userModal.setServerErrors(error.fields);
+    return;
+  }
+
+  if (userData) {
+    showSuccessToast("updated");
+    await refreshNuxtData("users");
+    userModal.close();
+  }
+}
+
+async function createUser(data: Schema) {
+  const { data: userData, error } = await serverFetch<PublicUser>(
+    "/api/users",
+    {
+      method: "POST",
+      body: data,
+    },
+  );
+
+  if (error?.fields) {
+    userModal.setServerErrors(error.fields);
+    return;
+  }
+
+  if (userData) {
+    showSuccessToast("updated");
+    await refreshNuxtData("users");
+    userModal.close();
   }
 }
 </script>

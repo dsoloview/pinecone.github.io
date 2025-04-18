@@ -1,7 +1,6 @@
 import type { H3Error } from "h3";
 import { ValiError } from "valibot";
-import { Prisma } from "~/generated/prisma";
-import PrismaClientKnownRequestError = Prisma.PrismaClientKnownRequestError;
+import type { PrismaClientKnownRequestError } from "~/generated/prisma/runtime/library";
 
 export function handleServerError(err: Error | unknown) {
   const h3Error = err as H3Error;
@@ -27,15 +26,13 @@ export function handleServerError(err: Error | unknown) {
     });
   }
 
-  // Обработка ошибок Prisma
-  if (err instanceof Error && "code" in (err as any)) {
+  if (err instanceof Error && "code" in (err as object)) {
     const prismaError = err as PrismaClientKnownRequestError & {
       code: string;
-      meta?: any;
+      meta?: object;
     };
 
     switch (prismaError.code) {
-      // Нарушение уникального ограничения (например, дублирование email)
       case "P2002": {
         const target = prismaError.meta?.target as string[];
         const field = target?.[0] || "field";
@@ -49,7 +46,6 @@ export function handleServerError(err: Error | unknown) {
         });
       }
 
-      // Запись не найдена
       case "P2001":
       case "P2025":
         throw createError({
@@ -58,9 +54,8 @@ export function handleServerError(err: Error | unknown) {
           data: { message: "Запрашиваемая запись не существует" },
         });
 
-      // Нарушение внешнего ключа
       case "P2003": {
-        const field = prismaError.meta?.field_name || "field";
+        const field = (prismaError.meta?.field_name as string) || "field";
         throw createError({
           status: 400,
           message: "Foreign key constraint failed",
@@ -70,7 +65,6 @@ export function handleServerError(err: Error | unknown) {
         });
       }
 
-      // Ошибка валидации Prisma
       case "P2007":
         throw createError({
           status: 400,
@@ -80,7 +74,6 @@ export function handleServerError(err: Error | unknown) {
     }
   }
 
-  // Проверка для других ошибок Prisma, которые могут не иметь кода
   if (err instanceof Error && err.name === "PrismaClientValidationError") {
     throw createError({
       status: 400,
@@ -89,7 +82,6 @@ export function handleServerError(err: Error | unknown) {
     });
   }
 
-  // Проверка для ошибок соединения с базой данных
   if (err instanceof Error && err.message.includes("connect")) {
     throw createError({
       status: 503,

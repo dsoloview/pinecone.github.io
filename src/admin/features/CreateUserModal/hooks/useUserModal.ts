@@ -39,18 +39,6 @@ export const useUserModal = defineStore("userModal", {
     setServerErrors(errors: Record<string, string>) {
       this.serverErrors = errors;
     },
-
-    clearServerError(field: string) {
-      if (this.serverErrors[field]) {
-        const errors = { ...this.serverErrors };
-        delete errors[field];
-        this.serverErrors = errors;
-      }
-    },
-
-    toggle() {
-      this.isOpen = !this.isOpen;
-    },
   },
 
   getters: {

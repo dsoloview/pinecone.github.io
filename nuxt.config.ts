@@ -19,6 +19,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+  // debug: true,
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   srcDir: "./src",
@@ -44,6 +45,12 @@ export default defineNuxtConfig({
         ".prisma/client/index-browser":
           "./node_modules/.prisma/client/index-browser.js",
       },
+    },
+    build: {
+      sourcemap: true,
+    },
+    css: {
+      devSourcemap: true,
     },
   },
   typescript: {

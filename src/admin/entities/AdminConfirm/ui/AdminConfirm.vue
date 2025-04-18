@@ -14,7 +14,7 @@ function confirm() {
 </script>
 
 <template>
-  <UModal v-model:open="isOpen" class="modal" :title="params.title">
+  <UModal v-model="isOpen" class="modal" :title="params.title">
     <template #body>
       {{ params.message }}
     </template>
