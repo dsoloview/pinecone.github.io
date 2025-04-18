@@ -54,7 +54,7 @@ export async function serverFetch<T>(
     const result: ServerFetchResult<T> = {
       data: null,
       error: {
-        message: "Произошла неизвестная ошибка",
+        message: "Unknown error. Please try again later.",
         status: fetchError.status || 500,
       },
     };
@@ -63,7 +63,7 @@ export async function serverFetch<T>(
       const responseData = fetchError.response._data as ApiError;
 
       const errorMessage =
-        responseData.message || "Произошла неизвестная ошибка";
+        responseData.message || "Unknown error. Please try again later.";
 
       if (result.error) {
         result.error.message = errorMessage;
@@ -92,20 +92,20 @@ export async function serverFetch<T>(
       if (result.error) {
         switch (fetchError.status) {
           case 404:
-            result.error.message =
-              responseData.data?.message || "Запрашиваемый ресурс не найден";
+            result.error.message = responseData.data?.message || "Not found";
             break;
           case 422:
-            result.error.message = "Предоставленные данные некорректны";
+            result.error.message = "Data validation error";
             break;
           case 401:
-            result.error.message = "Требуется авторизация";
+            result.error.message = "Invalid credentials";
             break;
           case 403:
-            result.error.message = "Доступ запрещен";
+            result.error.message = "Access denied";
+            break;
             break;
           case 503:
-            result.error.message = "Сервис временно недоступен";
+            result.error.message = "Internal server error";
             break;
         }
       }
@@ -114,7 +114,7 @@ export async function serverFetch<T>(
       fetchError.message.includes("fetch") &&
       result.error
     ) {
-      result.error.message = "Ошибка сети. Проверьте подключение к интернету";
+      result.error.message = "Network error";
     }
 
     if (result.error) {

@@ -1,6 +1,7 @@
 import type { H3Error } from "h3";
 import { ValiError } from "valibot";
 import type { PrismaClientKnownRequestError } from "~/generated/prisma/runtime/library";
+import { InvalidCredentials } from "../errors/InvalidCredentials";
 
 export function handleServerError(err: Error | unknown) {
   const h3Error = err as H3Error;
@@ -23,6 +24,13 @@ export function handleServerError(err: Error | unknown) {
       status: 422,
       message: "Validation error",
       data: { fields },
+    });
+  }
+
+  if (err instanceof InvalidCredentials) {
+    throw createError({
+      status: err.code,
+      message: err.message,
     });
   }
 
