@@ -1,6 +1,6 @@
 import prisma from "~/server/database/lib/prisma";
-import type { User } from "~/server/database/prisma/generated";
-import type { PublicUser } from "~/server/types/user";
+import type { PublicUser } from "~/shared/types/user";
+import type { User } from "~/generated/prisma";
 
 export async function findUserByEmail(email: string): Promise<User | null> {
   return prisma.user.findUnique({
@@ -29,5 +29,14 @@ export async function deleteUser(id: number) {
     where: {
       id: id,
     },
+  });
+}
+
+export async function updateUser(id: number, user: Partial<User>) {
+  return prisma.user.update({
+    where: {
+      id: id,
+    },
+    data: user,
   });
 }

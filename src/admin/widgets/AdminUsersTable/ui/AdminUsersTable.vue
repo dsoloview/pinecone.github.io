@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import type { PublicUser } from "~/server/types/user";
+import type { PublicUser } from "~/shared/types/user";
 import type { TableColumn } from "#ui/components/Table.vue";
 import { getUsers } from "~/admin/widgets/AdminUsersTable/api/users";
 import AdminUsersTableActions from "~/admin/widgets/AdminUsersTable/ui/AdminUsersTableActions.vue";
-import { useCreateUserModal } from "~/admin/features/CreateUserModal/hooks/useCreateUserModal";
-import CreateUserModal from "~/admin/features/CreateUserModal/ui/CreateUserModal.vue";
+import UserModal from "~/admin/features/CreateUserModal/ui/UserModal.vue";
+import { useUserModal } from "~/admin/features/CreateUserModal/hooks/useUserModal";
 
 const { data, status } = await getUsers();
-const { open } = useCreateUserModal();
+const userModal = useUserModal();
+
 const columns: TableColumn<PublicUser>[] = [
   {
     accessorKey: "id",
@@ -26,13 +27,17 @@ const columns: TableColumn<PublicUser>[] = [
     header: "Actions",
   },
 ];
+
+function handleCreateUser() {
+  userModal.openCreate();
+}
 </script>
 
 <template>
   <section class="my-5">
-    <CreateUserModal />
+    <UserModal />
     <div class="flex justify-end">
-      <UButton @click="open">Create user</UButton>
+      <UButton @click="handleCreateUser">Create user</UButton>
     </div>
     <UTable :data="data" :columns="columns" :loading="status === 'pending'">
       <template #actions-cell="{ row }">

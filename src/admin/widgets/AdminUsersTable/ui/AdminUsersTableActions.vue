@@ -1,16 +1,20 @@
 <script setup lang="ts">
-import type { PublicUser } from "~/server/types/user";
+import type { PublicUser } from "~/shared/types/user";
 import type { DropdownMenuItem } from "#ui/components/DropdownMenu.vue";
 import { useConfirm } from "~/admin/entities/AdminConfirm/hooks/useConfirm";
+import { useUserModal } from "~/admin/features/CreateUserModal/hooks/useUserModal";
+import { serverFetch } from "~/shared/utils/serverFetch";
 
 type Props = {
   user: PublicUser;
 };
 
 const { confirm } = useConfirm();
+const userModal = useUserModal();
 const { user } = defineProps<Props>();
 
 const toast = useToast();
+const isDeleting = ref(false);
 
 const dropDownActions: Ref<DropdownMenuItem[][]> = computed(() => {
   return [
@@ -32,6 +36,9 @@ const dropDownActions: Ref<DropdownMenuItem[][]> = computed(() => {
       {
         label: "Edit",
         icon: "i-lucide-edit",
+        onSelect: () => {
+          userModal.openUpdate(user);
+        },
       },
       {
         label: "Delete",
@@ -42,10 +49,18 @@ const dropDownActions: Ref<DropdownMenuItem[][]> = computed(() => {
             title: "Are you sure?",
             message: "This action cannot be undone!",
             label: "Delete",
-            action: () => {
-              $fetch(`/api/users/${user.id}`, {
-                method: "DELETE",
-              });
+            action: async () => {
+              isDeleting.value = true;
+
+              try {
+                await serverFetch(`/api/users/${user.id}`, {
+                  method: "DELETE",
+                });
+
+                await refreshNuxtData("users");
+              } finally {
+                isDeleting.value = false;
+              }
             },
           });
         },
@@ -62,6 +77,7 @@ const dropDownActions: Ref<DropdownMenuItem[][]> = computed(() => {
       color="neutral"
       variant="ghost"
       aria-label="Actions"
+      :disabled="isDeleting"
     />
   </UDropdownMenu>
 </template>

@@ -1,5 +1,6 @@
 import { createUser } from "~/server/repositories/UserRepository";
 import * as v from "valibot";
+import { handleServerError } from "~/server/handlers/handleServerError";
 
 const schema = v.object({
   email: v.pipe(v.string(), v.email("Invalid email")),
@@ -8,16 +9,19 @@ const schema = v.object({
 });
 
 export default defineEventHandler(async (event) => {
-  const user = await readValidatedBody(event, v.parser(schema));
+  try {
+    const userData = v.parse(schema, await readBody(event));
 
-  user.password = await hashPassword(user.password);
+    userData.password = await hashPassword(userData.password);
 
-  const result = await createUser(user);
+    const result = await createUser(userData);
 
-  if (!result) {
-    throw createError({
-      status: 500,
-      message: "Something went wrong",
-    });
+    return {
+      id: result.id,
+      email: result.email,
+      name: result.name,
+    };
+  } catch (err: Error | unknown) {
+    handleServerError(err);
   }
 });

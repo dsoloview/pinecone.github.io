@@ -1,5 +1,8 @@
-import type { PublicUser } from "~/server/types/user";
+import { useAsyncData } from "#app";
+import type { PublicUser } from "~/shared/types/user";
 
 export async function getUsers() {
-  return useFetch<PublicUser[]>("/api/users");
+  return useAsyncData<PublicUser[]>("users", () =>
+    $fetch<PublicUser[]>("/api/users"),
+  );
 }

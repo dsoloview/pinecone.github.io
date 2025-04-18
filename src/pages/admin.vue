@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { definePageMeta } from "#imports";
+import { en } from "@nuxt/ui/locale";
+
+defineI18nRoute(false);
 
 definePageMeta({
   middleware: "authenticated",
@@ -7,7 +10,7 @@ definePageMeta({
 });
 </script>
 <template>
-  <UApp>
+  <UApp :locale="en">
     <NuxtPage />
   </UApp>
 </template>
