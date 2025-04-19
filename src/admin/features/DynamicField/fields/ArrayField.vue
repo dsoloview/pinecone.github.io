@@ -30,8 +30,8 @@ function updateField() {
 }
 
 // Добавление нового элемента в массив
-function addArrayItem(key: string, type: FieldType) {
-  const newItem = createField(key, type);
+function addArrayItem(key: string, label: string, type: FieldType) {
+  const newItem = createField(key, label, type);
   localArrayData.value.push(newItem);
   updateField();
   showAddForm.value = false;

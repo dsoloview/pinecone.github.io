@@ -26,7 +26,7 @@ const tabs = ref<TabsItem[]>([
   { name: "en", label: "English" },
   { name: "sr", label: "Srpski" },
 ]);
-const activeLanguage = ref<number>(0);
+const activeLanguage = ref<string>("0");
 
 const pageContent = ref<Record<string, AnyFieldSchema>>({});
 const originalPageContent = ref<Record<string, AnyFieldSchema>>({});
@@ -35,7 +35,10 @@ const originalPageContent = ref<Record<string, AnyFieldSchema>>({});
 async function loadPageContent() {
   try {
     isLoading.value = true;
-    const content = await fetchPageContent(slug, "en");
+    const content = await fetchPageContent(
+      slug,
+      tabs.value[Number(activeLanguage.value)].name,
+    );
 
     if (content) {
       pageContent.value = content;
@@ -63,7 +66,7 @@ async function savePage() {
 
     const result = await savePageContent({
       slug,
-      language: tabs.value[activeLanguage.value].name,
+      language: tabs.value[Number(activeLanguage.value)].name,
       content: pageContent.value,
     });
 
@@ -77,7 +80,7 @@ async function savePage() {
       toast.add({
         title: "Успешно сохранено",
         description: "Контент страницы был успешно сохранен",
-        color: "green",
+        color: "success",
       });
     } else {
       toast.add({
@@ -317,7 +320,7 @@ watch(
       <AdminPagesContentEditor
         v-else
         :content="pageContent"
-        :language="tabs[activeLanguage]"
+        :language="tabs[Number(activeLanguage)]"
         @update:content="updatePageContent"
       />
     </div>

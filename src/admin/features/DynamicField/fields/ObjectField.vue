@@ -30,8 +30,8 @@ function updateObject() {
 }
 
 // Добавление нового поля в объект
-function addObjectField(key: string, type: FieldType) {
-  const newField = createField(key, type);
+function addObjectField(key: string, label: string, type: FieldType) {
+  const newField = createField(key, label, type);
   localFields.value[key] = newField;
   updateObject();
   showAddForm.value = false;

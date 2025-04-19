@@ -44,6 +44,6 @@ export async function fetchPageContent(
     return data.value;
   } catch (error) {
     console.error("Ошибка при загрузке контента:", error);
-    return null;
+    return {};
   }
 }

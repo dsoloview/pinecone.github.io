@@ -36,9 +36,9 @@ function updateField(key: string, updatedField: AnyFieldSchema) {
 }
 
 // Добавление нового поля в корень объекта
-function addRootField(key: string, type: FieldType) {
+function addRootField(key: string, label: string, type: FieldType) {
   // Создаем новое поле
-  const newField = createField(key, type);
+  const newField = createField(key, label, type);
 
   // Добавляем новое поле в корень объекта
   localContent.value[key] = newField;

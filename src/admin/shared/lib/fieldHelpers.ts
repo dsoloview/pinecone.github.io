@@ -22,10 +22,11 @@ export function safeClone<T>(obj: T): T {
 /**
  * Создает новое поле заданного типа
  */
-export function createField(key: string, type: FieldType): AnyFieldSchema {
-  const label =
-    key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, " $1");
-
+export function createField(
+  key: string,
+  label: string,
+  type: FieldType,
+): AnyFieldSchema {
   switch (type) {
     case "input":
       return {
