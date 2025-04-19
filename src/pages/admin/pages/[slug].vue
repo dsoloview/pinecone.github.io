@@ -30,7 +30,7 @@ const originalPageContent = ref<Record<string, AnyFieldSchema>>({});
 async function loadPageContent() {
   try {
     isLoading.value = true;
-    const content = await fetchPageContent(slug);
+    const content = await fetchPageContent(slug, "en");
 
     if (content) {
       pageContent.value = content;

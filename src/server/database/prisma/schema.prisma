@@ -22,17 +22,17 @@ model Page {
   id Int @id @default(autoincrement())
   name String @unique
   slug String @unique
-  translations Translation[]
+  contents Content[]
 }
 
 model Language {
   id Int @id @default(autoincrement())
   name String @unique
   code String
-  translations Translation[]
+  contents Content[]
 }
 
-model Translation {
+model Content {
   id Int @id @default(autoincrement())
   page_id Int
   language_id Int
