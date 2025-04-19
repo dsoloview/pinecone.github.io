@@ -1,55 +1,85 @@
 export type FieldType = "input" | "textarea" | "object" | "array";
 
+// Базовый интерфейс для всех типов полей
 export interface BaseFieldSchema {
   type: FieldType;
   label: string;
   placeholder?: string;
   isModified?: boolean;
-  originalData?: any;
-  originalFields?: Record<string, AnyFieldSchema>;
+  originalData?: unknown;
 }
 
-export interface StringFieldSchema extends BaseFieldSchema {
-  type: "input" | "textarea";
+// Интерфейс для полей с текстовыми данными (input и textarea)
+export interface InputFieldSchema extends BaseFieldSchema {
+  type: "input";
   data: string;
+  originalData?: string;
 }
 
+export interface TextareaFieldSchema extends BaseFieldSchema {
+  type: "textarea";
+  data: string;
+  originalData?: string;
+}
+
+// Интерфейс для полей типа object
 export interface ObjectFieldSchema extends BaseFieldSchema {
   type: "object";
   fields: Record<string, AnyFieldSchema>;
+  originalFields?: Record<string, AnyFieldSchema>;
 }
 
+// Интерфейс для полей типа array
 export interface ArrayFieldSchema extends BaseFieldSchema {
   type: "array";
   data: AnyFieldSchema[];
+  originalData?: AnyFieldSchema[];
 }
 
-export interface SeoFieldSchema extends BaseFieldSchema {
-  type: "seo";
-  data: {
-    title?: string;
-    description?: string;
-    keywords?: string;
-    openGraph?: {
-      title?: string;
-      description?: string;
-    };
-  };
-}
-
+// Объединение всех типов полей
 export type AnyFieldSchema =
-  | StringFieldSchema
+  | InputFieldSchema
+  | TextareaFieldSchema
   | ObjectFieldSchema
-  | ArrayFieldSchema
-  | SeoFieldSchema;
+  | ArrayFieldSchema;
 
+// Интерфейс для свойств компонента редактора полей
 export interface FieldEditorProps {
   fieldSchema: AnyFieldSchema;
-  fieldKey?: string;
+  fieldKey: string;
   modelValue: AnyFieldSchema;
 }
 
+// Специфические пропсы для разных типов полей
+export interface InputFieldProps {
+  fieldSchema: InputFieldSchema;
+  fieldKey: string;
+  modelValue: InputFieldSchema;
+}
+
+export interface TextareaFieldProps {
+  fieldSchema: TextareaFieldSchema;
+  fieldKey: string;
+  modelValue: TextareaFieldSchema;
+}
+
+export interface ObjectFieldProps {
+  fieldSchema: ObjectFieldSchema;
+  fieldKey: string;
+  modelValue: ObjectFieldSchema;
+}
+
+export interface ArrayFieldProps {
+  fieldSchema: ArrayFieldSchema;
+  fieldKey: string;
+  modelValue: ArrayFieldSchema;
+}
+
+// Интерфейс для свойств компонента редактора контента
 export interface ContentEditorProps {
   content: Record<string, AnyFieldSchema>;
-  language: { name: string; label: string };
+  language: {
+    name: string;
+    label: string;
+  };
 }

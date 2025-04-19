@@ -1,9 +1,32 @@
 // ~/admin/features/DynamicField/ui/utils/fieldUtils.ts
-import type { AnyFieldSchema } from "~/admin/entities/ContentField/model/types";
+import type {
+  AnyFieldSchema,
+  InputFieldSchema,
+  TextareaFieldSchema,
+  ArrayFieldSchema,
+  ObjectFieldSchema,
+} from "~/admin/entities/ContentField/model/types";
 import { safeClone } from "~/admin/shared/lib/fieldHelpers";
 
+// Типы для определения конкретного поля
+function isInputField(field: AnyFieldSchema): field is InputFieldSchema {
+  return field.type === "input";
+}
+
+function isTextareaField(field: AnyFieldSchema): field is TextareaFieldSchema {
+  return field.type === "textarea";
+}
+
+function isObjectField(field: AnyFieldSchema): field is ObjectFieldSchema {
+  return field.type === "object";
+}
+
+function isArrayField(field: AnyFieldSchema): field is ArrayFieldSchema {
+  return field.type === "array";
+}
+
 // Recursively reset isModified flag and restore original data
-export function resetFieldRecursively(field: AnyFieldSchema) {
+export function resetFieldRecursively(field: AnyFieldSchema): void {
   if (!field) return;
 
   // Сбрасываем флаг модификации
@@ -11,7 +34,7 @@ export function resetFieldRecursively(field: AnyFieldSchema) {
 
   // Для строковых полей восстанавливаем оригинальные данные, если они есть
   if (
-    (field.type === "input" || field.type === "textarea") &&
+    (isInputField(field) || isTextareaField(field)) &&
     field.originalData !== undefined
   ) {
     field.data = field.originalData;
@@ -20,74 +43,72 @@ export function resetFieldRecursively(field: AnyFieldSchema) {
   }
 
   // Для объектов восстанавливаем все вложенные поля
-  if (field.type === "object" && field.fields) {
-    if (field.originalFields) {
-      const newFields = {};
+  if (isObjectField(field) && field.fields && field.originalFields) {
+    // Явно указываем тип
+    const newFields: Record<string, AnyFieldSchema> = {};
 
-      // Копируем все поля из оригинальной структуры
-      for (const key in field.originalFields) {
-        // Создаем копию оригинального поля
-        newFields[key] = safeClone(field.originalFields[key]);
+    // Копируем все поля из оригинальной структуры
+    for (const key in field.originalFields) {
+      // Создаем копию оригинального поля
+      newFields[key] = safeClone(field.originalFields[key]);
 
-        // Сбрасываем флаг модификации
-        newFields[key].isModified = false;
+      // Сбрасываем флаг модификации
+      newFields[key].isModified = false;
 
-        // Важно: переустанавливаем originalData/originalFields для вложенных полей
-        if (
-          newFields[key].type === "input" ||
-          newFields[key].type === "textarea"
-        ) {
-          newFields[key].originalData = newFields[key].data;
-        } else if (newFields[key].type === "object" && newFields[key].fields) {
-          newFields[key].originalFields = safeClone(newFields[key].fields);
-        } else if (
-          newFields[key].type === "array" &&
-          Array.isArray(newFields[key].data)
-        ) {
-          newFields[key].originalData = safeClone(newFields[key].data);
-        }
-
-        // Рекурсивно обрабатываем вложенные поля
-        resetFieldRecursively(newFields[key]);
+      // Важно: переустанавливаем originalData/originalFields для вложенных полей
+      if (isInputField(newFields[key]) || isTextareaField(newFields[key])) {
+        newFields[key].originalData = newFields[key].data;
+      } else if (isObjectField(newFields[key]) && newFields[key].fields) {
+        newFields[key].originalFields = safeClone(newFields[key].fields);
+      } else if (
+        isArrayField(newFields[key]) &&
+        Array.isArray(newFields[key].data)
+      ) {
+        newFields[key].originalData = safeClone(newFields[key].data);
       }
 
-      // Заменяем текущие поля восстановленными
-      field.fields = newFields;
-      // Обновляем originalFields
-      field.originalFields = safeClone(newFields);
+      // Рекурсивно обрабатываем вложенные поля
+      resetFieldRecursively(newFields[key]);
     }
+
+    // Заменяем текущие поля восстановленными
+    field.fields = newFields;
+    // Обновляем originalFields
+    field.originalFields = safeClone(newFields);
   }
   // Для массивов восстанавливаем все элементы
-  else if (field.type === "array" && Array.isArray(field.data)) {
-    if (field.originalData && Array.isArray(field.originalData)) {
-      // Создаем новый массив из оригинальных данных
-      const newData = safeClone(field.originalData);
+  else if (
+    isArrayField(field) &&
+    Array.isArray(field.data) &&
+    field.originalData
+  ) {
+    // Создаем новый массив из оригинальных данных
+    const newData = safeClone(field.originalData);
 
-      // Обрабатываем каждый элемент массива
-      for (let i = 0; i < newData.length; i++) {
-        const item = newData[i];
-        if (typeof item !== "object" || !item) continue;
+    // Обрабатываем каждый элемент массива
+    for (let i = 0; i < newData.length; i++) {
+      const item = newData[i];
+      if (!item) continue;
 
-        // Сбрасываем флаг модификации
-        item.isModified = false;
+      // Сбрасываем флаг модификации
+      item.isModified = false;
 
-        // Важно: переустанавливаем originalData/originalFields для элементов массива
-        if (item.type === "input" || item.type === "textarea") {
-          item.originalData = item.data;
-        } else if (item.type === "object" && item.fields) {
-          item.originalFields = safeClone(item.fields);
-        } else if (item.type === "array" && Array.isArray(item.data)) {
-          item.originalData = safeClone(item.data);
-        }
-
-        // Рекурсивно обрабатываем вложенные структуры
-        resetFieldRecursively(item);
+      // Восстанавливаем оригинальные данные для элементов массива
+      if (isInputField(item) || isTextareaField(item)) {
+        item.originalData = item.data;
+      } else if (isObjectField(item) && item.fields) {
+        item.originalFields = safeClone(item.fields);
+      } else if (isArrayField(item) && Array.isArray(item.data)) {
+        item.originalData = safeClone(item.data);
       }
 
-      // Заменяем текущие данные восстановленными
-      field.data = newData;
-      // Обновляем originalData
-      field.originalData = safeClone(newData);
+      // Рекурсивно обрабатываем вложенные структуры
+      resetFieldRecursively(item);
     }
+
+    // Заменяем текущие данные восстановленными
+    field.data = newData;
+    // Обновляем originalData
+    field.originalData = safeClone(newData);
   }
 }

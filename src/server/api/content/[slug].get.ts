@@ -24,10 +24,9 @@ export default defineEventHandler(async (event) => {
     if (!language || !page) {
       throw new Error("Page not found");
     }
-    return await contentRepository.findByPageIdAndLanguageId(
-      page.id,
-      language.id,
-    );
+    return (
+      await contentRepository.findByPageIdAndLanguageId(page.id, language.id)
+    )?.content;
   } catch (err: Error | unknown) {
     handleServerError(err);
   }

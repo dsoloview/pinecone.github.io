@@ -21,7 +21,7 @@ const tabs = ref<TabsItem[]>([
   { name: "en", label: "English" },
   { name: "sr", label: "Srpski" },
 ]);
-const activeLanguage = ref("0");
+const activeLanguage = ref<number>(0);
 
 const pageContent = ref<Record<string, AnyFieldSchema>>({});
 const originalPageContent = ref<Record<string, AnyFieldSchema>>({});
@@ -43,7 +43,7 @@ async function loadPageContent() {
     toast.add({
       title: "Ошибка загрузки",
       description: "Не удалось загрузить содержимое страницы",
-      color: "red",
+      color: "error",
     });
   } finally {
     isLoading.value = false;
@@ -78,14 +78,14 @@ async function savePage() {
       toast.add({
         title: "Ошибка сохранения",
         description: "Не удалось сохранить контент страницы",
-        color: "red",
+        color: "error",
       });
     }
   } catch (error) {
     toast.add({
       title: "Ошибка",
       description: "Произошла ошибка при сохранении",
-      color: "red",
+      color: "error",
     });
     console.error("Ошибка при сохранении страницы:", error);
   } finally {
@@ -109,13 +109,13 @@ function resetAllChanges() {
     toast.add({
       title: "Изменения сброшены",
       description: "Все изменения были отменены",
-      color: "blue",
+      color: "info",
     });
   } catch (error) {
     toast.add({
       title: "Ошибка",
       description: "Не удалось сбросить изменения",
-      color: "red",
+      color: "error",
     });
     console.error("Ошибка при сбросе изменений:", error);
   } finally {
@@ -207,7 +207,7 @@ function initializeOriginalData(content: Record<string, AnyFieldSchema>) {
 
       // Обрабатываем каждый элемент массива рекурсивно
       if (Array.isArray(field.data)) {
-        field.data.forEach((item, index) => {
+        field.data.forEach((item) => {
           if (!item) return;
 
           // Для строковых полей внутри массива

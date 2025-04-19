@@ -3,7 +3,8 @@
 import type {
   AnyFieldSchema,
   FieldType,
-  StringFieldSchema,
+  InputFieldSchema,
+  TextareaFieldSchema,
   ObjectFieldSchema,
   ArrayFieldSchema,
 } from "~/admin/entities/ContentField/model/types";
@@ -56,21 +57,6 @@ export function createField(key: string, type: FieldType): AnyFieldSchema {
         data: [],
         isModified: true,
       };
-    case "seo":
-      return {
-        type: "seo",
-        label: "SEO настройки",
-        data: {
-          title: "",
-          description: "",
-          keywords: "",
-          openGraph: {
-            title: "",
-            description: "",
-          },
-        },
-        isModified: true,
-      };
     default:
       return {
         type: "input",
@@ -102,7 +88,7 @@ export function createArrayItemTemplate(
           ? { fields: {} }
           : { data: [] }),
       isModified: true,
-    };
+    } as AnyFieldSchema;
   }
 
   // Если массив пуст, создаем объект по умолчанию
@@ -114,10 +100,27 @@ export function createArrayItemTemplate(
   };
 }
 
+// Типизированная вспомогательная функция для проверки типов полей
+function isInputField(field: AnyFieldSchema): field is InputFieldSchema {
+  return field.type === "input";
+}
+
+function isTextareaField(field: AnyFieldSchema): field is TextareaFieldSchema {
+  return field.type === "textarea";
+}
+
+function isObjectField(field: AnyFieldSchema): field is ObjectFieldSchema {
+  return field.type === "object";
+}
+
+function isArrayField(field: AnyFieldSchema): field is ArrayFieldSchema {
+  return field.type === "array";
+}
+
 /**
  * Сравнивает два значения и возвращает true, если они равны
  */
-export function isEqual(value1: any, value2: any): boolean {
+export function isEqual<T>(value1: T, value2: T): boolean {
   // Проверка на идентичность ссылок
   if (value1 === value2) return true;
 
@@ -145,24 +148,30 @@ export function isEqual(value1: any, value2: any): boolean {
 
   if (isArray1 && isArray2) {
     // Сравнение массивов
-    if (value1.length !== value2.length) return false;
+    const arr1 = value1 as unknown as Array<unknown>;
+    const arr2 = value2 as unknown as Array<unknown>;
 
-    for (let i = 0; i < value1.length; i++) {
-      if (!isEqual(value1[i], value2[i])) return false;
+    if (arr1.length !== arr2.length) return false;
+
+    for (let i = 0; i < arr1.length; i++) {
+      if (!isEqual(arr1[i], arr2[i])) return false;
     }
 
     return true;
   }
 
   // Сравнение объектов
-  const keys1 = Object.keys(value1);
-  const keys2 = Object.keys(value2);
+  const obj1 = value1 as Record<string, unknown>;
+  const obj2 = value2 as Record<string, unknown>;
+
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
 
   if (keys1.length !== keys2.length) return false;
 
   for (const key of keys1) {
     if (!keys2.includes(key)) return false;
-    if (!isEqual(value1[key], value2[key])) return false;
+    if (!isEqual(obj1[key], obj2[key])) return false;
   }
 
   return true;
@@ -171,7 +180,10 @@ export function isEqual(value1: any, value2: any): boolean {
 /**
  * Помечает поля, которые были изменены относительно оригинальных значений
  */
-export function markModifiedFields(current: any, original: any): any {
+export function markModifiedFields(
+  current: AnyFieldSchema,
+  original: AnyFieldSchema,
+): AnyFieldSchema {
   if (!current || !original) return current;
 
   if (typeof current !== "object" || current === null) {
@@ -180,97 +192,106 @@ export function markModifiedFields(current: any, original: any): any {
 
   const result = { ...current };
 
-  if (current.type === "input" || current.type === "textarea") {
+  if (isInputField(current) && isInputField(original)) {
     // Для простых полей сравниваем данные
     result.isModified = !isEqual(current.data, original.data);
     // Сохраняем оригинальные данные, если их нет
     if (result.originalData === undefined) {
       result.originalData = original.data;
     }
-    return result;
-  } else if (current.type === "object" && current.fields) {
+    return result as AnyFieldSchema;
+  } else if (isTextareaField(current) && isTextareaField(original)) {
+    // Для текстовых полей сравниваем данные
+    result.isModified = !isEqual(current.data, original.data);
+    // Сохраняем оригинальные данные, если их нет
+    if (result.originalData === undefined) {
+      result.originalData = original.data;
+    }
+    return result as AnyFieldSchema;
+  } else if (
+    isObjectField(current) &&
+    isObjectField(original) &&
+    current.fields
+  ) {
     // Для объектов проверяем каждое поле
-    result.isModified = false;
-    result.fields = { ...current.fields };
+    const objectResult = result as ObjectFieldSchema;
+    objectResult.isModified = false;
+    objectResult.fields = { ...current.fields };
 
     // Сохраняем оригинальную структуру полей, если ее нет
-    if (result.originalFields === undefined) {
-      result.originalFields = safeClone(original.fields || {});
+    if (objectResult.originalFields === undefined) {
+      objectResult.originalFields = safeClone(original.fields || {});
     }
 
     // Проверяем каждое поле объекта
-    for (const key in result.fields) {
+    for (const key in objectResult.fields) {
       if (original.fields && key in original.fields) {
         // Рекурсивно помечаем вложенные поля
-        result.fields[key] = markModifiedFields(
-          result.fields[key],
+        objectResult.fields[key] = markModifiedFields(
+          objectResult.fields[key],
           original.fields[key],
         );
 
         // Если хотя бы одно поле изменено, помечаем объект как измененный
-        if (result.fields[key].isModified) {
-          result.isModified = true;
+        if (objectResult.fields[key].isModified) {
+          objectResult.isModified = true;
         }
       } else {
         // Новые поля всегда помечаем как измененные
-        result.fields[key].isModified = true;
-        result.isModified = true;
+        objectResult.fields[key].isModified = true;
+        objectResult.isModified = true;
       }
     }
 
     // Проверяем удаленные поля
     for (const key in original.fields) {
-      if (!(key in result.fields)) {
-        result.isModified = true;
+      if (!(key in objectResult.fields)) {
+        objectResult.isModified = true;
         break;
       }
     }
 
-    return result;
-  } else if (current.type === "array" && current.data) {
+    return objectResult;
+  } else if (
+    isArrayField(current) &&
+    isArrayField(original) &&
+    Array.isArray(current.data)
+  ) {
     // Для массива проверяем все элементы
-    result.isModified = current.data.length !== original.data?.length;
-    result.data = [...current.data];
+    const arrayResult = result as ArrayFieldSchema;
+    arrayResult.isModified =
+      current.data.length !== (original.data?.length || 0);
+    arrayResult.data = [...current.data];
 
     // Если элементы массива отличаются по количеству, весь массив изменен
-    if (!result.isModified && current.data.length > 0) {
+    if (!arrayResult.isModified && current.data.length > 0 && original.data) {
       // Проверяем каждый элемент массива
       for (let i = 0; i < current.data.length; i++) {
         if (i < original.data.length) {
-          result.data[i] = markModifiedFields(
+          arrayResult.data[i] = markModifiedFields(
             current.data[i],
             original.data[i],
           );
-          if (result.data[i].isModified) {
-            result.isModified = true;
+          if (arrayResult.data[i].isModified) {
+            arrayResult.isModified = true;
           }
         } else {
           // Новые элементы массива помечаем как измененные
-          result.data[i] = { ...current.data[i], isModified: true };
-          result.isModified = true;
+          arrayResult.data[i] = { ...current.data[i], isModified: true };
+          arrayResult.isModified = true;
         }
       }
     }
 
     // Сохраняем оригинальные данные, если их нет
-    if (result.originalData === undefined) {
-      result.originalData = safeClone(original.data || []);
+    if (arrayResult.originalData === undefined) {
+      arrayResult.originalData = safeClone(original.data || []);
     }
 
-    return result;
-  } else if (current.type === "seo") {
-    // Для SEO поля проверяем все вложенные поля
-    result.isModified = !isEqual(current.data, original.data);
-
-    // Сохраняем оригинальные данные, если их нет
-    if (result.originalData === undefined) {
-      result.originalData = safeClone(original.data || {});
-    }
-
-    return result;
+    return arrayResult;
   }
 
-  return result;
+  return result as AnyFieldSchema;
 }
 
 /**
@@ -279,7 +300,7 @@ export function markModifiedFields(current: any, original: any): any {
 export function resetField(field: AnyFieldSchema): AnyFieldSchema {
   if (!field) return field;
 
-  if (field.type === "input" || field.type === "textarea") {
+  if (isInputField(field) || isTextareaField(field)) {
     // Для строковых полей восстанавливаем оригинальные данные
     if (field.originalData !== undefined) {
       return {
@@ -288,7 +309,7 @@ export function resetField(field: AnyFieldSchema): AnyFieldSchema {
         isModified: false,
       };
     }
-  } else if (field.type === "object" && field.fields) {
+  } else if (isObjectField(field) && field.fields) {
     // Для объектов восстанавливаем оригинальную структуру
     if (field.originalFields) {
       // Восстанавливаем только существующие поля
@@ -317,17 +338,8 @@ export function resetField(field: AnyFieldSchema): AnyFieldSchema {
         isModified: false,
       };
     }
-  } else if (field.type === "array" && field.data) {
+  } else if (isArrayField(field) && field.data) {
     // Для массивов восстанавливаем оригинальные элементы
-    if (field.originalData) {
-      return {
-        ...field,
-        data: safeClone(field.originalData),
-        isModified: false,
-      };
-    }
-  } else if (field.type === "seo") {
-    // Для SEO поля восстанавливаем все оригинальные значения
     if (field.originalData) {
       return {
         ...field,

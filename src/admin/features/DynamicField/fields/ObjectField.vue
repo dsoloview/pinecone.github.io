@@ -1,326 +1,176 @@
-<!-- ~/admin/features/DynamicField/ui/fields/ObjectField.vue -->
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import DynamicField from "~/admin/features/DynamicField/ui/DynamicField.vue";
 import AddFieldForm from "~/admin/features/AddFieldForm/ui/AddFieldForm.vue";
-import { createField, safeClone } from "~/admin/shared/lib/fieldHelpers";
+import { createField } from "~/admin/shared/lib/fieldHelpers";
 import type {
   FieldEditorProps,
   FieldType,
   AnyFieldSchema,
 } from "~/admin/entities/ContentField/model/types";
-import { resetFieldRecursively } from "~/admin/features/DynamicField/utils/fieldUtils";
-import DynamicField from "~/admin/features/DynamicField/ui/DynamicField.vue";
 
 const props = defineProps<FieldEditorProps>();
 const emit = defineEmits(["update:modelValue"]);
 
-// State for adding new fields forms
-const showAddFormObj = ref(false);
+const localFields = ref(props.modelValue.fields || {});
+const showAddForm = ref(false);
+const expandedState = ref(true);
 
-const update = (val: AnyFieldSchema) => {
-  // Set modification flag on update
-  const modifiedVal = {
-    ...val,
+// Вычисляемое свойство для отслеживания количества полей
+const fieldCount = computed(() => Object.keys(localFields.value).length);
+
+// Функция для обновления значения
+function updateObject() {
+  const updatedField = {
+    ...props.modelValue,
+    fields: localFields.value,
     isModified: true,
   };
-  emit("update:modelValue", modifiedVal);
-};
+  emit("update:modelValue", updatedField);
+}
 
-// Add new field to object
+// Добавление нового поля в объект
 function addObjectField(key: string, type: FieldType) {
-  if (props.fieldSchema.type !== "object") return;
-
-  // Create a copy of fields (or initialize empty object if no fields yet)
-  const updatedFields = props.fieldSchema.fields
-    ? { ...props.fieldSchema.fields }
-    : {};
-
-  // Create and add new field
-  updatedFields[key] = createField(key, type);
-
-  // Update schema with new fields
-  const updatedSchema = {
-    ...props.fieldSchema,
-    fields: updatedFields,
-  };
-
-  update(updatedSchema);
-  showAddFormObj.value = false;
+  const newField = createField(key, type);
+  localFields.value[key] = newField;
+  updateObject();
+  showAddForm.value = false;
 }
 
-// Remove field from object
+// Удаление поля из объекта
 function removeObjectField(key: string) {
-  if (props.fieldSchema.type !== "object" || !props.fieldSchema.fields) return;
-
-  const updatedFields = { ...props.fieldSchema.fields };
+  const updatedFields = { ...localFields.value };
+  // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
   delete updatedFields[key];
-
-  update({
-    ...props.fieldSchema,
-    fields: updatedFields,
-  });
+  localFields.value = updatedFields;
+  updateObject();
 }
 
-// Get existing keys for validation
+// Обновление поля объекта
+function updateField(key: string, updatedField: AnyFieldSchema) {
+  localFields.value[key] = updatedField;
+  updateObject();
+}
+
+// Получение существующих ключей для валидации
 function getExistingKeys(): string[] {
-  if (props.fieldSchema.type === "object" && props.fieldSchema.fields) {
-    return Object.keys(props.fieldSchema.fields);
-  }
-  return [];
+  return Object.keys(localFields.value);
 }
 
-// Reset field to original value (structure)
-function resetField() {
-  if (props.fieldSchema.type !== "object" || !props.fieldSchema.originalFields)
-    return;
-
-  const resetFields = safeClone(props.fieldSchema.originalFields);
-
-  emit("update:modelValue", {
-    ...props.fieldSchema,
-    fields: resetFields,
-    isModified: false,
-  });
-}
-
-// Check if any object field is modified
-function hasModifiedChildFields(): boolean {
-  if (props.fieldSchema.type !== "object" || !props.fieldSchema.fields)
-    return false;
-
-  for (const key in props.fieldSchema.fields) {
-    if (props.fieldSchema.fields[key].isModified) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-function resetObjectField(key: string) {
-  if (
-    props.fieldSchema.type !== "object" ||
-    !props.fieldSchema.fields ||
-    !props.fieldSchema.originalFields ||
-    !props.fieldSchema.originalFields[key]
-  )
-    return;
-
-  const updatedFields = { ...props.fieldSchema.fields };
-
-  // Replace the field with its original version
-  updatedFields[key] = safeClone(props.fieldSchema.originalFields[key]);
-
-  // Сохраняем оригинальные данные
-  if (props.fieldSchema.fields[key].originalData !== undefined) {
-    updatedFields[key].originalData =
-      props.fieldSchema.fields[key].originalData;
-  }
-  if (props.fieldSchema.fields[key].originalFields) {
-    updatedFields[key].originalFields =
-      props.fieldSchema.fields[key].originalFields;
-  }
-
-  // Reset modification flag
-  updatedFields[key].isModified = false;
-
-  // Рекурсивно сбрасываем вложенные поля
-  resetFieldRecursively(updatedFields[key]);
-
-  update({
-    ...props.fieldSchema,
-    fields: updatedFields,
-  });
-}
-
-// Reset all child fields in object
-// Reset all child fields in object
-function resetAllChildFields() {
-  if (props.fieldSchema.type !== "object" || !props.fieldSchema.fields) return;
-
-  if (!props.fieldSchema.originalFields) return;
-
-  const resetFields = safeClone(props.fieldSchema.originalFields);
-
-  // Для каждого поля обновляем originalData/originalFields
-  for (const key in resetFields) {
-    const field = resetFields[key];
-    if (!field) continue;
-
-    // Сбрасываем флаг модификации
-    field.isModified = false;
-
-    // Переустанавливаем originalData/originalFields
-    if (field.type === "input" || field.type === "textarea") {
-      field.originalData = field.data;
-    } else if (field.type === "object" && field.fields) {
-      field.originalFields = safeClone(field.fields);
-
-      // Рекурсивно обрабатываем вложенные поля
-      for (const childKey in field.fields) {
-        const tempObj = { [childKey]: field.fields[childKey] };
-        initObjectOriginalData(tempObj);
-        field.fields[childKey] = tempObj[childKey];
-      }
-    } else if (field.type === "array" && Array.isArray(field.data)) {
-      field.originalData = safeClone(field.data);
-
-      // Рекурсивно обрабатываем элементы массива
-      for (const item of field.data) {
-        if (item) {
-          resetFieldRecursively(item);
-        }
-      }
-    }
-  }
-
-  // Вспомогательная функция для инициализации originalData в объектах
-  function initObjectOriginalData(obj: Record<string, AnyFieldSchema>) {
-    for (const key in obj) {
-      const field = obj[key];
-      if (!field) continue;
-
-      if (field.type === "input" || field.type === "textarea") {
-        field.originalData = field.data;
-      } else if (field.type === "object" && field.fields) {
-        field.originalFields = safeClone(field.fields);
-
-        for (const childKey in field.fields) {
-          const tempObj = { [childKey]: field.fields[childKey] };
-          initObjectOriginalData(tempObj);
-          field.fields[childKey] = tempObj[childKey];
-        }
-      } else if (field.type === "array" && Array.isArray(field.data)) {
-        field.originalData = safeClone(field.data);
-
-        for (const item of field.data) {
-          if (item) {
-            resetFieldRecursively(item);
-          }
-        }
-      }
-    }
-  }
-
-  emit("update:modelValue", {
-    ...props.fieldSchema,
-    fields: resetFields,
-    isModified: false,
-    originalFields: safeClone(resetFields), // Обновляем originalFields
-  });
+// Переключение состояния развернутости
+function toggleExpanded() {
+  expandedState.value = !expandedState.value;
 }
 </script>
 
 <template>
-  <div
-    class="mb-4 border border-gray-200 rounded-lg p-4"
-    :class="{
-      'bg-gray-50': !fieldSchema.isModified,
-      'bg-amber-50': fieldSchema.isModified,
-    }"
-  >
-    <div class="flex justify-between items-center mb-3">
-      <div>
-        <div class="font-bold">{{ fieldSchema.label }}</div>
-        <div class="flex items-center">
-          <div v-if="fieldKey" class="text-xs text-gray-500">
-            Key: <code class="bg-gray-100 px-1 rounded">{{ fieldKey }}</code>
-          </div>
+  <div class="object-field-container">
+    <!-- Заголовок поля -->
+    <div class="mb-3">
+      <div class="flex items-center justify-between">
+        <div class="font-medium text-gray-700 flex items-center">
+          <UButton
+            size="xs"
+            color="gray"
+            variant="ghost"
+            :icon="
+              expandedState ? 'i-lucide-chevron-down' : 'i-lucide-chevron-right'
+            "
+            class="mr-1"
+            @click="toggleExpanded"
+          />
+          {{ fieldSchema.label }}
+          <UBadge size="xs" color="emerald" class="ml-2 font-normal"
+            >{{ fieldCount }}
+            {{ fieldCount === 1 ? "field" : "fields" }}</UBadge
+          >
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <UButton
+            size="xs"
+            color="primary"
+            variant="soft"
+            icon="i-lucide-plus"
+            @click="showAddForm = true"
+          >
+            Добавить поле
+          </UButton>
         </div>
       </div>
-      <div class="flex space-x-2">
-        <!-- Reset all object fields button -->
-        <UTooltip text="Reset all fields to original values">
-          <UButton
-            v-if="fieldSchema.isModified || hasModifiedChildFields()"
-            size="sm"
-            color="neutral"
-            variant="soft"
-            @click="resetAllChildFields"
-          >
-            <UIcon name="i-lucide-undo" class="mr-1" />
-            Reset All
-          </UButton>
-        </UTooltip>
-
-        <UButton
-          size="sm"
-          color="primary"
-          variant="soft"
-          @click="showAddFormObj = true"
-        >
-          <UIcon name="uil:plus" class="mr-1" />
-          Add Field
-        </UButton>
-      </div>
     </div>
 
-    <!-- Object modification indicator -->
+    <!-- Форма добавления поля -->
     <div
-      v-if="fieldSchema.isModified"
-      class="bg-amber-100 p-2 rounded mb-3 text-xs text-amber-600 font-medium flex items-center"
+      v-if="showAddForm"
+      class="mb-4 p-4 bg-white rounded-lg border border-emerald-200 shadow-sm"
     >
-      <UIcon name="i-lucide-edit" class="h-3 w-3 mr-1" />
-      Object structure has been modified
-      <UTooltip text="Reset object structure to original">
-        <UButton
-          v-if="fieldSchema.originalFields !== undefined"
-          size="xs"
-          color="neutral"
-          variant="ghost"
-          class="ml-2"
-          @click="resetField"
-        >
-          <UIcon name="i-lucide-undo" class="h-3 w-3 mr-1" />
-          Reset Structure
-        </UButton>
-      </UTooltip>
+      <AddFieldForm
+        :existing-keys="getExistingKeys()"
+        title="Добавить поле объекта"
+        @add="addObjectField"
+        @cancel="showAddForm = false"
+      />
     </div>
 
-    <!-- Form for adding a new field -->
-    <AddFieldForm
-      v-if="showAddFormObj"
-      :existing-keys="getExistingKeys()"
-      title="Add New Field"
-      @add="addObjectField"
-      @cancel="showAddFormObj = false"
-    />
-
-    <!-- Empty state -->
-    <div
-      v-if="!fieldSchema.fields || Object.keys(fieldSchema.fields).length === 0"
-      class="text-center py-6 text-gray-500"
-    >
-      Object is empty. Add fields using the button above.
-    </div>
-
-    <!-- Object fields -->
-    <template v-else-if="fieldSchema.fields">
+    <!-- Поля объекта -->
+    <div v-if="expandedState" class="space-y-4">
       <div
-        v-for="(child, key) in fieldSchema.fields"
+        v-for="(fieldSchema, key) in localFields"
         :key="key"
-        class="mb-4 relative bg-white p-4 rounded-md"
-        :class="{ 'border-amber-300 border': child.isModified }"
+        class="relative object-field p-4 pt-8 bg-white rounded-lg border border-emerald-200 shadow-sm"
       >
-        <DynamicField
-          :field-schema="child"
-          :field-key="key"
-          :model-value="child"
-          @update:model-value="
-            (val) => {
-              // Update nested field
-              const updatedFields = { ...fieldSchema.fields };
-              updatedFields[key] = val;
+        <!-- Заголовок и кнопка удаления -->
+        <div class="absolute right-2 top-2 flex items-center space-x-1 z-20">
+          <UBadge size="xs" color="gray" class="px-2 font-mono">{{
+            key
+          }}</UBadge>
 
-              // Update entire schema
-              update({
-                ...props.fieldSchema,
-                fields: updatedFields,
-              });
-            }
-          "
+          <UButton
+            size="xs"
+            color="error"
+            variant="soft"
+            icon="i-lucide-trash-2"
+            @click="removeObjectField(key)"
+          />
+        </div>
+
+        <!-- Поле объекта -->
+        <DynamicField
+          :field-key="key"
+          :field-schema="fieldSchema"
+          :model-value="fieldSchema"
+          @update:model-value="(val) => updateField(key, val)"
         />
       </div>
-    </template>
+    </div>
+
+    <!-- Пустое состояние -->
+    <div
+      v-if="expandedState && fieldCount === 0"
+      class="text-center py-6 bg-white border border-dashed border-emerald-200 rounded-lg"
+    >
+      <UIcon name="i-lucide-package" class="text-2xl text-emerald-300 mb-2" />
+      <div class="text-sm text-gray-500">Объект пуст</div>
+      <UButton
+        size="sm"
+        color="primary"
+        variant="soft"
+        class="mt-2"
+        @click="showAddForm = true"
+      >
+        Добавить поле
+      </UButton>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.object-field {
+  transition: all 0.2s ease-in-out;
+}
+
+.object-field:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+</style>

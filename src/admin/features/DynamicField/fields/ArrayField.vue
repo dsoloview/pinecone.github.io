@@ -1,411 +1,203 @@
 <script setup lang="ts">
-import {
-  safeClone,
-  createArrayItemTemplate,
-} from "~/admin/shared/lib/fieldHelpers";
+import { ref, computed } from "vue";
+import DynamicField from "~/admin/features/DynamicField/ui/DynamicField.vue";
+import AddFieldForm from "~/admin/features/AddFieldForm/ui/AddFieldForm.vue";
+import { createField } from "~/admin/shared/lib/fieldHelpers";
 import type {
   FieldEditorProps,
+  FieldType,
   AnyFieldSchema,
 } from "~/admin/entities/ContentField/model/types";
-import { resetFieldRecursively } from "~/admin/features/DynamicField/utils/fieldUtils";
-import DynamicField from "~/admin/features/DynamicField/ui/DynamicField.vue";
 
 const props = defineProps<FieldEditorProps>();
 const emit = defineEmits(["update:modelValue"]);
 
-const update = (val: AnyFieldSchema) => {
-  const modifiedVal = {
-    ...val,
+const localArrayData = ref(props.modelValue.data || []);
+const showAddForm = ref(false);
+const expandedState = ref(true);
+
+// Вычисляемое свойство для отслеживания количества элементов
+const itemCount = computed(() => localArrayData.value.length);
+
+// Функция для обновления значения
+function updateField() {
+  const updatedField = {
+    ...props.modelValue,
+    data: localArrayData.value,
     isModified: true,
   };
-  emit("update:modelValue", modifiedVal);
-};
-
-function addItem() {
-  if (props.fieldSchema.type !== "array") return;
-
-  const newData = Array.isArray(props.fieldSchema.data)
-    ? [...props.fieldSchema.data]
-    : [];
-
-  // Add new element
-  newData.push(createArrayItemTemplate(newData));
-
-  // Update schema with new data
-  update({ ...props.fieldSchema, data: newData });
+  emit("update:modelValue", updatedField);
 }
 
-// Remove item from array
-function removeItem(idx: number) {
-  if (props.fieldSchema.type !== "array") return;
-
-  const newData = [...props.fieldSchema.data];
-  newData.splice(idx, 1);
-
-  // Update schema with modified data
-  update({ ...props.fieldSchema, data: newData });
+// Добавление нового элемента в массив
+function addArrayItem(key: string, type: FieldType) {
+  const newItem = createField(key, type);
+  localArrayData.value.push(newItem);
+  updateField();
+  showAddForm.value = false;
 }
 
-// Update array item
-function updateArrayItem(idx: number, item: AnyFieldSchema) {
-  if (props.fieldSchema.type !== "array") return;
-
-  const newData = [...props.fieldSchema.data];
-  newData[idx] = item;
-
-  // Проверяем, изменилось ли содержимое элемента
-  const originalItem =
-    props.fieldSchema.originalData &&
-    Array.isArray(props.fieldSchema.originalData) &&
-    idx < props.fieldSchema.originalData.length
-      ? props.fieldSchema.originalData[idx]
-      : null;
-
-  // Проверяем, есть ли какие-либо модификации в элементе или его вложенных полях
-  let hasModifications = item.isModified;
-
-  // Для объектов проверяем модификации в полях
-  if (item.type === "object" && item.fields) {
-    for (const key in item.fields) {
-      if (item.fields[key]?.isModified) {
-        hasModifications = true;
-        break;
-      }
-    }
-  }
-
-  // Для массивов проверяем модификации в элементах
-  if (item.type === "array" && Array.isArray(item.data)) {
-    for (const element of item.data) {
-      if (element?.isModified) {
-        hasModifications = true;
-        break;
-      }
-    }
-  }
-
-  // Обновляем флаг модификации
-  item.isModified = hasModifications;
-
-  // Обновляем массив и устанавливаем флаг модификации для всего массива
-  update({
-    ...props.fieldSchema,
-    data: newData,
-    isModified: true,
-  });
+// Удаление элемента из массива
+function removeArrayItem(index: number) {
+  localArrayData.value.splice(index, 1);
+  updateField();
 }
 
-// Check if any array item is modified
-function hasModifiedArrayItems(): boolean {
-  if (
-    props.fieldSchema.type !== "array" ||
-    !Array.isArray(props.fieldSchema.data)
-  )
-    return false;
-
-  for (const item of props.fieldSchema.data) {
-    if (typeof item === "object" && item && item.isModified) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-// Reset field to original value (structure)
-function resetField() {
-  if (props.fieldSchema.type !== "array" || !props.fieldSchema.originalData)
-    return;
-
-  const resetData = safeClone(props.fieldSchema.originalData);
-
-  // Инициализируем originalData для всех элементов массива
-  if (Array.isArray(resetData)) {
-    for (const item of resetData) {
-      if (!item) continue;
-
-      // Переустанавливаем originalData/originalFields для элементов
-      if (item.type === "input" || item.type === "textarea") {
-        item.originalData = item.data;
-      } else if (item.type === "object" && item.fields) {
-        item.originalFields = safeClone(item.fields);
-
-        // Рекурсивно обрабатываем вложенные поля объекта
-        for (const key in item.fields) {
-          const tempObj = { [key]: item.fields[key] };
-          initObjectOriginalData(tempObj);
-          item.fields[key] = tempObj[key];
-        }
-      } else if (item.type === "array" && Array.isArray(item.data)) {
-        item.originalData = safeClone(item.data);
-
-        // Рекурсивно обрабатываем элементы вложенного массива
-        for (const childItem of item.data) {
-          if (childItem) {
-            resetFieldRecursively(childItem);
-          }
-        }
-      }
-    }
-  }
-
-  emit("update:modelValue", {
-    ...props.fieldSchema,
-    data: resetData,
-    isModified: false,
-    originalData: safeClone(resetData), // Обновляем originalData
-  });
-}
-
-// Вспомогательная функция для инициализации originalData в объектах
-function initObjectOriginalData(obj: Record<string, AnyFieldSchema>) {
-  for (const key in obj) {
-    const field = obj[key];
-    if (!field) continue;
-
-    if (field.type === "input" || field.type === "textarea") {
-      field.originalData = field.data;
-    } else if (field.type === "object" && field.fields) {
-      field.originalFields = safeClone(field.fields);
-
-      for (const childKey in field.fields) {
-        const tempObj = { [childKey]: field.fields[childKey] };
-        initObjectOriginalData(tempObj);
-        field.fields[childKey] = tempObj[childKey];
-      }
-    } else if (field.type === "array" && Array.isArray(field.data)) {
-      field.originalData = safeClone(field.data);
-
-      for (const item of field.data) {
-        if (item) {
-          resetFieldRecursively(item);
-        }
-      }
-    }
+// Перемещение элемента вверх
+function moveItemUp(index: number) {
+  if (index > 0) {
+    const temp = localArrayData.value[index];
+    localArrayData.value[index] = localArrayData.value[index - 1];
+    localArrayData.value[index - 1] = temp;
+    updateField();
   }
 }
 
-// Reset all array items
-function resetAllArrayItems() {
-  if (props.fieldSchema.type !== "array" || !props.fieldSchema.originalData)
-    return;
-
-  // Делаем глубокую копию оригинальных данных
-  const resetData = safeClone(props.fieldSchema.originalData);
-
-  // Инициализируем originalData для всех элементов
-  if (Array.isArray(resetData)) {
-    for (const item of resetData) {
-      if (!item) continue;
-
-      // Устанавливаем флаг модификации в false
-      item.isModified = false;
-
-      // Переустанавливаем originalData/originalFields
-      if (item.type === "input" || item.type === "textarea") {
-        item.originalData = item.data;
-      } else if (item.type === "object" && item.fields) {
-        item.originalFields = safeClone(item.fields);
-
-        // Рекурсивно инициализируем вложенные поля
-        for (const key in item.fields) {
-          const tempObj = { [key]: item.fields[key] };
-          initObjectOriginalData(tempObj);
-          item.fields[key] = tempObj[key];
-        }
-      } else if (item.type === "array" && Array.isArray(item.data)) {
-        item.originalData = safeClone(item.data);
-
-        // Рекурсивно обрабатываем элементы вложенного массива
-        for (const childItem of item.data) {
-          if (childItem) {
-            resetFieldRecursively(childItem);
-          }
-        }
-      }
-    }
+// Перемещение элемента вниз
+function moveItemDown(index: number) {
+  if (index < localArrayData.value.length - 1) {
+    const temp = localArrayData.value[index];
+    localArrayData.value[index] = localArrayData.value[index + 1];
+    localArrayData.value[index + 1] = temp;
+    updateField();
   }
-
-  // Обновляем через emit
-  emit("update:modelValue", {
-    ...props.fieldSchema,
-    data: resetData,
-    isModified: false,
-    originalData: safeClone(resetData), // Обновляем originalData
-  });
 }
 
-// Reset a specific item in array
-function resetArrayItem(idx: number, item: AnyFieldSchema) {
-  // Проверяем индекс в оригинальных данных
-  if (
-    props.fieldSchema.type !== "array" ||
-    !props.fieldSchema.originalData ||
-    !Array.isArray(props.fieldSchema.originalData) ||
-    idx >= props.fieldSchema.originalData.length
-  )
-    return;
+// Обновление элемента массива
+function updateArrayItem(index: number, updatedItem: AnyFieldSchema) {
+  localArrayData.value[index] = updatedItem;
+  updateField();
+}
 
-  // Получаем оригинальный элемент из массива
-  const originalItem = props.fieldSchema.originalData[idx];
-  if (!originalItem) return;
-
-  // Делаем глубокую копию оригинального элемента
-  const resetItem = safeClone(originalItem);
-
-  // Сохраняем оригинальные данные
-  if (item.originalData !== undefined) {
-    resetItem.originalData = item.originalData;
-  }
-  if (item.originalFields) {
-    resetItem.originalFields = item.originalFields;
-  }
-
-  // Обязательно сбрасываем флаг модификации
-  resetItem.isModified = false;
-
-  // Рекурсивно сбрасываем все вложенные поля
-  resetFieldRecursively(resetItem);
-
-  // Обновляем элемент в массиве
-  updateArrayItem(idx, resetItem);
+// Переключение состояния развернутости
+function toggleExpanded() {
+  expandedState.value = !expandedState.value;
 }
 </script>
 
 <template>
-  <div
-    class="mb-4 border border-gray-200 rounded-lg p-4"
-    :class="{
-      'bg-gray-50': !fieldSchema.isModified,
-      'bg-amber-50': fieldSchema.isModified,
-    }"
-  >
-    <div class="flex justify-between items-center mb-3">
-      <div>
-        <div class="font-bold">{{ fieldSchema.label }}</div>
-        <div class="flex items-center">
-          <div v-if="fieldKey" class="text-xs text-gray-500">
-            Key: <code class="bg-gray-100 px-1 rounded">{{ fieldKey }}</code>
-          </div>
-        </div>
-        <div class="text-sm text-gray-600">
-          Items: {{ fieldSchema.data ? fieldSchema.data.length : 0 }}
-        </div>
-      </div>
-      <div class="flex space-x-2">
-        <!-- Reset all array items button -->
-        <UTooltip text="Reset all items to original values">
+  <div class="array-field-container">
+    <!-- Заголовок поля -->
+    <div class="mb-3">
+      <div class="flex items-center justify-between">
+        <div class="font-medium text-gray-700 flex items-center">
           <UButton
-            v-if="fieldSchema.isModified || hasModifiedArrayItems()"
-            size="sm"
-            color="neutral"
-            variant="soft"
-            @click="resetAllArrayItems"
+            size="xs"
+            color="gray"
+            variant="ghost"
+            :icon="
+              expandedState ? 'i-lucide-chevron-down' : 'i-lucide-chevron-right'
+            "
+            class="mr-1"
+            @click="toggleExpanded"
+          />
+          {{ fieldSchema.label }}
+          <UBadge size="xs" color="amber" class="ml-2 font-normal"
+            >{{ itemCount }} {{ itemCount === 1 ? "item" : "items" }}</UBadge
           >
-            <UIcon name="i-lucide-undo" class="mr-1" />
-            Reset All
-          </UButton>
-        </UTooltip>
+        </div>
 
-        <UButton size="sm" color="primary" variant="soft" @click="addItem">
-          <UIcon name="uil:plus" class="mr-1" />
-          Add Item
-        </UButton>
+        <div class="flex items-center space-x-2">
+          <UButton
+            size="xs"
+            color="primary"
+            variant="soft"
+            icon="i-lucide-plus"
+            @click="showAddForm = true"
+          >
+            Добавить
+          </UButton>
+        </div>
       </div>
     </div>
 
-    <!-- Array modification indicator -->
+    <!-- Форма добавления элемента -->
     <div
-      v-if="fieldSchema.isModified"
-      class="bg-amber-100 p-2 rounded mb-3 text-xs text-amber-600 font-medium flex items-center"
+      v-if="showAddForm"
+      class="mb-4 p-4 bg-white rounded-lg border border-amber-200 shadow-sm"
     >
-      <UIcon name="i-lucide-edit" class="h-3 w-3 mr-1" />
-      Array structure has been modified
-      <UTooltip text="Reset array structure to original">
-        <UButton
-          v-if="fieldSchema.originalData !== undefined"
-          size="xs"
-          color="neutral"
-          variant="ghost"
-          class="ml-2"
-          @click="resetField"
-        >
-          <UIcon name="i-lucide-undo" class="h-3 w-3 mr-1" />
-          Reset Structure
-        </UButton>
-      </UTooltip>
+      <AddFieldForm
+        :existing-keys="[]"
+        title="Добавить элемент массива"
+        @add="addArrayItem"
+        @cancel="showAddForm = false"
+      />
     </div>
 
-    <!-- Empty state -->
-    <div
-      v-if="!fieldSchema.data || fieldSchema.data.length === 0"
-      class="text-center py-6 text-gray-500"
-    >
-      Array is empty. Add items using the button above.
-    </div>
-
-    <!-- Array blocks using DynamicField -->
-    <div v-else class="space-y-3">
+    <!-- Список элементов массива -->
+    <div v-if="expandedState" class="space-y-4">
       <div
-        v-for="(item, idx) in fieldSchema.data"
-        :key="idx"
-        class="border border-gray-200 p-4 rounded-md bg-white relative"
-        :class="{ 'border-amber-300': item.isModified }"
+        v-for="(item, index) in localArrayData"
+        :key="index"
+        class="relative array-item p-4 pt-8 bg-white rounded-lg border border-amber-200 shadow-sm"
       >
-        <!-- Block header with delete button -->
-        <div
-          class="flex justify-between items-center mb-3 pb-2 border-b border-gray-100"
-        >
-          <div class="flex items-center">
-            <span
-              class="bg-gray-200 text-gray-700 rounded-full w-6 h-6 flex items-center justify-center mr-2 text-xs"
-            >
-              {{ idx + 1 }}
-            </span>
-            <h4 class="font-medium">{{ item.label || `Block ${idx + 1}` }}</h4>
+        <!-- Элементы управления -->
+        <div class="absolute right-2 top-2 flex items-center space-x-1 z-20">
+          <UBadge size="xs" color="gray" class="mr-1">{{ index + 1 }}</UBadge>
 
-            <span
-              v-if="item.isModified"
-              class="ml-2 text-xs text-amber-600 font-medium flex items-center"
-            >
-              <UIcon name="i-lucide-edit" class="h-3 w-3 mr-1" />
-              Modified
-              <UTooltip
-                v-if="
-                  fieldSchema.originalData &&
-                  idx < fieldSchema.originalData.length
-                "
-                text="Reset item to original state"
-              >
-                <UButton
-                  size="xs"
-                  color="neutral"
-                  variant="ghost"
-                  class="ml-1"
-                  @click="resetArrayItem(idx, item)"
-                >
-                  <UIcon name="i-lucide-undo" class="h-3 w-3 mr-1" />
-                  Reset
-                </UButton>
-              </UTooltip>
-            </span>
-          </div>
+          <UButton
+            size="xs"
+            color="gray"
+            variant="soft"
+            icon="i-lucide-arrow-up"
+            :disabled="index === 0"
+            @click="moveItemUp(index)"
+          />
+
+          <UButton
+            size="xs"
+            color="gray"
+            variant="soft"
+            icon="i-lucide-arrow-down"
+            :disabled="index === localArrayData.length - 1"
+            @click="moveItemDown(index)"
+          />
+
           <UButton
             size="xs"
             color="error"
             variant="soft"
-            icon="i-uil:times"
-            @click="removeItem(idx)"
+            icon="i-lucide-trash-2"
+            @click="removeArrayItem(index)"
           />
         </div>
 
-        <!-- Use DynamicField to display array item -->
+        <!-- Элемент массива -->
         <DynamicField
+          :field-key="`item-${index}`"
           :field-schema="item"
           :model-value="item"
-          @update:model-value="(val) => updateArrayItem(idx, val)"
+          @update:model-value="(val) => updateArrayItem(index, val)"
         />
       </div>
     </div>
+
+    <!-- Пустое состояние -->
+    <div
+      v-if="expandedState && localArrayData.length === 0"
+      class="text-center py-6 bg-white border border-dashed border-amber-200 rounded-lg"
+    >
+      <UIcon name="i-lucide-list" class="text-2xl text-amber-300 mb-2" />
+      <div class="text-sm text-gray-500">Массив пуст</div>
+      <UButton
+        size="sm"
+        color="primary"
+        variant="soft"
+        class="mt-2"
+        @click="showAddForm = true"
+      >
+        Добавить элемент
+      </UButton>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.array-item {
+  transition: all 0.2s ease-in-out;
+}
+
+.array-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+</style>

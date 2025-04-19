@@ -29,16 +29,19 @@ export async function fetchPageContent(
   language: string,
 ): Promise<Record<string, AnyFieldSchema> | null> {
   try {
-    const { data } = await useAsyncData(`page-${slug}-${language}`, () => {
-      return $fetch(`/api/content/${slug}`, {
-        method: "GET",
-        query: {
-          language: language,
-        },
-      });
-    });
+    const { data } = await useAsyncData<Record<string, AnyFieldSchema>>(
+      `page-${slug}-${language}`,
+      () => {
+        return $fetch(`/api/content/${slug}`, {
+          method: "GET",
+          query: {
+            language: language,
+          },
+        });
+      },
+    );
 
-    return data.value.content;
+    return data.value;
   } catch (error) {
     console.error("Ошибка при загрузке контента:", error);
     return null;

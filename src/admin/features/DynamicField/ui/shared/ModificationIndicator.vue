@@ -5,11 +5,7 @@ defineProps<{
   tooltipText?: string;
 }>();
 
-const emit = defineEmits(["reset"]);
-
-const onReset = () => {
-  emit("reset");
-};
+defineEmits(["reset"]);
 </script>
 
 <template>
