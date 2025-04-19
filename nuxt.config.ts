@@ -3,8 +3,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
   app: {
-    baseURL: "/pinecone.github.io/",
-    buildAssetsDir: "assets",
+    // baseURL: "/pinecone.github.io/",
+    // buildAssetsDir: "assets",
     head: {
       title: "Pinecone",
       htmlAttrs: {
@@ -19,9 +19,11 @@ export default defineNuxtConfig({
       ],
     },
   },
+  // debug: true,
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  srcDir: "src/",
+  srcDir: "./src",
+  serverDir: "./src/server",
   modules: [
     "@nuxt/eslint",
     "@nuxt/fonts",
@@ -30,13 +32,29 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@vee-validate/nuxt",
     "nuxt-swiper",
+    "@prisma/nuxt",
+    "@nuxt/ui",
+    "nuxt-auth-utils",
+    "@pinia/nuxt",
   ],
   css: ["~/assets/scss/main.css"],
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        ".prisma/client/index-browser":
+          "./node_modules/.prisma/client/index-browser.js",
+      },
+    },
+    build: {
+      sourcemap: true,
+    },
+    css: {
+      devSourcemap: true,
+    },
   },
   typescript: {
-    typeCheck: true,
+    typeCheck: false,
   },
   icon: {
     serverBundle: {
@@ -64,5 +82,10 @@ export default defineNuxtConfig({
   },
   experimental: {
     payloadExtraction: false,
+  },
+  prisma: {
+    generateClient: true,
+    prismaRoot: "src/server/database",
+    prismaSchemaPath: "src/server/database/prisma/schema.prisma",
   },
 });

@@ -20,7 +20,7 @@ const { t } = useI18n();
 </script>
 
 <style scoped>
-@reference '@/assets/scss/main.css';
+@reference '~/assets/scss/main.css';
 
 .header__nav__link {
   @apply text-white cursor-pointer hover:text-brown uppercase transition-colors duration-300;

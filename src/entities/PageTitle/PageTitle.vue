@@ -9,7 +9,7 @@ const props = defineProps<Props>();
   <component :is="props.tag" class="pageTitle text-white"><slot /></component>
 </template>
 
-<style>
+<style scoped>
 @reference '@/assets/scss/main.css';
 
 .pageTitle {
