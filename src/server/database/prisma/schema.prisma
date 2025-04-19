@@ -17,3 +17,27 @@ model User {
   name  String
   password String
 }
+
+model Page {
+  id Int @id @default(autoincrement())
+  name String @unique
+  slug String @unique
+  translations Translation[]
+}
+
+model Language {
+  id Int @id @default(autoincrement())
+  name String @unique
+  code String
+  translations Translation[]
+}
+
+model Translation {
+  id Int @id @default(autoincrement())
+  page_id Int
+  language_id Int
+  content Json
+
+  language Language @relation(fields: [language_id], references: [id])
+  page Page @relation(fields: [page_id], references: [id])
+}

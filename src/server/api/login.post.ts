@@ -1,17 +1,15 @@
 import * as v from "valibot";
-import { findUserByEmail } from "~/server/repositories/UserRepository";
 import { handleServerError } from "~/server/handlers/handleServerError";
 import { InvalidCredentials } from "~/server/errors/InvalidCredentials";
+import { LOGIN_SCHEMA } from "~/shared/schema/login.schema";
+import { getUserRepository } from "~/server/factories/repository.factory";
 
-const schema = v.object({
-  email: v.pipe(v.string(), v.email()),
-  password: v.string(),
-});
 export default defineEventHandler(async (event) => {
   try {
-    const { email, password } = v.parse(schema, await readBody(event));
+    const userRepository = getUserRepository();
+    const { email, password } = v.parse(LOGIN_SCHEMA, await readBody(event));
 
-    const user = await findUserByEmail(email);
+    const user = await userRepository.findUserByEmail(email);
     if (!user) {
       throw new InvalidCredentials();
     }

@@ -1,23 +1,15 @@
 import * as v from "valibot";
-import { updateUser } from "~/server/repositories/UserRepository";
 import type { User } from "~/generated/prisma";
 import { handleServerError } from "~/server/handlers/handleServerError";
-
-const paramsSchema = v.object({
-  id: v.pipe(v.string(), v.transform(Number)),
-});
-
-const schema = v.object({
-  email: v.pipe(v.string(), v.email("Invalid email")),
-  name: v.pipe(v.string(), v.minLength(2, "Must be at least 2 characters")),
-  password: v.optional(v.string()),
-});
+import { ID_PARAM_SCHEMA } from "~/shared/schema/params.schema";
+import { USER_UPDATE_SCHEMA } from "~/shared/schema/user.schema";
+import { getUserRepository } from "~/server/factories/repository.factory";
 
 export default defineEventHandler(async (event) => {
   try {
-    const { id } = v.parse(paramsSchema, getRouterParams(event));
+    const { id } = v.parse(ID_PARAM_SCHEMA, getRouterParams(event));
 
-    const userData = v.parse(schema, await readBody(event));
+    const userData = v.parse(USER_UPDATE_SCHEMA, await readBody(event));
 
     const updateData: Partial<User> = {
       email: userData.email,
@@ -28,7 +20,9 @@ export default defineEventHandler(async (event) => {
       updateData.password = await hashPassword(userData.password);
     }
 
-    const updatedUser = await updateUser(id, updateData);
+    const userRepository = getUserRepository();
+
+    const updatedUser = await userRepository.updateUser(id, updateData);
 
     return {
       id: updatedUser.id,

@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import * as v from "valibot";
+import type * as v from "valibot";
 import type { FormSubmitEvent } from "#ui/types";
 import { useUserModal } from "~/admin/features/CreateUserModal/hooks/useUserModal";
 import { serverFetch } from "~/shared/utils/serverFetch";
 import type { PublicUser } from "~/shared/types/user";
+import {
+  USER_CREATE_SCHEMA,
+  USER_UPDATE_SCHEMA,
+} from "~/shared/schema/user.schema";
 
 type FormState = {
   email: string;
@@ -19,13 +23,7 @@ const toast = useToast();
 const isSubmitting = ref(false);
 
 const schema = computed(() => {
-  return v.object({
-    email: v.pipe(v.string(), v.email("Invalid email")),
-    name: v.pipe(v.string(), v.minLength(2, "Must be at least 2 characters")),
-    password: isEditing.value
-      ? v.optional(v.string())
-      : v.pipe(v.string(), v.minLength(8, "Must be at least 8 characters")),
-  });
+  return isEditing.value ? USER_UPDATE_SCHEMA : USER_CREATE_SCHEMA;
 });
 
 type Schema = v.InferOutput<typeof schema.value>;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import * as v from "valibot";
 import { serverFetch } from "~/shared/utils/serverFetch";
+import { LOGIN_SCHEMA } from "~/shared/schema/login.schema";
 
 type FormState = {
   email: string;
@@ -13,13 +13,7 @@ definePageMeta({
 });
 
 const schema = computed(() => {
-  return v.object({
-    email: v.pipe(v.string(), v.email("Invalid email")),
-    password: v.pipe(
-      v.string(),
-      v.minLength(8, "Must be at least 8 characters"),
-    ),
-  });
+  return LOGIN_SCHEMA;
 });
 
 const { fetch: refreshSession } = useUserSession();

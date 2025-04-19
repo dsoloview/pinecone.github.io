@@ -14,6 +14,9 @@
     "lintfix": "eslint . --fix && prettier --write --list-different .",
     "deploy": "nuxt generate && gh-pages --dotfiles -d .output/public"
   },
+  "prisma": {
+    "seed": "tsx src/server/database/prisma/seeders/seed.ts"
+  },
   "dependencies": {
     "@nuxt/fonts": "0.11.1",
     "@nuxt/icon": "1.12.0",
@@ -53,6 +56,8 @@
     "prettier": "^3.5.3",
     "prisma": "6.6.0",
     "sass": "^1.86.3",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "vue-tsc": "^2.2.8"
   }

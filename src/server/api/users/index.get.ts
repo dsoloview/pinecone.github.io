@@ -1,5 +1,7 @@
-import { getAllUsers } from "~/server/repositories/UserRepository";
+import { getUserRepository } from "~/server/factories/repository.factory";
 
 export default defineEventHandler(async () => {
-  return getAllUsers();
+  const userRepository = getUserRepository();
+
+  return userRepository.getAllUsers();
 });
