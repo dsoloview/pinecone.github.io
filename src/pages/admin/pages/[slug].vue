@@ -103,6 +103,9 @@ function resetAllChanges() {
     // Восстанавливаем из оригинальной копии (безопасно)
     pageContent.value = safeClone(originalPageContent.value);
 
+    // Важно: повторно инициализируем originalData для всех полей
+    initializeOriginalData(pageContent.value);
+
     toast.add({
       title: "Изменения сброшены",
       description: "Все изменения были отменены",
@@ -185,6 +188,7 @@ function updatePageContent(newContent: Record<string, AnyFieldSchema>) {
 }
 
 // Инициализация оригинальных данных для полей
+// Инициализация оригинальных данных для полей (рекурсивно)
 function initializeOriginalData(content: Record<string, AnyFieldSchema>) {
   if (!content) return;
 
@@ -196,39 +200,67 @@ function initializeOriginalData(content: Record<string, AnyFieldSchema>) {
     if (field.type === "input" || field.type === "textarea") {
       field.originalData = field.data;
     }
-    // Для массивов сохраняем оригинальные элементы
+    // Для массивов сохраняем оригинальные элементы и рекурсивно обрабатываем их содержимое
     else if (field.type === "array") {
-      // Используем safeClone вместо structuredClone
+      // Сохраняем оригинальную структуру массива
       field.originalData = safeClone(field.data || []);
 
-      // Для каждого элемента массива также инициализируем originalData
+      // Обрабатываем каждый элемент массива рекурсивно
       if (Array.isArray(field.data)) {
-        field.data.forEach((item) => {
-          if (typeof item === "object" && item) {
-            if (item.type === "input" || item.type === "textarea") {
-              item.originalData = item.data;
-            } else if (item.type === "object" && item.fields) {
-              item.originalFields = safeClone(item.fields);
+        field.data.forEach((item, index) => {
+          if (!item) return;
+
+          // Для строковых полей внутри массива
+          if (item.type === "input" || item.type === "textarea") {
+            item.originalData = item.data;
+          }
+          // Для объектов внутри массива
+          else if (item.type === "object" && item.fields) {
+            item.originalFields = safeClone(item.fields);
+
+            // Рекурсивно инициализируем поля внутри объекта
+            for (const fieldKey in item.fields) {
+              if (!item.fields[fieldKey]) continue;
+
+              // Создаем временный объект и рекурсивно инициализируем его
+              const tempObj = { [fieldKey]: item.fields[fieldKey] };
+              initializeOriginalData(tempObj);
+
+              // Копируем обратно с инициализированными значениями
+              item.fields[fieldKey] = tempObj[fieldKey];
             }
+          }
+          // Для вложенных массивов внутри массива
+          else if (item.type === "array" && Array.isArray(item.data)) {
+            item.originalData = safeClone(item.data);
+
+            // Создаем временный объект и рекурсивно инициализируем его
+            const tempObj = { nestedArray: item };
+            initializeOriginalData(tempObj);
+
+            // После обработки элемент уже будет обновлен, так как передается по ссылке
           }
         });
       }
     }
-    // Для объектов сохраняем оригинальную структуру полей
+    // Для объектов сохраняем оригинальную структуру полей и рекурсивно обрабатываем вложенные поля
     else if (field.type === "object" && field.fields) {
       field.originalFields = safeClone(field.fields);
 
-      // Рекурсивно обрабатываем вложенные поля
+      // Обрабатываем каждое поле объекта
       for (const childKey in field.fields) {
-        if (field.fields[childKey]) {
-          const childField = { [childKey]: field.fields[childKey] };
-          initializeOriginalData(childField);
-        }
+        if (!field.fields[childKey]) continue;
+
+        // Создаем временный объект и рекурсивно инициализируем его
+        const tempObj = { [childKey]: field.fields[childKey] };
+        initializeOriginalData(tempObj);
+
+        // Копируем обратно с инициализированными значениями
+        field.fields[childKey] = tempObj[childKey];
       }
     }
   }
 }
-
 // Загружаем контент при изменении slug или языка
 watch(
   [() => route.params.slug, () => activeLanguage.value],
@@ -247,7 +279,7 @@ watch(
         <div class="flex space-x-3">
           <UButton
             v-if="hasModifiedFields()"
-            color="gray"
+            color="neutral"
             variant="soft"
             :loading="isResetting"
             :disabled="isSaving || isResetting"
