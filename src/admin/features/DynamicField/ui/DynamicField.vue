@@ -67,8 +67,12 @@ const getTypeIcon = (type: string): string => {
 <template>
   <div
     :class="[
-      'field-wrapper p-3 rounded-xl shadow-sm border border-gray-200 relative',
+      'field-wrapper p-3 rounded-xl shadow-sm relative',
       getFieldBgColor(fieldSchema.type),
+      {
+        'border-red-300 border-2': fieldSchema.isModified,
+        'border border-gray-200': !fieldSchema.isModified,
+      },
     ]"
   >
     <!-- Индикатор типа поля -->
@@ -77,47 +81,72 @@ const getTypeIcon = (type: string): string => {
       :class="getTypeIndicatorColor(fieldSchema.type)"
     />
 
-    <!-- Заголовок типа поля (для всех типов) -->
-    <div
-      class="flex items-center mb-2 ml-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
-    >
-      <UIcon :name="getTypeIcon(fieldSchema.type)" class="mr-1 text-sm" />
-      {{ fieldSchema.type }}
+    <!-- Верхняя панель с заголовком и кнопкой сброса -->
+    <div class="flex items-center justify-between mb-3 ml-3">
+      <!-- Заголовок типа поля -->
+      <div
+        class="flex items-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+      >
+        <UIcon :name="getTypeIcon(fieldSchema.type)" class="mr-1 text-sm" />
+        {{ fieldSchema.type }}
+      </div>
+
+      <!-- Кнопка сброса -->
+      <UButton
+        v-if="fieldSchema.isModified"
+        color="warning"
+        variant="soft"
+        size="xs"
+        class="reset-button flex items-center"
+        @click="
+          $emit('update:modelValue', {
+            ...fieldSchema,
+            isModified: false,
+            data: '',
+          })
+        "
+      >
+        <UIcon name="i-lucide-rotate-ccw" class="mr-1" />
+        Сбросить
+      </UButton>
     </div>
 
-    <div class="ml-3">
-      <InputField
-        v-if="fieldSchema.type === 'input'"
-        :field-schema="fieldSchema"
-        :field-key="fieldKey"
-        :model-value="modelValue"
-        @update:model-value="update"
-      />
+    <!-- Поля без лишней обертки -->
+    <InputField
+      v-if="fieldSchema.type === 'input'"
+      :field-schema="fieldSchema"
+      :field-key="fieldKey"
+      :model-value="modelValue"
+      class="ml-3"
+      @update:model-value="update"
+    />
 
-      <TextareaField
-        v-else-if="fieldSchema.type === 'textarea'"
-        :field-schema="fieldSchema"
-        :field-key="fieldKey"
-        :model-value="modelValue"
-        @update:model-value="update"
-      />
+    <TextareaField
+      v-else-if="fieldSchema.type === 'textarea'"
+      :field-schema="fieldSchema"
+      :field-key="fieldKey"
+      :model-value="modelValue"
+      class="ml-3"
+      @update:model-value="update"
+    />
 
-      <ArrayField
-        v-else-if="fieldSchema.type === 'array'"
-        :field-schema="fieldSchema"
-        :field-key="fieldKey"
-        :model-value="modelValue"
-        @update:model-value="update"
-      />
+    <ArrayField
+      v-else-if="fieldSchema.type === 'array'"
+      :field-schema="fieldSchema"
+      :field-key="fieldKey"
+      :model-value="modelValue"
+      class="ml-3"
+      @update:model-value="update"
+    />
 
-      <ObjectField
-        v-else-if="fieldSchema.type === 'object'"
-        :field-schema="fieldSchema"
-        :field-key="fieldKey"
-        :model-value="modelValue"
-        @update:model-value="update"
-      />
-    </div>
+    <ObjectField
+      v-else-if="fieldSchema.type === 'object'"
+      :field-schema="fieldSchema"
+      :field-key="fieldKey"
+      :model-value="modelValue"
+      class="ml-3"
+      @update:model-value="update"
+    />
   </div>
 </template>
 
@@ -128,5 +157,9 @@ const getTypeIcon = (type: string): string => {
 
 .field-wrapper:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.reset-button {
+  font-weight: 600;
 }
 </style>

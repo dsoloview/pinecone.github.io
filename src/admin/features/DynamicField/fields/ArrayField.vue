@@ -83,7 +83,7 @@ function toggleExpanded() {
         <div class="font-medium text-gray-700 flex items-center">
           <UButton
             size="xs"
-            color="gray"
+            color="neutral"
             variant="ghost"
             :icon="
               expandedState ? 'i-lucide-chevron-down' : 'i-lucide-chevron-right'
@@ -92,7 +92,7 @@ function toggleExpanded() {
             @click="toggleExpanded"
           />
           {{ fieldSchema.label }}
-          <UBadge size="xs" color="amber" class="ml-2 font-normal"
+          <UBadge size="xs" color="warning" class="ml-2 font-normal"
             >{{ itemCount }} {{ itemCount === 1 ? "item" : "items" }}</UBadge
           >
         </div>
@@ -133,11 +133,13 @@ function toggleExpanded() {
       >
         <!-- Элементы управления -->
         <div class="absolute right-2 top-2 flex items-center space-x-1 z-20">
-          <UBadge size="xs" color="gray" class="mr-1">{{ index + 1 }}</UBadge>
+          <UBadge size="xs" color="neutral" class="mr-1">{{
+            index + 1
+          }}</UBadge>
 
           <UButton
             size="xs"
-            color="gray"
+            color="neutral"
             variant="soft"
             icon="i-lucide-arrow-up"
             :disabled="index === 0"
@@ -146,7 +148,7 @@ function toggleExpanded() {
 
           <UButton
             size="xs"
-            color="gray"
+            color="neutral"
             variant="soft"
             icon="i-lucide-arrow-down"
             :disabled="index === localArrayData.length - 1"

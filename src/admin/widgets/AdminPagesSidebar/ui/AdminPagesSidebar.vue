@@ -1,28 +1,27 @@
 <script setup lang="ts">
 import type { Page } from "~/generated/prisma";
+import type { NavigationMenuItem } from "@nuxt/ui";
 
 type Props = {
   pages: Page[];
 };
-defineProps<Props>();
+const props = defineProps<Props>();
+
+const items = computed<NavigationMenuItem[][]>(() => {
+  const result: NavigationMenuItem[][] = [[]];
+  props.pages.map((page) => {
+    result[0].push({
+      label: page.name,
+      to: `/admin/pages/${page.slug}`,
+    });
+  });
+
+  return result;
+});
 </script>
 
 <template>
   <nav class="py-4">
-    <ul>
-      <li v-for="page in pages" :key="page.id" class="mb-1">
-        <NuxtLink
-          :to="{
-            name: 'admin-pages-slug',
-            params: {
-              slug: page.slug,
-            },
-          }"
-          class="w-full text-left py-2 px-4 transition-colors rounded-md"
-        >
-          {{ page.name }}
-        </NuxtLink>
-      </li>
-    </ul>
+    <UNavigationMenu orientation="vertical" :items="items" />
   </nav>
 </template>

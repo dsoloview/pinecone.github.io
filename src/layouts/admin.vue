@@ -7,9 +7,9 @@ defineI18nRoute(false);
 <template>
   <Body>
     <AdminHeader />
-    <UContainer>
+    <div class="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
       <slot />
-    </UContainer>
+    </div>
   </Body>
 </template>
 

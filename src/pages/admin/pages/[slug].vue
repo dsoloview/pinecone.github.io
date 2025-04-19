@@ -8,6 +8,11 @@ import {
   savePageContent,
 } from "~/admin/entities/PageContent/api/pageContentApi";
 import { safeClone } from "~/admin/shared/lib/fieldHelpers";
+import { definePageMeta } from "#imports";
+
+definePageMeta({
+  layout: "admin-pages",
+});
 
 const route = useRoute();
 const toast = useToast();
